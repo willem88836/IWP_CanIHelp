@@ -6,7 +6,7 @@ namespace IWPCIH.EventTracking
 	public class Timeline
 	{
 		private List<TimelineChapter> chapters;
-		public int Count { get { return chapters == null ? 0 : chapters.Count; } }
+		public int ChapterCount { get { return chapters == null ? 0 : chapters.Count; } }
 
 
 		public Timeline()

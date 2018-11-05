@@ -18,14 +18,14 @@ namespace IWPCIH.EventTracking
 		{
 			string data = "";
 
-			for (int i = 0; i < timeline.Count; i++)
+			for (int i = 0; i < timeline.ChapterCount; i++)
 			{
 				TimelineChapter chapter = timeline.ChapterAt(i);
 
 				data += chapter.VideoName;
 				data += EVENTSPACER;
 
-				for (int j = 0; j < chapter.Count; j++)
+				for (int j = 0; j < chapter.EventCount; j++)
 				{
 					TimelineEvent timelineEvent = chapter.EventAt(j);
 					data += JsonUtility.ToJson(timelineEvent);
@@ -65,10 +65,11 @@ namespace IWPCIH.EventTracking
 				{
 					// converts the var into a TimelineEvent
 					string s_event = vars[i];
-					TimelineEvent timelineEvent = JsonUtility.FromJson<TimelineEvent>(s_event);
 
-					if (timelineEvent == null)
+					if (s_event == "")
 						continue;
+
+					TimelineEvent timelineEvent = JsonUtility.FromJson<TimelineEvent>(s_event);
 
 					chapter.AddEvent(timelineEvent);
 				}
