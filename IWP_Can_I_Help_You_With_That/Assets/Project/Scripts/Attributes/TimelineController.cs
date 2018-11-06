@@ -34,7 +34,9 @@ namespace IWPCIH
 		{
 			TimelineChapter chapter = new TimelineChapter(videoName);
 			timeline.AddChapter(chapter);
-			currentChapter = chapter;
+			SwitchChapterTo(timeline.ChapterCount - 1);
+
+			Debug.LogFormat("added chapter: {0}", videoName);
 		}
 
 		public void SwitchChapterTo(int i)
@@ -49,10 +51,12 @@ namespace IWPCIH
 			{
 				InvokeTime = 0,
 				Type = type,
-				Id = currentChapter.EventCount - 1
+				Id = currentChapter.EventCount
 			};
 
 			currentChapter.AddEvent(timelineEvent);
+
+			Debug.LogFormat("Add Event: {0}", type.ToString());
 			return timelineEvent;
 		}
 
