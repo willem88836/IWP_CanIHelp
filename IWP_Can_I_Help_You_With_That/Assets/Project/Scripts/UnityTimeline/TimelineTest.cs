@@ -6,9 +6,18 @@ namespace Assets.Project.Scripts.Timeline_Implementation
 {
 	public class TimelineTest : MonoBehaviour
 	{
+		public static TimelineTest instance; 
+
 		public Timeline timeline;
 
-		private void Start()
+		private void Awake()
+		{
+			instance = this;
+
+			CreateTimeline();
+		}
+
+		public Timeline CreateTimeline()
 		{
 			timeline = new Timeline();
 
@@ -30,11 +39,7 @@ namespace Assets.Project.Scripts.Timeline_Implementation
 				}
 			}
 
-
-
-
-
-
+			return timeline;
 		}
 	}
 }

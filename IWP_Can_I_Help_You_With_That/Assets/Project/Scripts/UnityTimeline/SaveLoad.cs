@@ -10,7 +10,13 @@ public static class SaveLoad
 		string s_timeline = TimelineSerializer.Serialize(timeline);
 
 		string path = SavePath + name;
+
+		if (!Directory.Exists(SavePath))
+			Directory.CreateDirectory(SavePath);
+
 		File.WriteAllText(path, s_timeline);
+
+		System.Console.WriteLine("Saved at: " + path);
 
 		return new FileInfo(path);
 	}

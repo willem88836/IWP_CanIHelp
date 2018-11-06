@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using IWPCIH.EventTracking;
 
 namespace IWPCIH
@@ -25,7 +24,9 @@ namespace IWPCIH
 
 			timeline = new Timeline();
 
-			SaveLoad.SavePath = Application.persistentDataPath;
+			SaveLoad.SavePath = Application.temporaryCachePath  + "/TimelineSaveData/";
+
+			Save();
 		}
 
 
@@ -64,7 +65,7 @@ namespace IWPCIH
 
 		public void Save()
 		{
-			SaveLoad.Save(timeline, "SaveData");
+			SaveLoad.Save(timeline, "Timeline");
 		}
 
 

@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Oculus/Avatar/Samples/Controllers/Controllers.unity
+- path: Assets/Project/Scenes/TimelineTest.unity
   isLoaded: 1
   isActive: 1
