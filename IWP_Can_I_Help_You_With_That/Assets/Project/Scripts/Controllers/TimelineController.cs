@@ -49,10 +49,13 @@ namespace IWPCIH
 		public TimelineEvent AddEvent(EventContainer.EventType type)
 		{
 			TimelineEvent timelineEvent = EventContainer.CreateEventOfType(type);
+			timelineEvent.Id = currentChapter.EventCount;
+			timelineEvent.Type = type;
 
 			currentChapter.AddEvent(timelineEvent);
 
 			Debug.LogFormat("Add Event: {0}", type.ToString());
+
 			return timelineEvent;
 		}
 
