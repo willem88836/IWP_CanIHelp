@@ -1,12 +1,10 @@
 ﻿namespace IWPCIH.EventTracking
 {
 	[System.Serializable]
-	public struct TimelineEvent
+	public abstract class TimelineEvent
 	{
-		public enum EventType { CropStart };
-
 		public float InvokeTime;
-		public EventType Type;
+		public TimelineEvents.EventContainer.EventType Type;
 		public int Id;
 	}
 }

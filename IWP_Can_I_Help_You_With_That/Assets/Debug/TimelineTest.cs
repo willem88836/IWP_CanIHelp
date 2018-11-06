@@ -1,5 +1,4 @@
 ﻿using IWPCIH.EventTracking;
-using System.IO;
 using UnityEngine;
 
 namespace Assets.Project.Scripts.Timeline_Implementation
@@ -14,10 +13,10 @@ namespace Assets.Project.Scripts.Timeline_Implementation
 		{
 			instance = this;
 
-			CreateTimeline();
+			CreateCropTimeline();
 		}
 
-		public Timeline CreateTimeline()
+		public Timeline CreateCropTimeline()
 		{
 			timeline = new Timeline();
 
@@ -28,10 +27,10 @@ namespace Assets.Project.Scripts.Timeline_Implementation
 
 				for (int j = 0; j < 10; j++)
 				{
-					TimelineEvent newEvent = new TimelineEvent()
+					TimelineEvent newEvent = new IWPCIH.TimelineEvents.CropEvent.CropEventData()
 					{
 						Id = j,
-						Type = TimelineEvent.EventType.CropStart,
+						Type = IWPCIH.TimelineEvents.EventContainer.EventType.CropStart,
 						InvokeTime = i * j
 					};
 
