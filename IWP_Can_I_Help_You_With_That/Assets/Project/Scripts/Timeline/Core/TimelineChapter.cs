@@ -6,7 +6,7 @@ namespace IWPCIH.EventTracking
 	public class TimelineChapter
 	{
 		public string VideoName;
-		private Dictionary<int, TimelineEvent> events;
+		private Dictionary<int, TimelineEventData> events;
 
 		public int EventCount { get { return events == null ? 0 : events.Count; } }
 
@@ -15,21 +15,21 @@ namespace IWPCIH.EventTracking
 		public TimelineChapter(string videoName)
 		{
 			this.VideoName = videoName;
-			this.events = new Dictionary<int, TimelineEvent>();
+			this.events = new Dictionary<int, TimelineEventData>();
 		}
 
 
-		public TimelineEvent EventAt(int i)
+		public TimelineEventData EventAt(int i)
 		{
 			return events[i];
 		}
 
-		public void AddEvent(TimelineEvent newEvent)
+		public void AddEvent(TimelineEventData newEvent)
 		{
 			events.Add(newEvent.Id, newEvent);
 		}
 
-		public void UpdateEvent(TimelineEvent updatedEvent)
+		public void UpdateEvent(TimelineEventData updatedEvent)
 		{
 			events[updatedEvent.Id] = updatedEvent;
 		}

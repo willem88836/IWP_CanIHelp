@@ -11,8 +11,8 @@ namespace IWPCIH.TimelineEvents
 		/// <summary>
 		///		The event's data object.
 		/// </summary>
-		public TimelineEvent Event;
-
+		public TimelineEventData Event;
+		
 		/// <summary>
 		///		Is called once the this event's time is reached. 
 		/// </summary>

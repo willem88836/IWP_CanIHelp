@@ -27,7 +27,7 @@ namespace IWPCIH.EventTracking
 
 				for (int j = 0; j < chapter.EventCount; j++)
 				{
-					TimelineEvent timelineEvent = chapter.EventAt(j);
+					TimelineEventData timelineEvent = chapter.EventAt(j);
 					data += JsonUtility.ToJson(timelineEvent);
 					data += EVENTSPACER;
 				}
@@ -69,7 +69,7 @@ namespace IWPCIH.EventTracking
 					if (s_event == "")
 						continue;
 
-					TimelineEvent timelineEvent = JsonUtility.FromJson<TimelineEvent>(s_event);
+					TimelineEventData timelineEvent = JsonUtility.FromJson<TimelineEventData>(s_event);
 
 					chapter.AddEvent(timelineEvent);
 				}

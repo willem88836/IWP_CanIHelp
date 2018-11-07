@@ -46,9 +46,9 @@ namespace IWPCIH
 		}
 
 
-		public TimelineEvent AddEvent(EventContainer.EventType type)
+		public TimelineEventData AddEvent(EventContainer.EventType type)
 		{
-			TimelineEvent timelineEvent = EventContainer.CreateEventOfType(type);
+			TimelineEventData timelineEvent = EventContainer.CreateEventOfType(type);
 			timelineEvent.Id = currentChapter.EventCount;
 			timelineEvent.Type = type;
 
@@ -59,7 +59,7 @@ namespace IWPCIH
 			return timelineEvent;
 		}
 
-		public void UpdateEvent(TimelineEvent updatedEvent)
+		public void UpdateEvent(TimelineEventData updatedEvent)
 		{
 			currentChapter.UpdateEvent(updatedEvent);
 		}

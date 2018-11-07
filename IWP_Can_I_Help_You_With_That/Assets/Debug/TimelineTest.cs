@@ -27,7 +27,7 @@ namespace Assets.Project.Scripts.Timeline_Implementation
 
 				for (int j = 0; j < 10; j++)
 				{
-					TimelineEvent newEvent = new IWPCIH.TimelineEvents.CropEvent.CropEventData()
+					TimelineEventData newEvent = new IWPCIH.TimelineEvents.CropEvent.CropEventData()
 					{
 						Id = j,
 						Type = IWPCIH.TimelineEvents.EventContainer.EventType.CropStart,

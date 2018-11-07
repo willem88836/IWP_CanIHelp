@@ -7,7 +7,7 @@ namespace IWPCIH.TimelineEvents
 		public enum EventType { CropStart };
 
 
-		public static TimelineEvent CreateEventOfType(EventType type)
+		public static TimelineEventData CreateEventOfType(EventType type)
 		{
 			switch (type)
 			{
