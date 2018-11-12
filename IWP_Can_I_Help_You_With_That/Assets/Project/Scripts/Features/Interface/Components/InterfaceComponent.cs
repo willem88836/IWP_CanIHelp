@@ -1,35 +1,65 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using IWPCIH.EventTracking;
+using IWPCIH.EditorInterface.Features;
 using System.Reflection;
 
-[RequireComponent(typeof(RectTransform))]
-public class InterfaceComponent : MonoBehaviour
+namespace IWPCIH.EditorInterface.Components
 {
-	private const string NAMEFORMAT = "InterfaceComponent_{0}";
-
-	public InterfaceDataField BaseDataField;
-
-	private InterfaceDataField[] dataFields;
-
-
-	public void Initialize(TimelineEventData eventData)
+	[RequireComponent(typeof(RectTransform)), 
+	 RequireComponent(typeof(FollowMouse)),
+	 RequireComponent(typeof(HorizontalOrVerticalLayoutGroup))]
+	public class InterfaceComponent : MonoBehaviour
 	{
-		FieldInfo[] fields = eventData.GetType().GetFields();
-		dataFields = new InterfaceDataField[fields.Length];
+		private const string NAMEFORMAT = "{0}_InterfaceComponent_{1}";
 
-		for (int i = 0; i < fields.Length; i++)
+		public InterfaceDataField BaseDataField;
+
+		private FollowMouse followMouse;
+		private InterfaceDataField[] dataFields;
+
+
+		private void Awake()
 		{
-			FieldInfo info = fields[i];
-			InterfaceDataField field = Instantiate(BaseDataField, transform);
-			field.Apply(info, eventData);
-
-			dataFields[i] = field;
+			followMouse = GetComponent<FollowMouse>();
 		}
 
-		gameObject.name = string.Format(NAMEFORMAT, eventData.Type.ToString());
-		RectTransform rect = GetComponent<RectTransform>();
-		rect.sizeDelta = new Vector2(
-			rect.sizeDelta.x, 
-			fields.Length * BaseDataField.GetComponent<RectTransform>().sizeDelta.y);
+
+		public void Initialize(TimelineEventData eventData)
+		{
+			gameObject.name = string.Format(NAMEFORMAT, eventData.Id, eventData.Type.ToString());
+
+			int fieldCount;
+			ApplyFields(eventData, out fieldCount);
+			ApplySize(fieldCount);
+		}
+
+		private void ApplyFields(TimelineEventData data, out int fieldCount)
+		{
+			FieldInfo[] fields = data.GetType().GetFields();
+			dataFields = new InterfaceDataField[fields.Length];
+
+			for (int i = 0; i < fields.Length; i++)
+			{
+				FieldInfo info = fields[i];
+				InterfaceDataField field = Instantiate(BaseDataField, transform);
+				field.Apply(info, data);
+
+				dataFields[i] = field;
+			}
+
+			fieldCount = fields.Length;
+		}
+
+		private void ApplySize(int fieldCount)
+		{
+			HorizontalOrVerticalLayoutGroup vlg = GetComponent<HorizontalOrVerticalLayoutGroup>();
+			RectOffset padding = vlg.padding;
+
+			RectTransform rect = GetComponent<RectTransform>();
+			rect.sizeDelta = new Vector2(
+				rect.sizeDelta.x + padding.right + padding.left,
+				fieldCount * BaseDataField.GetComponent<RectTransform>().sizeDelta.y + padding.top + padding.bottom + fieldCount * vlg.spacing);
+		}
 	}
 }

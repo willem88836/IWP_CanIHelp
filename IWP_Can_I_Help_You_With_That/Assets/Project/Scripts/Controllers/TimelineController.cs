@@ -1,13 +1,18 @@
 ﻿using UnityEngine;
 using IWPCIH.EventTracking;
 using IWPCIH.TimelineEvents;
+using IWPCIH.EditorInterface.Components;
 
 namespace IWPCIH
 {
 	public class TimelineController : MonoBehaviour
 	{
+		private string SAVEPATH { get { return Application.temporaryCachePath + "/TimelineSaveData/"; } }
+
+
 		public static TimelineController instance;
 
+		public Interface componentInterface;
 
 		private Timeline timeline;
 		private TimelineChapter currentChapter;
@@ -22,14 +27,17 @@ namespace IWPCIH
 
 			instance = this;
 
-
 			timeline = new Timeline();
 
-			SaveLoad.SavePath = Application.temporaryCachePath  + "/TimelineSaveData/";
-
-			Save();
+			SaveLoad.SavePath = SAVEPATH;
+			Foo();
 		}
 
+		private void Foo()
+		{
+			AddChapter("chapter 1");
+			AddEvent(EventContainer.EventType.CropStart);
+		}
 
 		public void AddChapter(string videoName)
 		{
@@ -53,9 +61,7 @@ namespace IWPCIH
 			timelineEvent.Type = type;
 
 			currentChapter.AddEvent(timelineEvent);
-
-			Debug.LogFormat("Add Event: {0}", type.ToString());
-
+			componentInterface.Spawn(timelineEvent);
 			return timelineEvent;
 		}
 
@@ -65,12 +71,11 @@ namespace IWPCIH
 		}
 
 
-
 		public void Save()
 		{
 			SaveLoad.Save(timeline, "Timeline");
+			// TODO: Save interface data.
 		}
-
 
 		public void Load()
 		{

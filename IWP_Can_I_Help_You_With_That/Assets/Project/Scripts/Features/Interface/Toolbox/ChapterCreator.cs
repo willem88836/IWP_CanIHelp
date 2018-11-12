@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-namespace IWPCIH.InterfaceFeatures
+namespace IWPCIH.EditorInterface
 {
 	public class ChapterCreator : MonoBehaviour
 	{

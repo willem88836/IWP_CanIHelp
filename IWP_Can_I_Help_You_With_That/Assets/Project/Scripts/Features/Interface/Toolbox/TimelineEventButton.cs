@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace IWPCIH.InterfaceFeatures
+namespace IWPCIH.EditorInterface
 {
 	[RequireComponent(typeof(Button))]
 	public class TimelineEventButton : MonoBehaviour
