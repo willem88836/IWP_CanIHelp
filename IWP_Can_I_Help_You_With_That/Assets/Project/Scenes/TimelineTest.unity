@@ -265,7 +265,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 95924941}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d130e0bd796ca91409ba544770cebd6b, type: 3}
+  m_Script: {fileID: 11500000, guid: 71dce9f86f11b7948a5ef7317be0c20c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   NameTextfield: {fileID: 304913766}
@@ -2061,11 +2061,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1643579672}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb50c5040c0283540806caa74a8e2cd1, type: 3}
+  m_Script: {fileID: 11500000, guid: 51a4f04e3a169ad4196d72966fd7941e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Type: 0
-  button: {fileID: 0}
 --- !u!1 &1781724539
 GameObject:
   m_ObjectHideFlags: 0
