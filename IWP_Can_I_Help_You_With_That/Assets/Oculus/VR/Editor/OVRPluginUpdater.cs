@@ -53,7 +53,7 @@ class OVRPluginUpdater
 
 		public bool IsEnabled()
 		{
-			// TODO: Check each individual platform rather than using the Win64 DLL status for the overall package status.
+			// : Check each individual platform rather than using the Win64 DLL status for the overall package status.
 			string path = "";
 			if (Plugins.TryGetValue(PluginPlatform.Win64, out path))
 			{

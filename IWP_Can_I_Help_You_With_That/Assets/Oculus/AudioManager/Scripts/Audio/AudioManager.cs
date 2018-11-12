@@ -46,7 +46,7 @@ public class SoundGroup {
 	public AudioMixerGroup  mixerGroup = null;						// default = AudioManager.defaultMixerGroup
 	[Range(0,64)]
 	public int              maxPlayingSounds = 0;                   // default = 0, unlimited
-	// TODO: this preload behavior is not yet implemented
+	// : this preload behavior is not yet implemented
 	public PreloadSounds	preloadAudio = PreloadSounds.Default;	// default = true, audio clip data will be preloaded
 	public float            volumeOverride = 1.0f;					// default = 1.0
 
@@ -128,7 +128,7 @@ public partial class AudioManager : MonoBehaviour {
 				Destroy( soundEmitterParent );
 			}
 		}
-		///TODO - if you change scenes you'll want to call OnPreSceneLoad to detach the sound emitters
+		/// - if you change scenes you'll want to call OnPreSceneLoad to detach the sound emitters
 		///from anything they might be parented to or they will get destroyed with that object
 		///there should only be one instance of the AudioManager across the life of the game/app
 		///GameManager.OnPreSceneLoad -= OnPreSceneLoad;
@@ -148,7 +148,7 @@ public partial class AudioManager : MonoBehaviour {
 		}
 		theAudioManager = this;
 
-		///TODO - if you change scenes you'll want to call OnPreSceneLoad to detach the sound emitters
+		/// - if you change scenes you'll want to call OnPreSceneLoad to detach the sound emitters
 		///from anything they might be parented to or they will get destroyed with that object
 		///there should only be one instance of the AudioManager across the life of the game/app
 		///GameManager.OnPreSceneLoad += OnPreSceneLoad;

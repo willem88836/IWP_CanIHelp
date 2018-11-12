@@ -373,7 +373,7 @@ public partial class AudioManager : MonoBehaviour {
 					return -1;
 				} else {
 					// find a playing emitter that has a lower priority than what we're requesting
-					// TODO - we could first search for Very Low, then Low, etc ... TBD if it's worth the effort
+					//  - we could first search for Very Low, then Low, etc ... TBD if it's worth the effort
 					next = theAudioManager.playingEmitters.Find( item => item != null && item.priority < priority );
 					if ( next == null ) {
 						// last chance to find a free emitter

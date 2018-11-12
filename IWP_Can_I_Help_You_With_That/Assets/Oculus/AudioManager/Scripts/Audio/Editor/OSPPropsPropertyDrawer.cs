@@ -14,7 +14,7 @@ public class OSPPropsPropertyDrawer : PropertyDrawer {
 
 	static float lineHeight = EditorGUIUtility.singleLineHeight + 2.0f;
 	static float indent = 32.0f;
-	// TODO - some day just enumerate these
+	//  - some day just enumerate these
 	static string[] props = new string[] { "useFastOverride", "gain", "enableInvSquare", "volumetric" , "invSquareFalloff" };
 	static string[] names = new string[] { "Reflections Enabled", "Gain", "Enable Oculus Atten.", "Volumetric", "Range" };
 	static int[] lines = new int[] { 1, 1, 1, 1, 2, 2 };

@@ -130,7 +130,7 @@ public class ONSPAmbisonicsNative : MonoBehaviour
 
         ovrAmbisonicsNativeStatus status = (ovrAmbisonicsNativeStatus)statusF;
 
-        // TODO: Add native result/error codes
+        // : Add native result/error codes
         if (status != currentStatus)
         {
             switch(status)

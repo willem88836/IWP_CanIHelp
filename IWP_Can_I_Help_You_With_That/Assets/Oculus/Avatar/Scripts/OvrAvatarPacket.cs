@@ -66,7 +66,7 @@ public class OvrAvatarPacket
     {
         BinaryReader reader = new BinaryReader(stream);
 
-        // Todo: bounds check frame count
+        // : bounds check frame count
         int frameCount = reader.ReadInt32();
         List<float> frameTimes = new List<float>(frameCount);
         for (int i = 0; i < frameCount; ++i)
@@ -79,7 +79,7 @@ public class OvrAvatarPacket
             frames.Add(reader.ReadPoseFrame());
         }
 
-        // Todo: bounds check audio packet count
+        // : bounds check audio packet count
         int audioPacketCount = reader.ReadInt32();
         List<byte[]> audioPackets = new List<byte[]>(audioPacketCount);
         for (int i = 0; i < audioPacketCount; ++i)

@@ -60,7 +60,7 @@ namespace Oculus.Platform
 
     // Keep this enum in sync with ovrMessageType in OVR_Platform.h
     public enum MessageType : uint
-    { //TODO - rename this to type; it's already in Message class
+    { // - rename this to type; it's already in Message class
       Unknown,
 
       Achievements_AddCount                               = 0x03E76231,
