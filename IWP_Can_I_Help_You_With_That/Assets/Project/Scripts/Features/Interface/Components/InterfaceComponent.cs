@@ -8,20 +8,29 @@ namespace IWPCIH.EditorInterface.Components
 {
 	[RequireComponent(typeof(RectTransform)), 
 	 RequireComponent(typeof(FollowMouse)),
-	 RequireComponent(typeof(HorizontalOrVerticalLayoutGroup))]
+	 RequireComponent(typeof(HorizontalOrVerticalLayoutGroup)),
+	 RequireComponent(typeof(Button))]
 	public class InterfaceComponent : MonoBehaviour
 	{
 		private const string NAMEFORMAT = "{0}_InterfaceComponent_{1}";
 
 		public InterfaceDataField BaseDataField;
 
+		private RectTransform rect;
 		private FollowMouse followMouse;
 		private InterfaceDataField[] dataFields;
 
 
 		private void Awake()
 		{
+			rect = GetComponent<RectTransform>();
 			followMouse = GetComponent<FollowMouse>();
+
+			GetComponent<Button>().onClick.AddListener(delegate 
+			{
+				followMouse.OffSet = rect.position - Input.mousePosition;
+				followMouse.Following = !followMouse.Following;
+			});
 		}
 
 

@@ -43,12 +43,9 @@ public class InterfaceDataField : MonoBehaviour
 	{
 		object o = ParseString(s, fieldType);
 
-		Debug.Log(o.GetType());
-
-		if (o == null || o.GetType() != fieldType)
+		if (o == null)
 		{
-			Debug.Log("Field input type not recognized, field reset");
-			Label.text = lastInput.ToString();
+			InputPanel.text = lastInput.ToString();
 			info.SetValue(eventData, lastInput);
 		}
 		else
@@ -61,28 +58,32 @@ public class InterfaceDataField : MonoBehaviour
 	/// <summary>
 	///		Parses the string to the corresponding type. 
 	/// </summary>
-	private static object ParseString(string s, Type fieldType)
+	private static object ParseString(string s, Type t)
 	{
 		try
 		{
-			if (fieldType == typeof(int))
+			if (t == typeof(int))
 			{
 				return int.Parse(s);
 			}
-			else if (fieldType == typeof(float))
+			else if (t == typeof(float))
 			{
 				return float.Parse(s);
 			}
-			else if (fieldType == typeof(double))
+			else if (t == typeof(double))
 			{
 				return double.Parse(s);
+			}
+			else if (t == typeof(char))
+			{
+				return char.Parse(s);
 			}
 
 			return s;
 		}
 		catch (Exception ex)
 		{
-			Debug.LogWarning(ex.Message);
+			Debug.LogWarningFormat("Parse to {0} Cancelled with: {1}", t.ToString(), ex.Message);
 			return null;
 		}
 	}
