@@ -20,7 +20,7 @@ namespace IWPCIH.EventTracking
 
 			for (int i = 0; i < timeline.ChapterCount; i++)
 			{
-				TimelineChapter chapter = timeline.ChapterAt(i);
+				TimelineChapter chapter = timeline.GetChapter(i);
 
 				data += chapter.VideoName;
 				data += EVENTSPACER;
@@ -57,11 +57,10 @@ namespace IWPCIH.EventTracking
 					continue;
 
 				// A new chapter is created.
-				string videoName = vars[0];
-				TimelineChapter chapter = new TimelineChapter(videoName);
+				TimelineChapter chapter = new TimelineChapter(int.Parse(vars[0]), vars[1], vars[2]);
 
 				// Starts at 1 to skip VideoName.
-				for (int i = 1; i < vars.Length; i++)
+				for (int i = 3; i < vars.Length; i++)
 				{
 					// converts the var into a TimelineEvent
 					string s_event = vars[i];

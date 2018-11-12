@@ -43,7 +43,6 @@ namespace IWPCIH.EditorInterface.Components
 			gameObject.name = string.Format(NAMEFORMAT, eventData.Id, eventData.Type.ToString());
 
 			ApplyFields(eventData);
-			ApplySize();
 		}
 
 		private void ApplyFields(TimelineEventData data)
@@ -66,19 +65,6 @@ namespace IWPCIH.EditorInterface.Components
 				dataFields[i] = field;
 			}
 		}
-
-		private void ApplySize()
-		{
-			HorizontalOrVerticalLayoutGroup vlg = GetComponent<HorizontalOrVerticalLayoutGroup>();
-			RectOffset padding = vlg.padding;
-
-			int fieldCount = transform.childCount;
-			RectTransform rect = GetComponent<RectTransform>();
-			rect.sizeDelta = new Vector2(
-				rect.sizeDelta.x + padding.right + padding.left,
-				fieldCount * BaseDataField.GetComponent<RectTransform>().sizeDelta.y + padding.top + padding.bottom + fieldCount * vlg.spacing);
-		}
-
 
 		public void Destroy()
 		{

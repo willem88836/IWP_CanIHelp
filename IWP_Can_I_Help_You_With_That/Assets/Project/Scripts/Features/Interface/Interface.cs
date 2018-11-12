@@ -12,6 +12,11 @@ namespace IWPCIH.EditorInterface.Components
 		private List<InterfaceComponent> interfaceComponents = new List<InterfaceComponent>();
 
 
+		public void Load(TimelineChapter chapter)
+		{
+			// TODO: load the interface based on chapter.
+		}
+
 		public void Spawn(TimelineEventData data)
 		{
 			InterfaceComponent component = Instantiate(baseComponent, componentContainer);

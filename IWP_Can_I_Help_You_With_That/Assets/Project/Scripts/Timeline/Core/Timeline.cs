@@ -18,11 +18,16 @@ namespace IWPCIH.EventTracking
 		/// <summary>
 		///		Returns chapter at the provided Index.
 		/// </summary>
-		/// <param name="i"></param>
+		/// <param name="id"></param>
 		/// <returns></returns>
-		public TimelineChapter ChapterAt(int i )
+		public TimelineChapter GetChapter(int id)
 		{
-			return chapters[i];
+			return chapters.Find(c => c.Id == id);
+		}
+
+		public TimelineChapter GetFirst()
+		{
+			return chapters[0];
 		}
 
 		/// <summary>
@@ -31,6 +36,14 @@ namespace IWPCIH.EventTracking
 		public void AddChapter(TimelineChapter chapter)
 		{
 			chapters.Add(chapter);
+		}
+
+		/// <summary>
+		///		Removes the chapter from the list.
+		/// </summary>
+		public void RemoveChapter(TimelineChapter chapter)
+		{
+			chapters.Remove(chapter);
 		}
 
 		/// <summary>

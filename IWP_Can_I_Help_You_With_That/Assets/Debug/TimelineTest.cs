@@ -22,7 +22,7 @@ namespace Assets.Project.Scripts.Timeline_Implementation
 
 			for (int i = 0; i < 10; i++)
 			{
-				TimelineChapter chapter = new TimelineChapter("videoname:_" + i);
+				TimelineChapter chapter = new TimelineChapter(i, "Chapter 1", "videoname:_" + i);
 				timeline.AddChapter(chapter);
 
 				for (int j = 0; j < 10; j++)

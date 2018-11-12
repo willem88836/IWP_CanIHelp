@@ -5,6 +5,8 @@ namespace IWPCIH.EventTracking
 	[System.Serializable]
 	public class TimelineChapter
 	{
+		public int Id;
+		public string Name;
 		public string VideoName;
 		private Dictionary<int, TimelineEventData> events;
 
@@ -12,8 +14,10 @@ namespace IWPCIH.EventTracking
 
 
 
-		public TimelineChapter(string videoName)
+		public TimelineChapter(int id, string name, string videoName)
 		{
+			this.Id = id;
+			this.Name = name;
 			this.VideoName = videoName;
 			this.events = new Dictionary<int, TimelineEventData>();
 		}
