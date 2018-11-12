@@ -39,16 +39,22 @@ namespace IWPCIH.EditorInterface.Components
 			FieldInfo[] fields = data.GetType().GetFields();
 			dataFields = new InterfaceDataField[fields.Length];
 
+			System.Type t = typeof(TimelineEventData);
+
 			for (int i = 0; i < fields.Length; i++)
 			{
 				FieldInfo info = fields[i];
+
+				if (t.GetField(info.Name) != null)
+					continue;
+
 				InterfaceDataField field = Instantiate(BaseDataField, transform);
 				field.Apply(info, data);
 
 				dataFields[i] = field;
 			}
 
-			fieldCount = fields.Length;
+			fieldCount = fields.Length - t.GetFields().Length;
 		}
 
 		private void ApplySize(int fieldCount)

@@ -16,7 +16,7 @@ public static class SaveLoad
 
 		File.WriteAllText(path, s_timeline);
 
-		System.Console.WriteLine("Saved at: " + path);
+		UnityEngine.Debug.Log("Saved at: " + path);
 
 		return new FileInfo(path);
 	}

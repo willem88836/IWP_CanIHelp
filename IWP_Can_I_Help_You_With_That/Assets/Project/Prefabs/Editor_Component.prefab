@@ -57,11 +57,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BaseDataField: {fileID: 114143473193394640, guid: 64a21d94f0717db488fa4d8a5cca87aa,
     type: 2}
-  padding:
-    m_Left: 5
-    m_Right: 5
-    m_Top: 5
-    m_Bottom: 5
 --- !u!114 &114977608983120608
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -101,10 +96,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 5
-    m_Right: 5
-    m_Top: 5
-    m_Bottom: 5
+    m_Left: 10
+    m_Right: 10
+    m_Top: 30
+    m_Bottom: 10
   m_ChildAlignment: 0
   m_Spacing: 2
   m_ChildForceExpandWidth: 1

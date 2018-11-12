@@ -9,7 +9,6 @@ public class InterfaceDataField : MonoBehaviour
 	private const string NAMEFORMAT = "Datafield_{0}_{1}";
 
 	public Text Label;
-	public Text InputText;
 	public InputField InputPanel;
 
 	private Type fieldType;
@@ -32,26 +31,30 @@ public class InterfaceDataField : MonoBehaviour
 
 		gameObject.name = string.Format(NAMEFORMAT, info.GetType().ToString(), info.Name);
 		Label.text = info.Name;
-		InputText.text = info.GetValue(eventData).ToString();
-		fieldType = info.GetType();
-
+		lastInput = info.GetValue(eventData);
+		InputPanel.text = lastInput.ToString();
+		fieldType = info.GetValue(eventData).GetType();
+		
 		InputPanel.onValueChanged.RemoveAllListeners();
-		InputPanel.onValueChanged.AddListener((string s) => { OnValueChanged(s); });
+		InputPanel.onEndEdit.AddListener((string s) => { OnValueChanged(s); });
 	}
 
 	private void OnValueChanged(string s)
 	{
 		object o = ParseString(s, fieldType);
 
-		if (o == null)
+		Debug.Log(o.GetType());
+
+		if (o == null || o.GetType() != fieldType)
 		{
-			info.SetValue(eventData, o);
-			lastInput = o;
+			Debug.Log("Field input type not recognized, field reset");
+			Label.text = lastInput.ToString();
+			info.SetValue(eventData, lastInput);
 		}
 		else
 		{
-			Label.text = lastInput.ToString();
-			info.SetValue(eventData, lastInput);
+			info.SetValue(eventData, o);
+			lastInput = o;
 		}
 	}
 
