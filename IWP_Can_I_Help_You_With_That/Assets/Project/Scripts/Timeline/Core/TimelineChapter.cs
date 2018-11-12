@@ -24,14 +24,19 @@ namespace IWPCIH.EventTracking
 			return events[i];
 		}
 
-		public void AddEvent(TimelineEventData newEvent)
+		public void AddEvent(TimelineEventData newData)
 		{
-			events.Add(newEvent.Id, newEvent);
+			events.Add(newData.Id, newData);
 		}
 
-		public void UpdateEvent(TimelineEventData updatedEvent)
+		public void UpdateEvent(TimelineEventData updatedData)
 		{
-			events[updatedEvent.Id] = updatedEvent;
+			events[updatedData.Id] = updatedData;
+		}
+
+		public void RemoveEvent(TimelineEventData data)
+		{
+			events.Remove(data.Id);
 		}
 	}
 }

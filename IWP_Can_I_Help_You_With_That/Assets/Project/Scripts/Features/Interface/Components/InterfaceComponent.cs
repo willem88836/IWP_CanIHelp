@@ -16,6 +16,8 @@ namespace IWPCIH.EditorInterface.Components
 
 		public InterfaceDataField BaseDataField;
 
+		private TimelineEventData eventData;
+
 		private RectTransform rect;
 		private FollowMouse followMouse;
 		private InterfaceDataField[] dataFields;
@@ -36,14 +38,15 @@ namespace IWPCIH.EditorInterface.Components
 
 		public void Initialize(TimelineEventData eventData)
 		{
+			this.eventData = eventData;
+
 			gameObject.name = string.Format(NAMEFORMAT, eventData.Id, eventData.Type.ToString());
 
-			int fieldCount;
-			ApplyFields(eventData, out fieldCount);
-			ApplySize(fieldCount);
+			ApplyFields(eventData);
+			ApplySize();
 		}
 
-		private void ApplyFields(TimelineEventData data, out int fieldCount)
+		private void ApplyFields(TimelineEventData data)
 		{
 			FieldInfo[] fields = data.GetType().GetFields();
 			dataFields = new InterfaceDataField[fields.Length];
@@ -62,19 +65,25 @@ namespace IWPCIH.EditorInterface.Components
 
 				dataFields[i] = field;
 			}
-
-			fieldCount = fields.Length - t.GetFields().Length;
 		}
 
-		private void ApplySize(int fieldCount)
+		private void ApplySize()
 		{
 			HorizontalOrVerticalLayoutGroup vlg = GetComponent<HorizontalOrVerticalLayoutGroup>();
 			RectOffset padding = vlg.padding;
 
+			int fieldCount = transform.childCount;
 			RectTransform rect = GetComponent<RectTransform>();
 			rect.sizeDelta = new Vector2(
 				rect.sizeDelta.x + padding.right + padding.left,
 				fieldCount * BaseDataField.GetComponent<RectTransform>().sizeDelta.y + padding.top + padding.bottom + fieldCount * vlg.spacing);
+		}
+
+
+		public void Destroy()
+		{
+			TimelineController.instance.RemoveEvent(eventData);
+			Destroy(gameObject);
 		}
 	}
 }

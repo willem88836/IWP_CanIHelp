@@ -9,7 +9,6 @@ namespace IWPCIH
 	{
 		private string SAVEPATH { get { return Application.temporaryCachePath + "/TimelineSaveData/"; } }
 
-
 		public static TimelineController instance;
 
 		public Interface componentInterface;
@@ -39,6 +38,7 @@ namespace IWPCIH
 			AddEvent(EventContainer.EventType.CropStart);
 		}
 
+
 		public void AddChapter(string videoName)
 		{
 			TimelineChapter chapter = new TimelineChapter(videoName);
@@ -54,6 +54,8 @@ namespace IWPCIH
 		}
 
 
+		#region ChapterIteration
+
 		public TimelineEventData AddEvent(EventContainer.EventType type)
 		{
 			TimelineEventData timelineEvent = EventContainer.CreateEventOfType(type);
@@ -62,24 +64,39 @@ namespace IWPCIH
 
 			currentChapter.AddEvent(timelineEvent);
 			componentInterface.Spawn(timelineEvent);
+
+			Debug.LogFormat("Added Event {0} of type {1}", timelineEvent.Id.ToString(), timelineEvent.Type.ToString());
+
 			return timelineEvent;
 		}
+		public void RemoveEvent(TimelineEventData data)
+		{
+			currentChapter.RemoveEvent(data);
 
+			Debug.LogFormat("Removed Event {0} of type {1}", data.Id.ToString(), data.Type.ToString());
+		}
 		public void UpdateEvent(TimelineEventData updatedEvent)
 		{
 			currentChapter.UpdateEvent(updatedEvent);
+
+			Debug.LogFormat("Updated Event {0} of type {1}", updatedEvent.Id.ToString(), updatedEvent.Type.ToString());
 		}
 
+		#endregion
+
+		#region SaveLoad
 
 		public void Save()
 		{
 			SaveLoad.Save(timeline, "Timeline");
 			// TODO: Save interface data.
 		}
-
 		public void Load()
 		{
 			timeline = SaveLoad.Load("SaveData");
 		}
+
+		#endregion
+
 	}
 }
