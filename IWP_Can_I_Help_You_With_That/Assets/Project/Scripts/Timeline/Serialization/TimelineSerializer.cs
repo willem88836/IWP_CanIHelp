@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
+using IWPCIH.TimelineEvents;
 
 namespace IWPCIH.EventTracking
 {
@@ -18,22 +20,21 @@ namespace IWPCIH.EventTracking
 		{
 			string data = "";
 
-			for (int i = 0; i < timeline.ChapterCount; i++)
+			timeline.Foreach((TimelineChapter chapter) =>
 			{
-				TimelineChapter chapter = timeline.ChapterAt(i);
-
-				data += chapter.VideoName;
-				data += EVENTSPACER;
+				data += chapter.Id.ToString() + EVENTSPACER;
+				data += chapter.Name + EVENTSPACER;
+				data += chapter.VideoName + EVENTSPACER;
 
 				for (int j = 0; j < chapter.EventCount; j++)
 				{
-					TimelineEvent timelineEvent = chapter.EventAt(j);
+					TimelineEventData timelineEvent = chapter.EventAt(j);
 					data += JsonUtility.ToJson(timelineEvent);
 					data += EVENTSPACER;
 				}
 
 				data += CHAPTERSPACER;
-			}
+			});
 
 			return data;
 		}
@@ -50,6 +51,9 @@ namespace IWPCIH.EventTracking
 
 			foreach (string s_Chapter in s_Chapters)
 			{
+				if (s_Chapter == "")
+					continue;
+
 				// Splits the chapter into data pieces.
 				string[] vars = s_Chapter.Split(EVENTSPACER);
 
@@ -57,21 +61,22 @@ namespace IWPCIH.EventTracking
 					continue;
 
 				// A new chapter is created.
-				string videoName = vars[0];
-				TimelineChapter chapter = new TimelineChapter(videoName);
+				TimelineChapter chapter = new TimelineChapter(int.Parse(vars[0]), vars[1], vars[2]);
 
-				// Starts at 1 to skip VideoName.
-				for (int i = 1; i < vars.Length; i++)
+				// Starts later to skip chapter fields.
+				for (int i = 3; i < vars.Length; i++)
 				{
 					// converts the var into a TimelineEvent
 					string s_event = vars[i];
 
 					if (s_event == "")
 						continue;
+					
+					TimelineEventData timelineData = JsonUtility.FromJson<TimelineEventData>(s_event);
+					Type t = TimelineEventContainer.TypeOf(timelineData.Type);
+					timelineData = (TimelineEventData)JsonUtility.FromJson(s_event, t);	
 
-					TimelineEvent timelineEvent = JsonUtility.FromJson<TimelineEvent>(s_event);
-
-					chapter.AddEvent(timelineEvent);
+					chapter.AddEvent(timelineData);
 				}
 
 				timeline.AddChapter(chapter);

@@ -67,7 +67,7 @@ using Assets.OVR.Scripts;
 /// </summary>
 public class OVRLint : EditorWindow
 {
-	//TODO: The following require reflection or static analysis.
+	//: The following require reflection or static analysis.
 	///Use of ONSP reflections (Gear)
 	///Use of LoadLevelAsync / LoadLevelAdditiveAsync (on Gear, this kills frame rate so dramatically it's probably better to just go to black and load synchronously)
 	///Use of Linq in non-editor assemblies (common cause of GCs).  Minor: use of foreach.

@@ -36,7 +36,7 @@ public class OVRLipSyncSequence : ScriptableObject
         OVRLipSync.Frame frame = null;
         if (time < length && entries.Count > 0)
         {
-            // todo: we could blend frame output here if we wanted.
+            // : we could blend frame output here if we wanted.
             float percentComplete = time / length;
             frame = entries[(int)(entries.Count * percentComplete)];
         }

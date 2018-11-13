@@ -1,37 +1,54 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace IWPCIH.EventTracking
 {
-	[System.Serializable]
+	[Serializable]
 	public class TimelineChapter
 	{
+		public int Id;
+		public string Name;
 		public string VideoName;
-		private Dictionary<int, TimelineEvent> events;
+		private Dictionary<int, TimelineEventData> events;
 
 		public int EventCount { get { return events == null ? 0 : events.Count; } }
 
 
-
-		public TimelineChapter(string videoName)
+		public TimelineChapter(int id, string name, string videoName)
 		{
+			this.Id = id;
+			this.Name = name;
 			this.VideoName = videoName;
-			this.events = new Dictionary<int, TimelineEvent>();
+			this.events = new Dictionary<int, TimelineEventData>();
 		}
 
 
-		public TimelineEvent EventAt(int i)
+		public TimelineEventData EventAt(int i)
 		{
 			return events[i];
 		}
 
-		public void AddEvent(TimelineEvent newEvent)
+		public void Foreach(Action<TimelineEventData> action)
 		{
-			events.Add(newEvent.Id, newEvent);
+			foreach(TimelineEventData d in events.Values)
+			{
+				action.Invoke(d);
+			}
 		}
 
-		public void UpdateEvent(TimelineEvent updatedEvent)
+		public void AddEvent(TimelineEventData newData)
 		{
-			events[updatedEvent.Id] = updatedEvent;
+			events.Add(newData.Id, newData);
+		}
+
+		public void UpdateEvent(TimelineEventData updatedData)
+		{
+			events[updatedData.Id] = updatedData;
+		}
+
+		public void RemoveEvent(TimelineEventData data)
+		{
+			events.Remove(data.Id);
 		}
 	}
 }
