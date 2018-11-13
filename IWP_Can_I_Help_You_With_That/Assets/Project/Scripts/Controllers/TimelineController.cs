@@ -119,8 +119,12 @@ namespace IWPCIH
 		public void Load()
 		{
 			timeline.Load("Timeline");
-			// TODO: figure out what chapter to load instead of the first one.
-			ComponentInterface.Load(currentChapter.Name);
+			SwitchChapterTo(timeline.GetFirst().Id);
+
+			timeline.Foreach((TimelineChapter chapter) =>
+			{
+				ChapterHierarchy.AddChapter(chapter);
+			});
 		}
 
 		#endregion

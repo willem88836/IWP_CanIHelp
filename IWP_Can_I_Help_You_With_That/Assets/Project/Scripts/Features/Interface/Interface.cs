@@ -15,7 +15,8 @@ namespace IWPCIH.EditorInterface.Components
 
 		public void Initialize(TimelineChapter chapter)
 		{
-			Vector3[] locations = Load(chapter.Name);
+			Clear();
+			   Vector3[] locations = Load(chapter.Name);
 			int i = 0; 
 			chapter.Foreach((TimelineEventData data) => 
 			{
@@ -34,6 +35,15 @@ namespace IWPCIH.EditorInterface.Components
 			component.transform.position = componentContainer.position;
 			component.transform.rotation = Quaternion.identity;
 			interfaceComponents.Add(component);
+		}
+
+		public void Clear()
+		{
+			foreach (InterfaceComponent c in interfaceComponents)
+			{
+				Destroy(c.gameObject);
+			}
+			interfaceComponents.Clear();
 		}
 
 

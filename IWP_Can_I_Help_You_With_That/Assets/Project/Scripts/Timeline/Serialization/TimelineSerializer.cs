@@ -20,8 +20,9 @@ namespace IWPCIH.EventTracking
 
 			timeline.Foreach((TimelineChapter chapter) =>
 			{
-				data += chapter.VideoName;
-				data += EVENTSPACER;
+				data += chapter.Id.ToString() + EVENTSPACER;
+				data += chapter.Name + EVENTSPACER;
+				data += chapter.VideoName + EVENTSPACER;
 
 				for (int j = 0; j < chapter.EventCount; j++)
 				{
@@ -48,6 +49,9 @@ namespace IWPCIH.EventTracking
 
 			foreach (string s_Chapter in s_Chapters)
 			{
+				if (s_Chapter == "")
+					continue;
+
 				// Splits the chapter into data pieces.
 				string[] vars = s_Chapter.Split(EVENTSPACER);
 

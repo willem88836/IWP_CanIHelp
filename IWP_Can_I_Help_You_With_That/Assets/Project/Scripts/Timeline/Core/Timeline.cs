@@ -77,8 +77,8 @@ namespace IWPCIH.EventTracking
 		{
 			string s_timeline = SaveLoad.Load(name);
 			Timeline timeline = TimelineSerializer.Deserialize(s_timeline);
+			this.chapters = timeline.chapters;
 			return timeline;
-			// TODO: somehow translate the deserialized timeline to the current instance.
 		}
 	}
 }
