@@ -22,6 +22,7 @@ namespace IWPCIH.EventTracking
 
 			timeline.Foreach((TimelineChapter chapter) =>
 			{
+				//TODO: make this json as well. 
 				data += chapter.Id.ToString() + EVENTSPACER;
 				data += chapter.Name + EVENTSPACER;
 				data += chapter.VideoName + EVENTSPACER;

@@ -33,19 +33,8 @@ namespace IWPCIH
 			timeline = new Timeline();
 
 			SaveLoad.SavePath = SAVEPATH;
-			Foo();
 		}
 
-
-#if UNITY_EDITOR
-		private void Foo()
-		{
-			//Load();
-			//for (int i = 0; i < 10; i++)
-			//	AddChapter("chapter " + i);
-			//AddEvent(EventContainer.EventType.CropStart);
-		}
-#endif
 
 		public void SwitchChapterTo(int i)
 		{
@@ -59,16 +48,16 @@ namespace IWPCIH
 
 		#region ChapterIteration
 
-		public void AddChapter(string name)
+		public void AddChapter(string chapterName, string videoName)
 		{
 			int index = timeline.ChapterCount;
-			TimelineChapter chapter = new TimelineChapter(index, name, "VideoName"); // TODO: get a reference to the video name.
+			TimelineChapter chapter = new TimelineChapter(index, chapterName, videoName);
 			timeline.AddChapter(chapter);
 			SwitchChapterTo(index);
 
 			ChapterHierarchy.AddChapter(chapter);
 
-			Debug.LogFormat("added chapter: {0}", name);
+			Debug.LogFormat("added chapter: {0}", chapterName);
 		}
 		public void RemoveChapter(TimelineChapter chapter)
 		{

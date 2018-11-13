@@ -16,7 +16,7 @@ namespace IWPCIH.EditorInterface
 
 			if (IsValid(name))
 			{
-				TimelineController.instance.AddChapter(NameTextfield.text);
+				TimelineController.instance.AddChapter(NameTextfield.text, "VideoName"); // TODO: make this the actual video name. 
 			}
 			else
 			{
