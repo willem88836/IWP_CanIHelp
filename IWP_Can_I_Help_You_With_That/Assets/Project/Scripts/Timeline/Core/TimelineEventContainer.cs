@@ -1,6 +1,5 @@
 ﻿using IWPCIH.EventTracking;
 using System;
-using System.Collections.Generic;
 
 namespace IWPCIH.TimelineEvents
 {

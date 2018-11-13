@@ -30,7 +30,6 @@ namespace IWPCIH
 		/// </summary>
 		public static T[] Shuffle<T>(T[] range)
 		{
-			// TODO: Make this less tacky.
 			List<T> list = new List<T>(range);
 			list = Shuffle(list);
 			return list.ToArray();
@@ -54,7 +53,6 @@ namespace IWPCIH
 		/// </summary>
 		public static T[] ShuffleToArray<T>(List<T> list)
 		{
-			// TODO: Make this less tacky.
 			List<T> shuffledList = Shuffle(list);
 			return shuffledList.ToArray();
 		}
