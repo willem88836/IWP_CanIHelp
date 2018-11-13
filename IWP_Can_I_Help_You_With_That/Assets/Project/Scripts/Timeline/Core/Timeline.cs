@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using IWPCIH.Storage;
+using System;
+using System.Collections.Generic;
 
 namespace IWPCIH.EventTracking
 {
-	[System.Serializable]
-	public class Timeline
+	[Serializable]
+	public class Timeline : ISavable<Timeline>
 	{
 		private List<TimelineChapter> chapters;
 		public int ChapterCount { get { return chapters == null ? 0 : chapters.Count; } }
@@ -30,6 +32,16 @@ namespace IWPCIH.EventTracking
 			return chapters[0];
 		}
 
+
+		public void Foreach(Action<TimelineChapter> action)
+		{
+			foreach(TimelineChapter c in chapters)
+			{
+				action.Invoke(c);
+			}
+		}
+
+
 		/// <summary>
 		///		Adds a new Chapter to the list.
 		/// </summary>
@@ -52,6 +64,21 @@ namespace IWPCIH.EventTracking
 		public void UpdateChapter(int i, TimelineChapter updatedChapter)
 		{
 			chapters[i] = updatedChapter;
+		}
+
+
+		public void Save(string name)
+		{
+			string s_timeline = TimelineSerializer.Serialize(this);
+			SaveLoad.Save(s_timeline, name);
+		}
+
+		public Timeline Load(string name)
+		{
+			string s_timeline = SaveLoad.Load(name);
+			Timeline timeline = TimelineSerializer.Deserialize(s_timeline);
+			return timeline;
+			// TODO: somehow translate the deserialized timeline to the current instance.
 		}
 	}
 }

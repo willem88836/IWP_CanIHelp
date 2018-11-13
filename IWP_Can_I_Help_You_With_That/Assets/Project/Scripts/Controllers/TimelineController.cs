@@ -1,8 +1,9 @@
-﻿using UnityEngine;
-using IWPCIH.EventTracking;
-using IWPCIH.TimelineEvents;
+﻿using IWPCIH.EditorInterface;
 using IWPCIH.EditorInterface.Components;
-using IWPCIH.EditorInterface;
+using IWPCIH.EventTracking;
+using IWPCIH.Storage;
+using IWPCIH.TimelineEvents;
+using UnityEngine;
 
 namespace IWPCIH
 {
@@ -34,18 +35,23 @@ namespace IWPCIH
 			Foo();
 		}
 
+
+#if UNITY_EDITOR
 		private void Foo()
 		{
-			for (int i = 0; i < 10; i++)
-				AddChapter("chapter " + i);
-			AddEvent(EventContainer.EventType.CropStart);
+			//for (int i = 0; i < 10; i++)
+			//	AddChapter("chapter " + i);
+			//AddEvent(EventContainer.EventType.CropStart);
 		}
-
+#endif
 
 		public void SwitchChapterTo(int i)
 		{
+			if (currentChapter != null)
+				ComponentInterface.Save(currentChapter.Name);
+
 			currentChapter = timeline.GetChapter(i);
-			ComponentInterface.Load(currentChapter);
+			ComponentInterface.Initialize(currentChapter);
 			Debug.LogFormat("Switching to Chapter {0}", i);
 		}
 
@@ -106,12 +112,15 @@ namespace IWPCIH
 
 		public void Save()
 		{
-			SaveLoad.Save(timeline, "Timeline");
-			// TODO: Save interface data.
+			timeline.Save("Timeline");
+			ComponentInterface.Save(currentChapter.Name);
 		}
+
 		public void Load()
 		{
-			timeline = SaveLoad.Load("SaveData");
+			timeline.Load("Timeline");
+			// TODO: figure out what chapter to load instead of the first one.
+			ComponentInterface.Load(currentChapter.Name);
 		}
 
 		#endregion

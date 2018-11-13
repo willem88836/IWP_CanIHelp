@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace IWPCIH.EventTracking
 {
-	[System.Serializable]
+	[Serializable]
 	public class TimelineChapter
 	{
 		public int Id;
@@ -26,6 +27,14 @@ namespace IWPCIH.EventTracking
 		public TimelineEventData EventAt(int i)
 		{
 			return events[i];
+		}
+
+		public void Foreach(Action<TimelineEventData> action)
+		{
+			foreach(TimelineEventData d in events.Values)
+			{
+				action.Invoke(d);
+			}
 		}
 
 		public void AddEvent(TimelineEventData newData)

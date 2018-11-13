@@ -18,10 +18,8 @@ namespace IWPCIH.EventTracking
 		{
 			string data = "";
 
-			for (int i = 0; i < timeline.ChapterCount; i++)
+			timeline.Foreach((TimelineChapter chapter) =>
 			{
-				TimelineChapter chapter = timeline.GetChapter(i);
-
 				data += chapter.VideoName;
 				data += EVENTSPACER;
 
@@ -33,7 +31,7 @@ namespace IWPCIH.EventTracking
 				}
 
 				data += CHAPTERSPACER;
-			}
+			});
 
 			return data;
 		}

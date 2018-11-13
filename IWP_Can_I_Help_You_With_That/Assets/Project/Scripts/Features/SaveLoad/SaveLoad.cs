@@ -1,34 +1,38 @@
 ﻿using System.IO;
-using IWPCIH.EventTracking;
 
-public static class SaveLoad
+namespace IWPCIH.Storage
 {
-	public static string SavePath;
-
-	public static FileInfo Save(Timeline timeline, string name)
+	public static class SaveLoad
 	{
-		string s_timeline = TimelineSerializer.Serialize(timeline);
+		public static string SavePath;
 
-		string path = SavePath + name;
+		/// <summary>
+		///		Saves the provided data string to the set path.
+		/// </summary>
+		public static FileInfo Save(string data, string name)
+		{
+			string path = SavePath + name;
 
-		if (!Directory.Exists(SavePath))
-			Directory.CreateDirectory(SavePath);
+			if (!Directory.Exists(SavePath))
+				Directory.CreateDirectory(SavePath);
 
-		File.WriteAllText(path, s_timeline);
+			File.WriteAllText(path, data);
 
-		UnityEngine.Debug.Log("Saved at: " + path);
+			UnityEngine.Debug.Log("Saved at: " + path);
 
-		return new FileInfo(path);
-	}
+			return new FileInfo(path);
+		}
 
-
-	public static Timeline Load(string name)
-	{
-		string path = SavePath + name;
-		string s_timeline = File.ReadAllText(path);
-
-		Timeline timeline = TimelineSerializer.Deserialize(s_timeline);
-
-		return timeline;
+		/// <summary>
+		///		Loads a data string from the set path.
+		/// </summary>
+		public static string Load(string name)
+		{
+			string path = SavePath + name;
+			if (File.Exists(path))
+				return File.ReadAllText(path);
+			else
+				return "";
+		}
 	}
 }
