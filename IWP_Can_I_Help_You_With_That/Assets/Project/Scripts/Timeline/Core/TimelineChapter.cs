@@ -14,7 +14,6 @@ namespace IWPCIH.EventTracking
 		public int EventCount { get { return events == null ? 0 : events.Count; } }
 
 
-
 		public TimelineChapter(int id, string name, string videoName)
 		{
 			this.Id = id;

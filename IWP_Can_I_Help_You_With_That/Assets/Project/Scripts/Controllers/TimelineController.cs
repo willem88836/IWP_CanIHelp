@@ -82,9 +82,9 @@ namespace IWPCIH
 
 		#region EventIteration
 
-		public TimelineEventData AddEvent(EventContainer.EventType type)
+		public TimelineEventData AddEvent(TimelineEventContainer.EventType type)
 		{
-			TimelineEventData timelineEvent = EventContainer.CreateEventOfType(type);
+			TimelineEventData timelineEvent = TimelineEventContainer.CreateEventDataOfType(type);
 			timelineEvent.Id = currentChapter.EventCount;
 			timelineEvent.Type = type;
 			currentChapter.AddEvent(timelineEvent);
@@ -113,7 +113,7 @@ namespace IWPCIH
 
 		public void Save()
 		{
-			SaveLoad.CleanPath();
+			//SaveLoad.CleanPath();
 			timeline.Save("Timeline");
 			ComponentInterface.Save(currentChapter.Name);
 		}

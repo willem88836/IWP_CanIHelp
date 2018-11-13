@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
+using IWPCIH.TimelineEvents;
 
 namespace IWPCIH.EventTracking
 {
@@ -61,7 +63,7 @@ namespace IWPCIH.EventTracking
 				// A new chapter is created.
 				TimelineChapter chapter = new TimelineChapter(int.Parse(vars[0]), vars[1], vars[2]);
 
-				// Starts at 1 to skip VideoName.
+				// Starts later to skip chapter fields.
 				for (int i = 3; i < vars.Length; i++)
 				{
 					// converts the var into a TimelineEvent
@@ -69,10 +71,12 @@ namespace IWPCIH.EventTracking
 
 					if (s_event == "")
 						continue;
+					
+					TimelineEventData timelineData = JsonUtility.FromJson<TimelineEventData>(s_event);
+					Type t = TimelineEventContainer.TypeOf(timelineData.Type);
+					timelineData = (TimelineEventData)JsonUtility.FromJson(s_event, t);	
 
-					TimelineEventData timelineEvent = JsonUtility.FromJson<TimelineEventData>(s_event);
-
-					chapter.AddEvent(timelineEvent);
+					chapter.AddEvent(timelineData);
 				}
 
 				timeline.AddChapter(chapter);

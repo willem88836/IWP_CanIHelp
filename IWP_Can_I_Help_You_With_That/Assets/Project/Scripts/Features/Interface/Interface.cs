@@ -22,7 +22,7 @@ namespace IWPCIH.EditorInterface.Components
 			{
 				Spawn(data);
 				InterfaceComponent component = interfaceComponents[i];
-				component.GetComponent<RectTransform>().position = locations[i];
+				component.gameObject.GetComponent<RectTransform>().position = locations[i];
 				
 				i++;
 			});

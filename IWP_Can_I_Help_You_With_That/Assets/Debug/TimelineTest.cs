@@ -30,7 +30,7 @@ namespace Assets.Project.Scripts.Timeline_Implementation
 					TimelineEventData newEvent = new IWPCIH.TimelineEvents.CropEvent.CropEventData()
 					{
 						Id = j,
-						Type = IWPCIH.TimelineEvents.EventContainer.EventType.CropStart,
+						Type = IWPCIH.TimelineEvents.TimelineEventContainer.EventType.CropStart,
 						InvokeTime = i * j
 					};
 

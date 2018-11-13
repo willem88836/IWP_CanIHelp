@@ -7,7 +7,7 @@ namespace IWPCIH.EditorInterface
 	[RequireComponent(typeof(Button))]
 	public class TimelineEventButton : MonoBehaviour
 	{
-		public EventContainer.EventType Type;
+		public TimelineEventContainer.EventType Type;
 
 		private Button button;
 

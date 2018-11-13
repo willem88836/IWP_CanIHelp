@@ -7,7 +7,7 @@ namespace IWPCIH.EventTracking
 	public class TimelineEventData
 	{
 		public float InvokeTime;
-		public EventContainer.EventType Type;
+		public TimelineEventContainer.EventType Type;
 		public int Id;
 	}
 }
