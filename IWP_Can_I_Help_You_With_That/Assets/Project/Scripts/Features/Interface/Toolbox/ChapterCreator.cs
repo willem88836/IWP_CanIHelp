@@ -32,7 +32,7 @@ namespace IWPCIH.EditorInterface
 
 		private void OnInvalidName()
 		{
-			// TODO: implement this stuff. .
+			// TODO: implement events that happen on an invalid name.
 			throw new NotImplementedException();
 		}
 	}

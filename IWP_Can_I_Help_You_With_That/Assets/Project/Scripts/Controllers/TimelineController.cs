@@ -54,7 +54,6 @@ namespace IWPCIH
 		public void AddChapter(string name)
 		{
 			int index = timeline.ChapterCount;
-			Debug.Log(index);
 			TimelineChapter chapter = new TimelineChapter(index, name, "VideoName"); // TODO: get a reference to the video name.
 			timeline.AddChapter(chapter);
 			SwitchChapterTo(index);
