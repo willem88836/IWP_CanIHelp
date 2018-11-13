@@ -9,6 +9,7 @@ namespace IWPCIH
 {
 	public class TimelineController : MonoBehaviour
 	{
+		// DON'T YOU DARE CHANGE THIS PATH WHEN YOU DON'T KNOW WHAT YOU'RE DOING. IT CAN KILL YOU PC.
 		private string SAVEPATH { get { return Application.temporaryCachePath + "/TimelineSaveData/"; } }
 
 		public static TimelineController instance;
@@ -39,6 +40,7 @@ namespace IWPCIH
 #if UNITY_EDITOR
 		private void Foo()
 		{
+			//Load();
 			//for (int i = 0; i < 10; i++)
 			//	AddChapter("chapter " + i);
 			//AddEvent(EventContainer.EventType.CropStart);
@@ -85,7 +87,6 @@ namespace IWPCIH
 			TimelineEventData timelineEvent = EventContainer.CreateEventOfType(type);
 			timelineEvent.Id = currentChapter.EventCount;
 			timelineEvent.Type = type;
-
 			currentChapter.AddEvent(timelineEvent);
 			ComponentInterface.Spawn(timelineEvent);
 
@@ -112,6 +113,7 @@ namespace IWPCIH
 
 		public void Save()
 		{
+			SaveLoad.CleanPath();
 			timeline.Save("Timeline");
 			ComponentInterface.Save(currentChapter.Name);
 		}
@@ -119,12 +121,13 @@ namespace IWPCIH
 		public void Load()
 		{
 			timeline.Load("Timeline");
-			SwitchChapterTo(timeline.GetFirst().Id);
 
 			timeline.Foreach((TimelineChapter chapter) =>
 			{
 				ChapterHierarchy.AddChapter(chapter);
 			});
+
+			SwitchChapterTo(timeline.GetFirst().Id);
 		}
 
 		#endregion

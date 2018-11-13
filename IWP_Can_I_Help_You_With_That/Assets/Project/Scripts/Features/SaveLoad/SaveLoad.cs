@@ -7,6 +7,17 @@ namespace IWPCIH.Storage
 		public static string SavePath;
 
 		/// <summary>
+		///		Removes all files at the savepath.
+		/// </summary>
+		public static void CleanPath()
+		{
+			Utilities.ForeachFileAt(SavePath, (FileInfo info) =>
+			{
+				File.Delete(info.FullName);
+			});
+		}
+
+		/// <summary>
 		///		Saves the provided data string to the set path.
 		/// </summary>
 		public static FileInfo Save(string data, string name)
