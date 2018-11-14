@@ -42,12 +42,12 @@ namespace IWPCIH.EventTracking
 		/// <summary>
 		///		Deseralizes the provided serialized timeline.
 		/// </summary>
-		public static Timeline Deserialize(string s_Timeline)
+		public static Timeline Deserialize(string s_timeline)
 		{
 			Timeline timeline = new Timeline();
 
 			// Splits the data file into chapters. 
-			string[] s_Chapters = s_Timeline.Split(CHAPTERSPACER);
+			string[] s_Chapters = s_timeline.Split(CHAPTERSPACER);
 
 			foreach (string s_Chapter in s_Chapters)
 			{

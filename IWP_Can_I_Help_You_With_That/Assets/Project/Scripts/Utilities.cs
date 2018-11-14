@@ -123,7 +123,7 @@ namespace IWPCIH
 			{
 				var child = transform.GetChild(i);
 
-				action(child);
+				action.Invoke(child);
 				Foreach(child, action);
 			}
 		}
@@ -138,19 +138,20 @@ namespace IWPCIH
 				var child = transform.GetChild(i);
 
 				ReversedForeach(child, action);
-				action(child);
+				action.Invoke(child);
 			}
 		}
 
 		#endregion
 
 
-		#region PathForeach
+		#region DirectoryForeach
 
 		/// <summary>
-		///		Executes action at every folder within the provided path.
+		///		Executes action at every folder within the provided path
+		///		and the folders within those folders.
 		/// </summary>
-		public static void ForeachFolderAt(string path, Action<string> action)
+		public static void ForeachFolderIn(string path, Action<string> action, Action<string> onFinish = null)
 		{
 			action.Invoke(path);
 
@@ -159,26 +160,65 @@ namespace IWPCIH
 			for (int i = 0; i < folders.Length; i++)
 			{
 				string current = folders[i];
-				ForeachFolderAt(current, action);
+				ForeachFolderIn(current, action, onFinish);
 			}
+
+			onFinish.SafeInvoke(path);
 		}
 		/// <summary>
-		///		Executes action at every folder within 
-		///		the provided path in reversed order.
+		///		Executes action at every folder withinthe provided path in reversed order
+		///		and the folders within those folders.
 		/// </summary>
-		public static void ReversedForeachFolderAt(string path, Action<string> action)
+		public static void ReversedForeachFolderIn(string path, Action<string> action, Action<string> onStart = null)
 		{
+			onStart.SafeInvoke(path);
+
 			string[] folders = Directory.GetDirectories(path);
 
 			for (int i = folders.Length - 1; i >= 0; i--)
 			{
 				string current = folders[i];
-				ForeachFolderAt(current, action);
+				ReversedForeachFolderIn(current, action, onStart);
+			}
+
+			action.Invoke(path);
+		}
+		/// <summary>
+		///		Executes action at every folder within the provided path.
+		/// </summary>
+		public static void ForeachFolderAt(string path, Action<string> action, Action<string> onFinish = null)
+		{
+			action.Invoke(path);
+
+			string[] folders = Directory.GetDirectories(path);
+
+			for (int i = 0; i < folders.Length; i++)
+			{
+				string current = folders[i];
+				action.Invoke(current);
+			}
+
+			onFinish.SafeInvoke(path);
+		}
+		/// <summary>
+		///		Executes action at every folder within the provided path in reversed order.
+		/// </summary>
+		public static void ReversedForeachFolderAt(string path, Action<string> action, Action<string> onStart = null)
+		{
+			onStart.SafeInvoke(path);
+
+			string[] folders = Directory.GetDirectories(path);
+
+			for (int i = folders.Length - 1; i >= 0; i--)
+			{
+				string current = folders[i];
+				action.Invoke(current);
 			}
 
 			action.Invoke(path);
 		}
 
+		
 		/// <summary>
 		///		Executes action for every file within the provided path.
 		/// </summary>

@@ -9,7 +9,7 @@ namespace IWPCIH
 {
 	public class TimelineController : MonoBehaviour
 	{
-		// DON'T YOU DARE CHANGE THIS PATH WHEN YOU DON'T KNOW WHAT YOU'RE DOING. IT CAN KILL YOU PC.
+		// DON'T YOU DARE CHANGE THIS PATH WHEN YOU DON'T KNOW WHAT YOU'RE DOING. IT CAN KILL YOUR PC.
 		private string SAVEPATH { get { return Application.temporaryCachePath + "/TimelineSaveData/"; } }
 
 		public static TimelineController instance;
