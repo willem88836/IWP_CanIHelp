@@ -1,57 +1,68 @@
 ﻿using System.Collections.Generic;
-using System.IO;
 using UnityEngine;
 
 namespace IWPCIH.Explorer
 {
 	public class Explorer : MonoBehaviour
 	{
-		public ExplorerObject BaseObject;
-		public Transform Body;
-		public float indentWidth = 40;
-
-		private List<ExplorerObject> hierarchyObjects = new List<ExplorerObject>();
-
-
-		public void Expand(ExplorerObject expanded)
+		public class ViewActions
 		{
-			int i = expanded.Index;
+			public enum UpdateType { None, All, OnlySelf, AllExceptSelf }
 
-			Utilities.ForeachFolderAt(expanded.Path, (string path) =>
-			{
-				ExplorerObject newObj = Instantiate(BaseObject, Body);
-				newObj.HeaderText.text = Path.GetDirectoryName(path);
-				newObj.Initialize(this);
-
-				int depth = path.Split('\\', '/').Length;
-
-				RectTransform rect = newObj.GetComponent<RectTransform>();
-				rect.anchorMin = new Vector2(rect.position.x - (rect.sizeDelta.x / 2) + depth * indentWidth, rect.anchorMin.y);
-				
-				i++;
-				hierarchyObjects.Insert(i, newObj);
-			});
-
-			UpdateIndex();
+			public ExplorerView View;
+			public UpdateType Type = UpdateType.None;
 		}
 
-		public void Shrink(ExplorerObject shrinked)
-		{
-			//for (int i = 0; i < shrinked.Body.childCount; i++)
-			//{
-			//	Transform child = shrinked.Body.GetChild(i);
-			//	Destroy(child.gameObject);
-			//}
+		public List<ViewActions> Actions;
 
-			UpdateIndex();
-		}
 
-		private void UpdateIndex()
+		private void Start()
 		{
-			for (int i = 0; i < hierarchyObjects.Count; i++)
+			string path = "";
+
+			foreach(ViewActions action in Actions)
 			{
-				hierarchyObjects[i].Index = i;
+				Update(action, path);
 			}
+		}
+
+		private void OnObjectInvoke(ExplorerView parent, ExplorerViewObject invoked)
+		{
+			ViewActions va = Actions.Find((ViewActions v) => v.View == parent);
+
+			if (va == null)
+				return;
+
+			Invoke(va);
+		}
+
+		private void Invoke(ViewActions va)
+		{
+			string path = va.View.Path;
+
+
+			if (va.Type == ViewActions.UpdateType.None)
+				return;
+
+			if (va.Type == ViewActions.UpdateType.OnlySelf)
+			{
+				Update(va, path);
+				return;
+			}
+
+			foreach (ViewActions action in Actions)
+			{
+				if (va.Type == ViewActions.UpdateType.AllExceptSelf && action == va)
+					continue;
+
+				Update(va, path);
+			}
+		}
+
+		private void Update(ViewActions va, string path)
+		{
+			va.View.OnObjectInvoke += OnObjectInvoke;
+			va.View.Initialize(path);
 		}
 	}
 }
