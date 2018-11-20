@@ -1,11 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace IWPCIH.Explorer
 {
 	public class Explorer : MonoBehaviour
 	{
-		public class ViewActions
+		[Serializable]
+		public class ViewAction
 		{
 			public enum UpdateType { None, All, OnlySelf, AllExceptSelf }
 
@@ -13,14 +15,14 @@ namespace IWPCIH.Explorer
 			public UpdateType Type = UpdateType.None;
 		}
 
-		public List<ViewActions> Actions;
+		public List<ViewAction> Actions;
 
 
 		private void Start()
 		{
-			string path = "";
+			string path = "D:\\Users\\wille\\Documents\\Education\\Classes\\Y4B1_Prot\\Assignment_001\\";
 
-			foreach(ViewActions action in Actions)
+			foreach (ViewAction action in Actions)
 			{
 				Update(action, path);
 			}
@@ -28,7 +30,7 @@ namespace IWPCIH.Explorer
 
 		private void OnObjectInvoke(ExplorerView parent, ExplorerViewObject invoked)
 		{
-			ViewActions va = Actions.Find((ViewActions v) => v.View == parent);
+			ViewAction va = Actions.Find((ViewAction v) => v.View == parent);
 
 			if (va == null)
 				return;
@@ -36,30 +38,30 @@ namespace IWPCIH.Explorer
 			Invoke(va);
 		}
 
-		private void Invoke(ViewActions va)
+		private void Invoke(ViewAction va)
 		{
 			string path = va.View.Path;
 
 
-			if (va.Type == ViewActions.UpdateType.None)
+			if (va.Type == ViewAction.UpdateType.None)
 				return;
 
-			if (va.Type == ViewActions.UpdateType.OnlySelf)
+			if (va.Type == ViewAction.UpdateType.OnlySelf)
 			{
 				Update(va, path);
 				return;
 			}
 
-			foreach (ViewActions action in Actions)
+			foreach (ViewAction action in Actions)
 			{
-				if (va.Type == ViewActions.UpdateType.AllExceptSelf && action == va)
+				if (va.Type == ViewAction.UpdateType.AllExceptSelf && action == va)
 					continue;
 
 				Update(va, path);
 			}
 		}
 
-		private void Update(ViewActions va, string path)
+		private void Update(ViewAction va, string path)
 		{
 			va.View.OnObjectInvoke += OnObjectInvoke;
 			va.View.Initialize(path);

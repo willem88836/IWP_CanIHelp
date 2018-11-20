@@ -27,9 +27,9 @@ namespace IWPCIH.Explorer
 			string name = "";
 
 			if (File.Exists(path))
-				System.IO.Path.GetFileNameWithoutExtension(path);
+				name = System.IO.Path.GetFileNameWithoutExtension(path);
 			else if (Directory.Exists(path))
-				System.IO.Path.GetDirectoryName(path);
+				name = new DirectoryInfo(path).Name;
 
 			Label.text = name;
 		}
