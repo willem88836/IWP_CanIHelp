@@ -9,7 +9,11 @@ namespace IWPCIH.Explorer
 {
 	public class HierarchicalExplorerView : ExplorerView
 	{
+		public float IndentWidth;
+
 		private List<ExplorerViewObject> evos = new List<ExplorerViewObject>();
+		private float maxIndenting;
+
 
 		public override void Initialize(string path)
 		{
@@ -24,16 +28,34 @@ namespace IWPCIH.Explorer
 			{
 				string currentSegment = pathSegments[i];
 				currentDir += currentSegment + '\\';
-				List<ExplorerViewObject> createdFolders = CreateFolders(currentDir, ContentContainer);
+				List<ExplorerViewObject> createdFolders = CreateFolders(currentDir, ContentContainer, ApplyIndenting);
 
 				Insert(createdFolders, ddi);
 				ddi += createdFolders.FindIndex((ExplorerViewObject ov) => ov.Path == currentDir + pathSegments[i + 1]);
 			}
 
-			List<ExplorerViewObject> createdFiles = CreateFiles(path, ContentContainer);
+			List<ExplorerViewObject> createdFiles = CreateFiles(path, ContentContainer, ApplyIndenting);
 			Insert(createdFiles, ddi);
 
 			SortHierarchy();
+			return;// TODO: Continue here! -> update the width of the container based on children.
+			RectTransform rect = ContentContainer.GetComponent<RectTransform>();
+			rect.sizeDelta = new Vector2(
+				FileObject.GetComponent<RectTransform>().sizeDelta.x + maxIndenting, 
+				rect.sizeDelta.y);
+		}
+
+		private void ApplyIndenting(ExplorerViewObject evo)
+		{
+			float indenting = (evo.Path.Split('\\', '/').Length - 2) * IndentWidth;
+			RectTransform rect = evo.GetComponent<RectTransform>();
+			
+			rect.position = new Vector2(rect.position.x + indenting, rect.position.y);
+			
+			if (indenting > maxIndenting)
+			{
+				maxIndenting = indenting;
+			}
 		}
 
 		private void Insert(List<ExplorerViewObject> objects, int baseIndex)

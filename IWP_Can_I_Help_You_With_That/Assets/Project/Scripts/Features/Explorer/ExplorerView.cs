@@ -40,7 +40,10 @@ namespace IWPCIH.Explorer
 			}
 		}
 
-		protected List<ExplorerViewObject> CreateFolders(string path, Transform container)
+		protected List<ExplorerViewObject> CreateFolders(
+			string path, 
+			Transform container, 
+			Action<ExplorerViewObject> onInitialize = null)
 		{
 			List<ExplorerViewObject> objects = null;
 
@@ -55,15 +58,19 @@ namespace IWPCIH.Explorer
 					
 					ExplorerViewObject newObj = Instantiate(FolderObject, container);
 					newObj.Initialize(this, p);
-					newObj.gameObject.name = string.Format("Folder_{0}", p);
+					newObj.gameObject.name = string.Format("Folder_({0})", p);
 					objects.Add(newObj);
+					onInitialize.SafeInvoke(newObj);
 				});
 			}
 
 			return objects;
 		}
 
-		protected List<ExplorerViewObject> CreateFiles(string path, Transform container)
+		protected List<ExplorerViewObject> CreateFiles(
+			string path, 
+			Transform container, 
+			Action<ExplorerViewObject> onInitialize = null)
 		{
 			List<ExplorerViewObject> objects = null;
 
@@ -77,15 +84,14 @@ namespace IWPCIH.Explorer
 
 					ExplorerViewObject newObj = Instantiate(FileObject, container);
 					newObj.Initialize(this, info.FullName);
-					newObj.gameObject.name = string.Format("File_{0}", info.Name);
+					newObj.gameObject.name = string.Format("File_({0})", info.FullName);
 					objects.Add(newObj);
+					onInitialize.SafeInvoke(newObj);
 				});
-
 			}
 
 			return objects;
 		}
-
 
 		private bool HasBlockedAttributes(string path)
 		{
@@ -99,7 +105,6 @@ namespace IWPCIH.Explorer
 
 			return false;
 		}
-
 
 		public void OnClick(ExplorerViewObject invoked)
 		{
