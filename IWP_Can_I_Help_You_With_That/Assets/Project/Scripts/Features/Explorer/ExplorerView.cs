@@ -66,7 +66,7 @@ namespace IWPCIH.Explorer
 		protected List<ExplorerViewObject> CreateFiles(string path, Transform container)
 		{
 			List<ExplorerViewObject> objects = null;
-			Debug.Log(path);
+
 			if (FileObject)
 			{
 				objects = new List<ExplorerViewObject>(); 
