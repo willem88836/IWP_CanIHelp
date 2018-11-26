@@ -15,8 +15,10 @@ namespace IWPCIH.EditorInterface.Components
 		private const string NAMEFORMAT = "{0}_InterfaceComponent_{1}";
 
 		public InterfaceDataField BaseDataField;
+		public Text Header;
 
-		private TimelineEventData eventData;
+		public TimelineEventData EventData { get; private set; }
+		private Interface parent;
 
 		private RectTransform rect;
 		private FollowMouse followMouse;
@@ -36,11 +38,13 @@ namespace IWPCIH.EditorInterface.Components
 		}
 
 
-		public void Initialize(TimelineEventData eventData)
+		public void Initialize(Interface parent, TimelineEventData eventData)
 		{
-			this.eventData = eventData;
+			this.parent = parent;
+			this.EventData = eventData;
 
-			gameObject.name = string.Format(NAMEFORMAT, eventData.Id, eventData.Type.ToString());
+			string name = string.Format(NAMEFORMAT, eventData.Id, eventData.Type.ToString());
+			Header.text = gameObject.name = name;
 
 			ApplyFields(eventData);
 		}
@@ -68,8 +72,7 @@ namespace IWPCIH.EditorInterface.Components
 
 		public void Destroy()
 		{
-			TimelineController.instance.RemoveEvent(eventData);
-			Destroy(gameObject);
+			parent.Destroy(this);
 		}
 	}
 }

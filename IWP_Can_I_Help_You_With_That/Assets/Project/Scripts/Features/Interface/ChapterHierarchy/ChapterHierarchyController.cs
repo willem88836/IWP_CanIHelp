@@ -12,6 +12,15 @@ namespace IWPCIH.EditorInterface
 
 		private List<ChapterHierarchyButton> buttons = new List<ChapterHierarchyButton>();
 
+		public void Clear()
+		{
+			foreach(ChapterHierarchyButton button in buttons)
+			{
+				Destroy(button.gameObject);
+			}
+
+			buttons.Clear();
+		}
 
 		public void AddChapter(TimelineChapter chapter)
 		{
@@ -23,7 +32,7 @@ namespace IWPCIH.EditorInterface
 		public void RemoveChapter(ChapterHierarchyButton button)
 		{
 			buttons.Remove(button);
-			TimelineController.instance.RemoveChapter(button.Chapter);
+			(TimelineController.Instance as TimelineEditor).RemoveChapter(button.Chapter);
 		}
 	}
 }

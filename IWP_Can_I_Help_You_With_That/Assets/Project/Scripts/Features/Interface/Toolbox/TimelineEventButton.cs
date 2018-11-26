@@ -16,7 +16,7 @@ namespace IWPCIH.EditorInterface
 			button = GetComponent<Button>();
 			button.onClick.AddListener(delegate 
 			{
-				TimelineController.instance.AddEvent(Type);
+				(TimelineController.Instance as TimelineEditor).AddEvent(Type);
 			});
 		}
 	}

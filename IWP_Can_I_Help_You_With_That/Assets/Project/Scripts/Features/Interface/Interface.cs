@@ -16,14 +16,14 @@ namespace IWPCIH.EditorInterface.Components
 		public void Initialize(TimelineChapter chapter)
 		{
 			Clear();
-			   Vector3[] locations = Load(chapter.Name);
+			Vector3[] locations = Load(chapter.Name);
+
 			int i = 0; 
 			chapter.Foreach((TimelineEventData data) => 
 			{
 				Spawn(data);
 				InterfaceComponent component = interfaceComponents[i];
 				component.gameObject.GetComponent<RectTransform>().position = locations[i];
-				
 				i++;
 			});
 		}
@@ -31,10 +31,16 @@ namespace IWPCIH.EditorInterface.Components
 		public void Spawn(TimelineEventData data)
 		{
 			InterfaceComponent component = Instantiate(baseComponent, componentContainer);
-			component.Initialize(data);
+			component.Initialize(this, data);
 			component.transform.position = componentContainer.position;
 			component.transform.rotation = Quaternion.identity;
 			interfaceComponents.Add(component);
+		}
+		public void Destroy(InterfaceComponent component)
+		{
+			(TimelineController.Instance as TimelineEditor).RemoveEvent(component.EventData);
+			interfaceComponents.Remove(component);
+			Destroy(component.gameObject);
 		}
 
 		public void Clear()
@@ -49,6 +55,7 @@ namespace IWPCIH.EditorInterface.Components
 
 		public void Save(string name)
 		{
+			SaveLoad.Extention = "";
 			string s_components = "";
 			foreach(InterfaceComponent c in interfaceComponents)
 			{
@@ -59,6 +66,8 @@ namespace IWPCIH.EditorInterface.Components
 
 		public Vector3[] Load(string name)
 		{
+			SaveLoad.Extention = "";
+			SaveLoad.SavePath = TimelineSaveLoad.SoftSavePath;
 			string s_components = SaveLoad.Load(name);
 			string[] split = s_components.Split('\n');
 			Vector3[] locations = new Vector3[Mathf.Clamp(split.Length - 1, 0, int.MaxValue)];

@@ -16,7 +16,7 @@ namespace IWPCIH.EditorInterface
 
 			if (IsValid(name))
 			{
-				TimelineController.instance.AddChapter(NameTextfield.text);
+				(TimelineController.Instance as TimelineEditor).AddChapter(NameTextfield.text);
 			}
 			else
 			{

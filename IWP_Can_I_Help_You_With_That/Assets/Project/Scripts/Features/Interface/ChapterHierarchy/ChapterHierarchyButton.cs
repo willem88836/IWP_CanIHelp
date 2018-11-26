@@ -25,7 +25,7 @@ namespace IWPCIH.EditorInterface
 
 		public void OnClick()
 		{
-			TimelineController.instance.SwitchChapterTo(Chapter.Id);
+			TimelineController.Instance.SwitchChapterTo(Chapter.Id);
 		}
 
 		public void Destroy()

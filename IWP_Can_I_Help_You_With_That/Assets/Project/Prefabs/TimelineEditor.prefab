@@ -1,0 +1,101 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1712655210414220}
+  m_IsPrefabAsset: 1
+--- !u!1 &1712655210414220
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4158079339962796}
+  - component: {fileID: 114502942019431892}
+  - component: {fileID: 114448072833966166}
+  - component: {fileID: 114875303191164214}
+  - component: {fileID: 114866970608499062}
+  m_Layer: 0
+  m_Name: TimelineEditor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4158079339962796
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1712655210414220}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114448072833966166
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1712655210414220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a847a35be19e0064182cbf09256fbdb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  componentContainer: {fileID: 0}
+  baseComponent: {fileID: 114586093515125902, guid: 5faadce5d0fd1bf4c9e748dd1c768a11,
+    type: 2}
+--- !u!114 &114502942019431892
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1712655210414220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00c95269d6f0dbc47a729b164e5a10b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ProjectName: {fileID: 11400000, guid: 36eb5c246e8847a4599b5006e761ad4f, type: 2}
+  ComponentInterface: {fileID: 114448072833966166}
+  ChapterHierarchy: {fileID: 0}
+--- !u!114 &114866970608499062
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1712655210414220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a6faa485b742a748a9f17b55e123621, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SavePath: {fileID: 11400000, guid: 5ad789fa486108a4a9b2aa1ec36ddc81, type: 2}
+  LoadPath: {fileID: 11400000, guid: 106bb5d03cc7d2946ae6a2c78bad991a, type: 2}
+  Explorer: {fileID: 0}
+  timelineSaveLoad: {fileID: 114875303191164214}
+--- !u!114 &114875303191164214
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1712655210414220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10e1b13c2373cfa449431aea155c978e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SavePath: {fileID: 11400000, guid: 5ad789fa486108a4a9b2aa1ec36ddc81, type: 2}
+  LoadPath: {fileID: 11400000, guid: 106bb5d03cc7d2946ae6a2c78bad991a, type: 2}

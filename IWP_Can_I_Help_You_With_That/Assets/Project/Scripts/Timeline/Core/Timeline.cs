@@ -5,15 +5,17 @@ using System.Collections.Generic;
 namespace IWPCIH.EventTracking
 {
 	[Serializable]
-	public class Timeline : ISavable<Timeline>
+	public class Timeline
 	{
-		private List<TimelineChapter> chapters;
-		public int ChapterCount { get { return chapters == null ? 0 : chapters.Count; } }
+		public int ChapterCount { get { return Chapters == null ? 0 : Chapters.Count; } }
+		public string Name { get; private set; }
 
+		public List<TimelineChapter> Chapters;
 
-		public Timeline()
+		public Timeline(string name)
 		{
-			chapters = new List<TimelineChapter>();
+			Name = name;
+			Chapters = new List<TimelineChapter>();
 		}
 
 
@@ -24,18 +26,21 @@ namespace IWPCIH.EventTracking
 		/// <returns></returns>
 		public TimelineChapter GetChapter(int id)
 		{
-			return chapters.Find(c => c.Id == id);
+			return Chapters.Find(c => c.Id == id);
 		}
 
 		public TimelineChapter GetFirst()
 		{
-			return chapters[0];
+			return Chapters[0];
+		}
+		public TimelineChapter GetLast()
+		{
+			return Chapters[Chapters.Count - 1];
 		}
 
-
-		public void Foreach(Action<TimelineChapter> action)
+		public void ForEach(Action<TimelineChapter> action)
 		{
-			foreach(TimelineChapter c in chapters)
+			foreach(TimelineChapter c in Chapters)
 			{
 				action.Invoke(c);
 			}
@@ -47,7 +52,7 @@ namespace IWPCIH.EventTracking
 		/// </summary>
 		public void AddChapter(TimelineChapter chapter)
 		{
-			chapters.Add(chapter);
+			Chapters.Add(chapter);
 		}
 
 		/// <summary>
@@ -55,7 +60,7 @@ namespace IWPCIH.EventTracking
 		/// </summary>
 		public void RemoveChapter(TimelineChapter chapter)
 		{
-			chapters.Remove(chapter);
+			Chapters.Remove(chapter);
 		}
 
 		/// <summary>
@@ -63,22 +68,7 @@ namespace IWPCIH.EventTracking
 		/// </summary>
 		public void UpdateChapter(int i, TimelineChapter updatedChapter)
 		{
-			chapters[i] = updatedChapter;
-		}
-
-
-		public void Save(string name)
-		{
-			string s_timeline = TimelineSerializer.Serialize(this);
-			SaveLoad.Save(s_timeline, name);
-		}
-
-		public Timeline Load(string name)
-		{
-			string s_timeline = SaveLoad.Load(name);
-			Timeline timeline = TimelineSerializer.Deserialize(s_timeline);
-			this.chapters = timeline.chapters;
-			return timeline;
+			Chapters[i] = updatedChapter;
 		}
 	}
 }

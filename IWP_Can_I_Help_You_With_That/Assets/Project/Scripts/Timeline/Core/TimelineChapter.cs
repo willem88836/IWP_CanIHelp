@@ -22,10 +22,20 @@ namespace IWPCIH.EventTracking
 			this.events = new Dictionary<int, TimelineEventData>();
 		}
 
-
-		public TimelineEventData EventAt(int i)
+		public int NextId()
 		{
-			return events[i];
+			int lastId = -1;
+			Foreach((TimelineEventData data) => { if (data.Id > lastId) lastId = data.Id; });
+			return ++lastId;
+		}
+
+		public TimelineEventData EventAt(int id)
+		{
+			UnityEngine.Debug.Log(id + " is Contained = " + events.ContainsKey(id));
+			if (events.ContainsKey(id))
+				return events[id];
+			else
+				return null;
 		}
 
 		public void Foreach(Action<TimelineEventData> action)
@@ -49,6 +59,7 @@ namespace IWPCIH.EventTracking
 		public void RemoveEvent(TimelineEventData data)
 		{
 			events.Remove(data.Id);
+			UnityEngine.Debug.LogFormat("Removed Event (Id: {0}) of type {1}", data.Id.ToString(), data.Type.ToString());
 		}
 	}
 }
