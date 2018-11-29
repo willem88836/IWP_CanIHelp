@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using IWPCIH.EventTracking;
+using System;
 
 namespace IWPCIH.TimelineEvents
 {
@@ -8,6 +9,8 @@ namespace IWPCIH.TimelineEvents
 	/// </summary>
 	public abstract class BaseEvent : MonoBehaviour
 	{
+		public abstract Type EventType { get; }
+
 		/// <summary>
 		///		The event's data object.
 		/// </summary>

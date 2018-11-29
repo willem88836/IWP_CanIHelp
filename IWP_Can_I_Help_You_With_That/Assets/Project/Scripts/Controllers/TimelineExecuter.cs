@@ -16,10 +16,15 @@ namespace IWPCIH
 
 		public TimelineSaveLoadWrapper timelineSaveLoad;
 		public VideoPlayer VideoPlayer;
+		public Transform Container;
+
+		[Space]
+		public List<BaseEvent> BaseEvents;
+
 
 		private BaseEvent currentEvent;
 
-		private List<float> eventInvokationTimes = new List<float>();
+		private List<TimelineEventData> eventData = new List<TimelineEventData>();
 		private int currentEventIndex;
 
 
@@ -29,46 +34,36 @@ namespace IWPCIH
 
 			timelineSaveLoad.HardLoad();
 			StartNewChapter(CurrentTimeline.GetFirst());
-
-
-			VideoPlayer.Play();
 		}
 
 
 		public void StartNewChapter(TimelineChapter newChapter)
 		{
 			CurrentChapter = CurrentTimeline.GetFirst();
-			VideoPlayer.url = CurrentChapter.VideoName;
+			if (File.Exists(CurrentChapter.VideoName))
+				VideoPlayer.url = CurrentChapter.VideoName;
 
 			currentEventIndex = 0;
+			eventData = CurrentChapter.GetChronolocalList();
 
-			eventInvokationTimes.Clear();
-			CurrentChapter.Foreach((TimelineEventData data) =>
-			{
-				eventInvokationTimes.Add(data.InvokeTime);
-			});
-			eventInvokationTimes.Sort(); // Check if this actually sorts the stuff from small to big.
-
-			Dictionary<float, int> keyValuePairs = new Dictionary<float, int>();
-
-			// TODO: CONtinue here. figure a way out to efficiently load events .
-			//keyValuePairs.Where((KeyValuePair<float, int> a) => a.Key ==  == )
+			StopCoroutine(WaitForEvent());
+			StartCoroutine(WaitForEvent());
+			VideoPlayer.Play();
 		}
 
 
-		private IEnumerator WaitForEvent(BaseEvent timelineEvent)
+		private IEnumerator WaitForEvent()
 		{
-			foreach(float invokeTime in eventInvokationTimes)
+			foreach (TimelineEventData data in eventData)
 			{
-				while (VideoPlayer.time < invokeTime)
-					yield return new WaitForEndOfFrame();
+				while (VideoPlayer.time < data.InvokeTime)
+					yield return null;
 
-				CurrentChapter.
+				BaseEvent newEvent = BaseEvents.Find((BaseEvent e) => e.EventType == data.GetType());
+				Instantiate(newEvent, Container);
+
+				Debug.LogFormat("invoke datafield: (id: {0})!", data.Id);
 			}
-
-
-
-			timelineEvent.Invoke();
 		}
 	}
 }

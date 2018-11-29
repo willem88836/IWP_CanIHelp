@@ -521,6 +521,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1899433772}
   - component: {fileID: 1899433773}
+  - component: {fileID: 1899433774}
   m_Layer: 0
   m_Name: TimelineExecutor
   m_TagString: Untagged
@@ -553,3 +554,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ProjectName: {fileID: 11400000, guid: 36eb5c246e8847a4599b5006e761ad4f, type: 2}
+  timelineSaveLoad: {fileID: 1899433774}
+  VideoPlayer: {fileID: 871237964}
+--- !u!114 &1899433774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1899433771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10e1b13c2373cfa449431aea155c978e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SavePath: {fileID: 11400000, guid: 5ad789fa486108a4a9b2aa1ec36ddc81, type: 2}
+  LoadPath: {fileID: 11400000, guid: 106bb5d03cc7d2946ae6a2c78bad991a, type: 2}
