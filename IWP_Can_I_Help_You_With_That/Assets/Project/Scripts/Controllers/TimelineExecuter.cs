@@ -4,12 +4,15 @@ using IWPCIH.TimelineEvents;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.Video;
 
 namespace IWPCIH
 {
+	/// <summary>
+	///		Executes TimelineEvents in chronological order
+	///		when the video has reached the event's invokation time.
+	/// </summary>
 	public sealed class TimelineExecuter : TimelineController
 	{
 		private string LoadPath { get { return Path.Combine(Application.dataPath, ProjectName.Value); } }
@@ -22,10 +25,7 @@ namespace IWPCIH
 		public List<BaseEvent> BaseEvents;
 
 
-		private BaseEvent currentEvent;
-
 		private List<TimelineEventData> eventData = new List<TimelineEventData>();
-		private int currentEventIndex;
 
 
 		protected override void Awake()
@@ -36,7 +36,9 @@ namespace IWPCIH
 			StartNewChapter(CurrentTimeline.GetFirst());
 		}
 
-
+		/// <summary>
+		///		Loads a new chapter and it's events. 
+		/// </summary>
 		public void StartNewChapter(TimelineChapter newChapter)
 		{
 			CurrentChapter = CurrentTimeline.GetFirst();
@@ -45,7 +47,6 @@ namespace IWPCIH
 			else
 				throw new FileNotFoundException();
 
-			currentEventIndex = 0;
 			eventData = CurrentChapter.GetChronolocalList();
 
 			VideoPlayer.Play();
@@ -53,7 +54,6 @@ namespace IWPCIH
 			StopCoroutine(WaitForEvent());
 			StartCoroutine(WaitForEvent());
 		}
-
 
 		private IEnumerator WaitForEvent()
 		{
@@ -66,7 +66,8 @@ namespace IWPCIH
 					yield return null;
 
 				BaseEvent newEvent = BaseEvents.Find((BaseEvent e) => e.EventType == data.GetType());
-				Instantiate(newEvent, Container);
+				newEvent = Instantiate(newEvent, Container);
+				newEvent.Event = data;
 				newEvent.Invoke();
 
 				Debug.LogFormat("Invoke timelineEvent: (id: {0}) of (type: {1}) at (time: {2})", data.Id, data.Type, data.InvokeTime);
