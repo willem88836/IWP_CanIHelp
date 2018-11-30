@@ -15,7 +15,7 @@ public class InterfaceDataField : MonoBehaviour
 	private FieldInfo info;
 	private TimelineEventData eventData;
 
-	private object lastInput;
+	private object lastInput = "";
 
 
 	/// <summary>
@@ -28,14 +28,14 @@ public class InterfaceDataField : MonoBehaviour
 	{
 		this.info = info;
 		this.eventData = eventData;
-
 		gameObject.name = string.Format(NAMEFORMAT, info.GetType().ToString(), info.Name);
 		Label.text = info.Name;
-		lastInput = info.GetValue(eventData);
+		lastInput = info.GetValue(eventData) ?? "";
 		InputPanel.text = lastInput.ToString();
 		fieldType = info.GetValue(eventData).GetType();
+
 		
-		InputPanel.onValueChanged.RemoveAllListeners();
+		InputPanel.onEndEdit.RemoveAllListeners();
 		InputPanel.onEndEdit.AddListener((string s) => { OnValueChanged(s); });
 	}
 

@@ -52,6 +52,9 @@ namespace IWPCIH
 
 		public TimelineEventData AddEvent(TimelineEventContainer.EventType type)
 		{
+			if (CurrentChapter == null)
+				return null;
+
 			TimelineEventData timelineEvent = TimelineEventContainer.CreateEventDataOfType(type);
 			timelineEvent.Id = CurrentChapter.NextId();
 			timelineEvent.Type = type;

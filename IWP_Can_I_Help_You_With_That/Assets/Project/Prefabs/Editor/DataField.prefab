@@ -173,7 +173,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Label: {fileID: 114657898532023068}
-  InputText: {fileID: 114300673244322132}
   InputPanel: {fileID: 114098767425165644}
 --- !u!114 &114251039769620466
 MonoBehaviour:

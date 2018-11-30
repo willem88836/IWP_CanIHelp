@@ -61,5 +61,18 @@ namespace IWPCIH.EventTracking
 			events.Remove(data.Id);
 			UnityEngine.Debug.LogFormat("Removed Event (Id: {0}) of type {1}", data.Id.ToString(), data.Type.ToString());
 		}
+
+		public List<TimelineEventData> GetChronolocalList()
+		{
+			List<TimelineEventData> chronologicalEvents = new List<TimelineEventData>();
+			foreach (TimelineEventData data in events.Values)
+			{
+				chronologicalEvents.Add(data);
+			}
+			chronologicalEvents.Sort(delegate (TimelineEventData a, TimelineEventData b) 
+				{ return (a.InvokeTime < b.InvokeTime) ? -1 : 1; });
+
+			return chronologicalEvents;
+		}
 	}
 }
