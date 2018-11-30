@@ -11,11 +11,12 @@ namespace IWPCIH.TimelineEvents
 
 		public class CropEventData : TimelineEventData
 		{
-			public float Time;
+			public float Time = 0;
 		}
 
 		public override void Invoke()
 		{
+
 			Debug.Log("crop event is invoked!");
 		}
 	}

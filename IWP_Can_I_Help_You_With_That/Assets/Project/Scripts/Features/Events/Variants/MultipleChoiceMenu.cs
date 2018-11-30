@@ -10,11 +10,11 @@ namespace IWPCIH.TimelineEvents
 
 		public class MultipleChoiceData : TimelineEventData
 		{
-			public string Question;
-			public string Answer1;
-			public string Answer2;
-			public string Answer3;
-			public string Answer4;
+			public string Question = "";
+			public string Answer1 = "";
+			public string Answer2 = "";
+			public string Answer3 = "";
+			public string Answer4 = "";
 		}
 
 		public override void Invoke()
