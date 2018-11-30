@@ -16,7 +16,7 @@ namespace IWPCIH.TimelineEvents
 				case EventType.CropStart:
 					return new CropEvent.CropEventData();
 				case EventType.MultipleChoiceMenu:
-					return new CropEvent.CropEventData();
+					return new MultipleChoiceMenu.MultipleChoiceData();
 				default:
 					return null;
 			}
@@ -29,7 +29,7 @@ namespace IWPCIH.TimelineEvents
 				case EventType.CropStart:
 					return typeof(CropEvent.CropEventData);
 				case EventType.MultipleChoiceMenu:
-					return typeof(CropEvent.CropEventData);
+					return typeof(MultipleChoiceMenu.MultipleChoiceData);
 				default:
 					return null;
 			}

@@ -42,18 +42,24 @@ namespace IWPCIH
 			CurrentChapter = CurrentTimeline.GetFirst();
 			if (File.Exists(CurrentChapter.VideoName))
 				VideoPlayer.url = CurrentChapter.VideoName;
+			else
+				throw new FileNotFoundException();
 
 			currentEventIndex = 0;
 			eventData = CurrentChapter.GetChronolocalList();
 
+			VideoPlayer.Play();
+
 			StopCoroutine(WaitForEvent());
 			StartCoroutine(WaitForEvent());
-			VideoPlayer.Play();
 		}
 
 
 		private IEnumerator WaitForEvent()
 		{
+			if (!VideoPlayer.isPlaying)
+				Debug.LogWarning("Started waiting for event while videoplayer is not playing");
+
 			foreach (TimelineEventData data in eventData)
 			{
 				while (VideoPlayer.time < data.InvokeTime)
@@ -61,8 +67,9 @@ namespace IWPCIH
 
 				BaseEvent newEvent = BaseEvents.Find((BaseEvent e) => e.EventType == data.GetType());
 				Instantiate(newEvent, Container);
+				newEvent.Invoke();
 
-				Debug.LogFormat("invoke datafield: (id: {0})!", data.Id);
+				Debug.LogFormat("Invoke timelineEvent: (id: {0}) of (type: {1}) at (time: {2})", data.Id, data.Type, data.InvokeTime);
 			}
 		}
 	}
