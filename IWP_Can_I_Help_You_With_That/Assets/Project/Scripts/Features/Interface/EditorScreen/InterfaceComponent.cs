@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using IWPCIH.EventTracking;
 using IWPCIH.EditorInterface.Features;
 using System.Reflection;
+using System.Collections.Generic;
 
 namespace IWPCIH.EditorInterface.Components
 {
@@ -22,7 +23,7 @@ namespace IWPCIH.EditorInterface.Components
 
 		private RectTransform rect;
 		private FollowMouse followMouse;
-		private InterfaceDataField[] dataFields;
+		private List<InterfaceDataField> dataFields = new List<InterfaceDataField>();
 
 
 		private void Awake()
@@ -52,7 +53,7 @@ namespace IWPCIH.EditorInterface.Components
 		private void ApplyFields(TimelineEventData data)
 		{
 			FieldInfo[] fields = data.GetType().GetFields();
-			dataFields = new InterfaceDataField[fields.Length];
+			dataFields.Clear();
 
 			System.Type t = typeof(TimelineEventData);
 
@@ -63,12 +64,23 @@ namespace IWPCIH.EditorInterface.Components
 				if (t.GetField(info.Name) != null)
 					continue;
 
-				InterfaceDataField field = Instantiate(BaseDataField, transform);
-				field.Apply(info, data);
-
-				dataFields[i] = field;
+				SpawnField(info, data);
 			}
 		}
+
+		public InterfaceDataField SpawnField(FieldInfo info, TimelineEventData data)
+		{
+			InterfaceDataField field = Instantiate(BaseDataField, transform);
+			field.Apply(this, info, data);
+			dataFields.Add(field);
+			return field;
+		}
+
+		public int IndexOf(InterfaceDataField field)
+		{
+			return dataFields.IndexOf(field); 
+		}
+
 
 		public void Destroy()
 		{

@@ -1,7 +1,5 @@
-﻿using UnityEngine;
-using IWPCIH.EventTracking;
+﻿using IWPCIH.EventTracking;
 using System;
-using System.Reflection;
 
 namespace IWPCIH.TimelineEvents
 {
@@ -10,10 +8,7 @@ namespace IWPCIH.TimelineEvents
 		public class MultipleChoiceData : TimelineEventData
 		{
 			public string Question = "";
-			public string Answer1 = "";
-			public string Answer2 = "";
-			public string Answer3 = "";
-			public string Answer4 = "";
+			public string[] Answers = new string[0];
 		}
 		public override Type EventType { get { return typeof(MultipleChoiceData); } }
 
@@ -25,17 +20,18 @@ namespace IWPCIH.TimelineEvents
 		{
 			MultipleChoiceData myData = (MultipleChoiceData)Event;
 
-			/// TODO: Please implent arrays. I hate myself for having to type this.
+			Spawn(myData.Question);
+
+			foreach (string answer in myData.Answers)
+			{
+				Spawn(answer);
+			}
+		}
+
+		private void Spawn(string text)
+		{
 			MultipleChoiceOption option = Instantiate(ChoicePrefab, transform);
-			option.SetText(myData.Question);
-			option = Instantiate(ChoicePrefab, transform);
-			option.SetText(myData.Answer1);
-			option = Instantiate(ChoicePrefab, transform);
-			option.SetText(myData.Answer2);
-			option = Instantiate(ChoicePrefab, transform);
-			option.SetText(myData.Answer3);
-			option = Instantiate(ChoicePrefab, transform);
-			option.SetText(myData.Answer4);
+			option.SetText(text);
 		}
 	}
 }
