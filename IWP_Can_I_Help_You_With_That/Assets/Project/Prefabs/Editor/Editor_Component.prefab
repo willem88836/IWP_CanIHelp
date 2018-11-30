@@ -242,7 +242,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4eeec22e72d9c584fb6790767aa7b5c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BaseDataField: {fileID: 114143473193394640, guid: 64a21d94f0717db488fa4d8a5cca87aa,
+  BaseDataField: {fileID: 114038389583920344, guid: 69d07fcdf4b41d04c84cf4be0a1ab34c,
+    type: 2}
+  BaseArrayField: {fileID: 114342315576590172, guid: b43c846926e722a4480cdd45249616f9,
     type: 2}
   Header: {fileID: 114176110770576518}
 --- !u!114 &114717303295794398
@@ -284,7 +286,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_HorizontalFit: 0
-  m_VerticalFit: 1
+  m_VerticalFit: 2
 --- !u!114 &114928626278331380
 MonoBehaviour:
   m_ObjectHideFlags: 1

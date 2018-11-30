@@ -6,119 +6,46 @@ using UnityEngine.UI;
 
 namespace IWPCIH.EditorInterface.Components
 {
-	public class InterfaceDataField : MonoBehaviour
+	[RequireComponent(typeof(ContentSizeFitter))]
+	public abstract class InterfaceDataField : MonoBehaviour
 	{
 		private const string NAMEFORMAT = "Datafield_{0}_{1}";
 
-		public Text Label;
-		public InputField InputPanel;
+		public VisualField visualFieldPrefab;
+
+		protected TimelineEventData eventData;
+		protected FieldInfo fieldInfo;
 
 
-		private InterfaceComponent parent;
-		private FieldInfo fieldInfo;
-		private TimelineEventData eventData;
-
-		public void Apply(InterfaceComponent parent, FieldInfo fieldInfo, TimelineEventData eventData)
+		public virtual void Apply(TimelineEventData eventData, FieldInfo fieldInfo)
 		{
-			this.parent = parent;
-			this.fieldInfo = fieldInfo;
 			this.eventData = eventData;
-
-			// complete label info
-			gameObject.name = string.Format(NAMEFORMAT, fieldInfo.GetType().ToString(), fieldInfo.Name);
-
-			Type t = fieldInfo.FieldType;
-			if (t.IsArray)
-			{
-				object[] content = (object[])fieldInfo.GetValue(eventData);
-				ApplyValue(fieldInfo.Name, content.Length);
-				InputPanel.onEndEdit.AddListener(OnArraySizeUpdated);
-				foreach (object obj in content)
-				{
-					// TODO: continue here with array child spawning .
-					FieldInfo childInfo = new FieldInfo() 
-					InterfaceDataField arrayChild = parent.SpawnField()
-				}
-			}
-			else
-			{
-				ApplyValue(fieldInfo.Name, fieldInfo.GetValue(eventData));
-				InputPanel.onEndEdit.AddListener(OnValueUpdated);
-			}
+			this.fieldInfo = fieldInfo;
+			gameObject.name = string.Format(NAMEFORMAT, fieldInfo.FieldType.ToString(), fieldInfo.Name);
 		}
-
-		private object lastInput;
-		private void ApplyValue(string name, object obj)
-		{
-			Label.text = fieldInfo.Name;
-			lastInput = fieldInfo.GetValue(eventData) ?? "";
-			InputPanel.text = lastInput.ToString();
-		}
-
-
-
-		private void OnArraySizeUpdated(string s)
-		{
-
-		}
-
-		private void OnValueUpdated(string s)
-		{
-
-		}
-
-
-		/*
-		private Type fieldType;
-		private FieldInfo info;
-		private TimelineEventData eventData;
-
-		private object lastInput = "";
-
 
 		/// <summary>
-		///		Sets values corresponding to the required values. 
-		///		Updates the data when values are changed. 
+		///		Spawns a  VisualField based on the provided info.
 		/// </summary>
-		/// <param name="info"></param>
-		/// <param name="eventData"></param>
-		public void Apply(FieldInfo info, TimelineEventData eventData)
+		protected VisualField Spawn(string name, Type type, object value, Action<string> onChange)
 		{
-			this.info = info;
-			this.eventData = eventData;
-			gameObject.name = string.Format(NAMEFORMAT, info.GetType().ToString(), info.Name);
-			Label.text = info.Name;
-			lastInput = info.GetValue(eventData) ?? "";
-			InputPanel.text = lastInput.ToString();
-			fieldType = info.GetValue(eventData).GetType();
-
-
-			InputPanel.onEndEdit.RemoveAllListeners();
-			InputPanel.onEndEdit.AddListener((string s) => { OnValueChanged(s); });
+			VisualField newField = Instantiate(visualFieldPrefab, transform);
+			newField.Set(name, type, value, onChange);
+			return newField;
 		}
 
-		private void OnValueChanged(string s)
+		protected void Clear()
 		{
-			object o = ParseString(s, fieldType);
-
-			if (o == null)
+			for(int i = transform.childCount - 1; i >= 0; i--)
 			{
-				InputPanel.text = lastInput.ToString();
-				info.SetValue(eventData, lastInput);
-			}
-			else
-			{
-				info.SetValue(eventData, o);
-				lastInput = o;
+				Destroy(transform.GetChild(i).gameObject);
 			}
 		}
-
-	*/
 
 		/// <summary>
 		///		Parses the string to the corresponding type. 
 		/// </summary>
-		private static object ParseString(string s, Type t)
+		protected object ParseString(string s, Type t)
 		{
 			try
 			{
