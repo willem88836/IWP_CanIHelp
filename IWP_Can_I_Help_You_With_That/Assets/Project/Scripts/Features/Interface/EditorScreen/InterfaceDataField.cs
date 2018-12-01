@@ -41,38 +41,5 @@ namespace IWPCIH.EditorInterface.Components
 				Destroy(transform.GetChild(i).gameObject);
 			}
 		}
-
-		/// <summary>
-		///		Parses the string to the corresponding type. 
-		/// </summary>
-		protected object ParseString(string s, Type t)
-		{
-			try
-			{
-				if (t == typeof(int))
-				{
-					return int.Parse(s);
-				}
-				else if (t == typeof(float))
-				{
-					return float.Parse(s);
-				}
-				else if (t == typeof(double))
-				{
-					return double.Parse(s);
-				}
-				else if (t == typeof(char))
-				{
-					return char.Parse(s);
-				}
-
-				return s;
-			}
-			catch (Exception ex)
-			{
-				Debug.LogWarningFormat("Parse to {0} Cancelled with: {1}", t.ToString(), ex.Message);
-				return null;
-			}
-		}
 	}
 }
