@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using IWPCIH.EventTracking;
 using IWPCIH.EditorInterface.Features;
+using IWPCIH.EventTracking;
+using System;
+using System.Collections.Generic;
 using System.Reflection;
 
 namespace IWPCIH.EditorInterface.Components
@@ -12,9 +14,10 @@ namespace IWPCIH.EditorInterface.Components
 	 RequireComponent(typeof(Button))]
 	public class InterfaceComponent : MonoBehaviour
 	{
-		private const string NAMEFORMAT = "{0}_InterfaceComponent_{1}";
+		private const string NAMEFORMAT = "({0}) - {1}";
 
 		public InterfaceDataField BaseDataField;
+		public InterfaceDataField BaseArrayField;
 		public Text Header;
 
 		public TimelineEventData EventData { get; private set; }
@@ -22,7 +25,7 @@ namespace IWPCIH.EditorInterface.Components
 
 		private RectTransform rect;
 		private FollowMouse followMouse;
-		private InterfaceDataField[] dataFields;
+		private List<InterfaceDataField> dataFields = new List<InterfaceDataField>();
 
 
 		private void Awake()
@@ -52,9 +55,9 @@ namespace IWPCIH.EditorInterface.Components
 		private void ApplyFields(TimelineEventData data)
 		{
 			FieldInfo[] fields = data.GetType().GetFields();
-			dataFields = new InterfaceDataField[fields.Length];
+			dataFields.Clear();
 
-			System.Type t = typeof(TimelineEventData);
+			Type t = typeof(TimelineEventData);
 
 			for (int i = 0; i < fields.Length; i++)
 			{
@@ -63,11 +66,27 @@ namespace IWPCIH.EditorInterface.Components
 				if (t.GetField(info.Name) != null)
 					continue;
 
-				InterfaceDataField field = Instantiate(BaseDataField, transform);
-				field.Apply(info, data);
-
-				dataFields[i] = field;
+				if (info.FieldType.IsArray)
+					SpawnArrayField(data, info);
+				else
+					SpawnField(data, info);
 			}
+		}
+
+		private InterfaceDataField SpawnField(TimelineEventData data, FieldInfo dataField)
+		{
+			InterfaceDataField field = Instantiate(BaseDataField, transform);
+			field.Apply(data, dataField);
+			dataFields.Add(field);
+			return field;
+		}
+
+		private InterfaceDataField SpawnArrayField(TimelineEventData data, FieldInfo dataField)
+		{
+			InterfaceDataField field = Instantiate(BaseArrayField, transform);
+			field.Apply(data, dataField);
+			dataFields.Add(field);
+			return field;
 		}
 
 		public void Destroy()

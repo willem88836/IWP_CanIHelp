@@ -4,87 +4,42 @@ using System.Reflection;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class InterfaceDataField : MonoBehaviour
+namespace IWPCIH.EditorInterface.Components
 {
-	private const string NAMEFORMAT = "Datafield_{0}_{1}";
-
-	public Text Label;
-	public InputField InputPanel;
-
-	private Type fieldType;
-	private FieldInfo info;
-	private TimelineEventData eventData;
-
-	private object lastInput = "";
-
-
-	/// <summary>
-	///		Sets values corresponding to the required values. 
-	///		Updates the data when values are changed. 
-	/// </summary>
-	/// <param name="info"></param>
-	/// <param name="eventData"></param>
-	public void Apply(FieldInfo info, TimelineEventData eventData)
+	[RequireComponent(typeof(ContentSizeFitter))]
+	public abstract class InterfaceDataField : MonoBehaviour
 	{
-		this.info = info;
-		this.eventData = eventData;
-		gameObject.name = string.Format(NAMEFORMAT, info.GetType().ToString(), info.Name);
-		Label.text = info.Name;
-		lastInput = info.GetValue(eventData) ?? "";
-		InputPanel.text = lastInput.ToString();
-		fieldType = info.GetValue(eventData).GetType();
+		private const string NAMEFORMAT = "Datafield_{0}_{1}";
 
-		
-		InputPanel.onEndEdit.RemoveAllListeners();
-		InputPanel.onEndEdit.AddListener((string s) => { OnValueChanged(s); });
-	}
+		public VisualField visualFieldPrefab;
 
-	private void OnValueChanged(string s)
-	{
-		object o = ParseString(s, fieldType);
+		protected TimelineEventData eventData;
+		protected FieldInfo fieldInfo;
 
-		if (o == null)
+
+		public virtual void Apply(TimelineEventData eventData, FieldInfo fieldInfo)
 		{
-			InputPanel.text = lastInput.ToString();
-			info.SetValue(eventData, lastInput);
+			this.eventData = eventData;
+			this.fieldInfo = fieldInfo;
+			gameObject.name = string.Format(NAMEFORMAT, fieldInfo.FieldType.ToString(), fieldInfo.Name);
 		}
-		else
-		{
-			info.SetValue(eventData, o);
-			lastInput = o;
-		}
-	}
 
-	/// <summary>
-	///		Parses the string to the corresponding type. 
-	/// </summary>
-	private static object ParseString(string s, Type t)
-	{
-		try
+		/// <summary>
+		///		Spawns a  VisualField based on the provided info.
+		/// </summary>
+		protected VisualField Spawn(string name, Type type, object value, Action<string> onChange)
 		{
-			if (t == typeof(int))
-			{
-				return int.Parse(s);
-			}
-			else if (t == typeof(float))
-			{
-				return float.Parse(s);
-			}
-			else if (t == typeof(double))
-			{
-				return double.Parse(s);
-			}
-			else if (t == typeof(char))
-			{
-				return char.Parse(s);
-			}
-
-			return s;
+			VisualField newField = Instantiate(visualFieldPrefab, transform);
+			newField.Set(name, type, value, onChange);
+			return newField;
 		}
-		catch (Exception ex)
+
+		protected void Clear()
 		{
-			Debug.LogWarningFormat("Parse to {0} Cancelled with: {1}", t.ToString(), ex.Message);
-			return null;
+			for(int i = transform.childCount - 1; i >= 0; i--)
+			{
+				Destroy(transform.GetChild(i).gameObject);
+			}
 		}
 	}
 }
