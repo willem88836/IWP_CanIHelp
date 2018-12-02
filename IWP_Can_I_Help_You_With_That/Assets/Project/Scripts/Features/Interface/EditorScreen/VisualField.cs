@@ -21,7 +21,7 @@ namespace IWPCIH.EditorInterface.Components
 
 		public void Set(string text, Type type, object value, Action<string> onChange)
 		{
-			// TODO: filter input type based on type. 
+			// TODO: filter input type settings (numerical, alphanumerical, etc.) based on type. 
 			name = string.Format(STRINGFORMAT, text);
 			Label.text = text;
 			Input.text = value.ToString();

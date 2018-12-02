@@ -25,10 +25,10 @@ namespace IWPCIH
 
 		#region ChapterIteration
 
-		public void AddChapter(string name)
+		public void AddChapter(string name, string videoName)
 		{
 			int index = CurrentTimeline.ChapterCount;
-			TimelineChapter chapter = new TimelineChapter(index, name, "VideoName"); // TODO: get a reference to the video name.
+			TimelineChapter chapter = new TimelineChapter(index, name, videoName);
 			CurrentTimeline.AddChapter(chapter);
 			SwitchChapterTo(index);
 
@@ -36,7 +36,7 @@ namespace IWPCIH
 
 			TimelineSaveLoadWrapper.Instance.SoftSave();
 
-			Debug.LogFormat("added chapter: {0}", name);
+			Debug.LogFormat("Added chapter: (name: {0}) using (video: {1})", name, videoName);
 		}
 		public void RemoveChapter(TimelineChapter chapter)
 		{

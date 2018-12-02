@@ -55,4 +55,5 @@ MonoBehaviour:
     InvokeTime: 0
     Type: 0
     Id: 0
-  ChoicePrefab: {fileID: 0}
+  ChoicePrefab: {fileID: 114819641163377204, guid: e3154ef93a505bd41b601a62450ebaa1,
+    type: 2}

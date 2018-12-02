@@ -1034,6 +1034,7 @@ MonoBehaviour:
     type: 2}
   ShownExtentions:
   - .tld
+  - .mp4
   ContentContainer: {fileID: 224408309613998120}
 --- !u!114 &114252498696598560
 MonoBehaviour:
