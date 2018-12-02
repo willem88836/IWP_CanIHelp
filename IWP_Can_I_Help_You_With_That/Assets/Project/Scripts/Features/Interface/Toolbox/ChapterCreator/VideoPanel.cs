@@ -7,22 +7,41 @@ namespace IWPCIH.EditorInterface
 {
 	public class VideoPanel : MonoBehaviour
 	{
+		public Button SelectButton;
 		public Text NamePanel;
 		public Image Logo;
+		public Color SelectedColor;
+		public Color UnSelectedColor;
 
-		public void Initialize(string fileName)
+		private string fileName;
+		private ChapterCreator creator;
+
+
+		public void Initialize(ChapterCreator creator, string fileName)
 		{
+			this.creator = creator;
+			this.fileName = fileName;
+			NamePanel.text = Path.GetFileNameWithoutExtension(fileName);
+			SelectButton.onClick.AddListener(OnClick);
+
+
 			// TODO: set something like a thumbnail as logo. 
+			Deselect();
+		}
+
+		private void OnClick()
+		{
+			creator.OnPathSelected(fileName);
 		}
 
 		internal void Select()
 		{
-			Debug.Log("Selected video panel!");
+			Logo.color = SelectedColor;
 		}
 
 		internal void Deselect()
 		{
-			Debug.Log("Deselected video panel!");
+			Logo.color = UnSelectedColor;
 		}
 	}
 }

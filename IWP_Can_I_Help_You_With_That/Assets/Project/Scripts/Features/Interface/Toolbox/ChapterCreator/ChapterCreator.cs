@@ -12,7 +12,7 @@ namespace IWPCIH.EditorInterface
 		public readonly char[] CUSTOMBLOCKEDCHARS = new char[] { 'Ϩ' };
 
 
-		public Text NameTextfield;
+		public InputField NameTextfield;
 		public Explorer.Explorer VideoExplorer;
 		public VideoPanel VideoPanelPrefab;
 		public Transform VideoPanelContainer;
@@ -44,6 +44,7 @@ namespace IWPCIH.EditorInterface
 			if (IsValid(name) && File.Exists(selectedPath))
 			{
 				(TimelineController.Instance as TimelineEditor).AddChapter(name, selectedPath);
+				usedVideos[selectedPath].Deselect();
 				NameTextfield.text = "";
 				selectedPath = "";
 			}
@@ -88,6 +89,7 @@ namespace IWPCIH.EditorInterface
 			{
 				VideoPanel newPanel = Instantiate(VideoPanelPrefab, VideoPanelContainer);
 				usedVideos.Add(path, newPanel);
+				newPanel.Initialize(this, path);
 				newPanel.Select();
 
 				LayoutRebuilder.ForceRebuildLayoutImmediate(VideoPanelContainer.GetComponent<RectTransform>());

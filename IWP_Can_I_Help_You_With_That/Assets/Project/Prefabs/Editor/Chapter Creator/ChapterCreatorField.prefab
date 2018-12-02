@@ -302,7 +302,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71dce9f86f11b7948a5ef7317be0c20c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NameTextfield: {fileID: 114658290106517170}
+  NameTextfield: {fileID: 114314036676170472}
   VideoExplorer: {fileID: 0}
   VideoPanelPrefab: {fileID: 114234630380906352, guid: d40b00b2cbb94dd4c880cb1f4dc6bbe0,
     type: 2}
