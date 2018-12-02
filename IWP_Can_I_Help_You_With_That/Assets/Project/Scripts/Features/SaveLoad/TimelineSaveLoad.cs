@@ -83,12 +83,11 @@ namespace IWPCIH.Storage
 			// All video files. 
 			timeline.ForEach((TimelineChapter c) => 
 			{
-				return; // TODO: remove this once the video filenames are properly set. 
 				string target = Path.Combine(BuildExtractPath, Path.GetFileName(c.VideoName));
 				File.Copy(c.VideoName, target);
 			});
 
-			// TODO: set proper save path.
+
 			string zipName = Path.ChangeExtension((Path.Combine(HardSavePath, timeline.Name)), PROJECTEXTENTION);
 			if (File.Exists(zipName))
 				File.Delete(zipName);
