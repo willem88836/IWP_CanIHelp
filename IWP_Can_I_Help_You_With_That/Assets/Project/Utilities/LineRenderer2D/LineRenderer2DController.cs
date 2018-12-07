@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Framework.Core
+namespace Framework.UI
 {
 	[RequireComponent(typeof(RawImage))]
 	[RequireComponent(typeof(RectTransform))]
@@ -29,7 +29,10 @@ namespace Framework.Core
 			targetTexture.enableRandomWrite = true;
 			targetTexture.Create();
 
-			GetComponent<RawImage>().texture = targetTexture;
+			RawImage rawImage = GetComponent<RawImage>();
+			rawImage.texture = targetTexture;
+			// Not necessary. However, now the default scene image doesn't have to be bright white. 
+			rawImage.color = Color.white; 
 		}
 
 		private void Update()
@@ -56,6 +59,7 @@ namespace Framework.Core
 					continue;
 
 				// Draws one line onto the texture.
+				LineRenderShader.SetInt("PathCount", renderer.Path.Length);
 				LineRenderShader.SetVectorArray("Path", renderer.Path);
 				LineRenderShader.SetVector("Color", renderer.Color);
 				LineRenderShader.Dispatch(kernel, threadGroupsX, threadGroupsY, 1);
@@ -67,6 +71,12 @@ namespace Framework.Core
 		{
 			if (!lineRenderer2Ds.Contains(renderer))
 				lineRenderer2Ds.Add(renderer);
+		}
+
+		public void Remove(LineRenderer2D renderer)
+		{
+			if (lineRenderer2Ds.Contains(renderer))
+				lineRenderer2Ds.Remove(renderer);
 		}
 	}
 }

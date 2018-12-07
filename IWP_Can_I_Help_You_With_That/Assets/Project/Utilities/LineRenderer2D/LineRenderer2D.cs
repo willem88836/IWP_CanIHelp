@@ -1,8 +1,6 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
-using System;
 
-namespace Framework.Core
+namespace Framework.UI
 {
 	public class LineRenderer2D : MonoBehaviour
 	{
@@ -14,6 +12,10 @@ namespace Framework.Core
 		private void Start()
 		{
 			LineRenderer2DController.Instance.Add(this);
+		}
+		private void OnDisable()
+		{
+			LineRenderer2DController.Instance.Remove(this);
 		}
 	}
 }
