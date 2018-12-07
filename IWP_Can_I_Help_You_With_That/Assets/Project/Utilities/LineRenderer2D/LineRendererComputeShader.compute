@@ -1,0 +1,26 @@
+﻿// Each #kernel tells which function to compile; you can have many kernels
+#pragma kernel CSMain
+#pragma kernel Clear
+
+
+// Create a RenderTexture with enableRandomWrite flag and set it
+// with cs.SetTexture
+#define float4[] Path = float4[] {};
+RWTexture2D<float4> Result;
+float4 Color;
+int Iterations;
+
+
+[numthreads(8,8,1)]
+void CSMain (uint3 id : SV_DispatchThreadID)
+{
+	// TODO: insert actual code here!
+
+	Result[id.xy] += Color / Iterations;
+}
+
+[numthreads(8,8,1)]
+void Clear(uint3 id : SV_DispatchThreadID)
+{
+	Result[id.xy] = float4(0, 0, 0, 0);
+}
