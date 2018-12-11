@@ -8,6 +8,7 @@ using System.Reflection;
 
 namespace IWPCIH.EditorInterface.Components
 {
+	// TODO: make this super abstract, and let timelinecomponent and this derive from it? 
 	[RequireComponent(typeof(RectTransform)), 
 	 RequireComponent(typeof(FollowMouse)),
 	 RequireComponent(typeof(HorizontalOrVerticalLayoutGroup)),

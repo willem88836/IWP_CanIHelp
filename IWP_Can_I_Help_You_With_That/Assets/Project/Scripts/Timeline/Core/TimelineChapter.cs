@@ -13,6 +13,14 @@ namespace IWPCIH.EventTracking
 
 		public int EventCount { get { return events == null ? 0 : events.Count; } }
 
+		public float VideoLength
+		{
+			get
+			{
+				return System.IO.File.ReadAllBytes(VideoName).Length / 8;
+			}
+		}
+
 
 		public TimelineChapter(int id, string name, string videoName)
 		{

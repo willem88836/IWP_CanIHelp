@@ -52,6 +52,7 @@ namespace IWPCIH
 
 		public TimelineEventData AddEvent(TimelineEventContainer.EventType type)
 		{
+			// if there is no chapter, nothing happens.
 			if (CurrentChapter == null)
 				return null;
 

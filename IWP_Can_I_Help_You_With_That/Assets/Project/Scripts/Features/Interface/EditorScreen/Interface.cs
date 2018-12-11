@@ -7,10 +7,16 @@ namespace IWPCIH.EditorInterface.Components
 {
 	public class Interface : MonoBehaviour, ISavable<Vector3[]>
 	{
-		public Transform componentContainer;
-		public InterfaceComponent baseComponent;
+		public Transform InterfaceComponentContainer;
+		public InterfaceComponent baseInterfaceComponent;
+
+		[Space]
+		public Transform TimelineComponentContainer;
+		public TimelineComponent BaseTimelineComponent;
+
 
 		private List<InterfaceComponent> interfaceComponents = new List<InterfaceComponent>();
+		private List<TimelineComponent> timelineComponents = new List<TimelineComponent>();
 
 
 		public void Initialize(TimelineChapter chapter)
@@ -30,11 +36,23 @@ namespace IWPCIH.EditorInterface.Components
 
 		public void Spawn(TimelineEventData data)
 		{
-			InterfaceComponent component = Instantiate(baseComponent, componentContainer);
-			component.Initialize(this, data);
-			component.transform.position = componentContainer.position;
-			component.transform.rotation = Quaternion.identity;
-			interfaceComponents.Add(component);
+			// Creates a new interface component.
+			InterfaceComponent interfaceComponent = Instantiate(
+				baseInterfaceComponent, 
+				InterfaceComponentContainer.position, 
+				Quaternion.identity, 
+				InterfaceComponentContainer);
+			interfaceComponent.Initialize(this, data);
+			interfaceComponents.Add(interfaceComponent);
+
+			// Creates a new timeline Component.
+			TimelineComponent timelineComponent = Instantiate(
+				BaseTimelineComponent, 
+				TimelineComponentContainer.position, 
+				Quaternion.identity, 
+				TimelineComponentContainer);
+			timelineComponent.Initialize(this, data);
+			timelineComponents.Add(timelineComponent);
 		}
 		public void Destroy(InterfaceComponent component)
 		{

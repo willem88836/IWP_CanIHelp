@@ -12,8 +12,7 @@ namespace IWPCIH
 		public StringReference ProjectName;
 
 		[NonSerialized] public Timeline CurrentTimeline;
-		protected TimelineChapter CurrentChapter;
-
+		public TimelineChapter CurrentChapter;
 
 		protected virtual void Awake()
 		{
