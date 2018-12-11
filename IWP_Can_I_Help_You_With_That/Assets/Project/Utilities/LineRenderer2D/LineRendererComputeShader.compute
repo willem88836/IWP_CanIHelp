@@ -10,13 +10,14 @@ int PathCount = 0;
 RWTexture2D<float4> Result;
 float4 Color;
 int Iterations;
+float Width;
 
 
 [numthreads(8,8,1)]
 void CSMain (uint3 id : SV_DispatchThreadID)
 {
 	// HACK: find a better way to set a default max value.
-	float minDistance = 1000000;
+	float minDistance = 2139095039;
 
 	for (int i = 0; i < PathCount - 1; i++)
 	{
@@ -32,9 +33,12 @@ void CSMain (uint3 id : SV_DispatchThreadID)
 		minDistance = clamp(minDistance, 0, distance);
 	}
 
-	// TODO: do something with the found distance.
+	// TODO: make this non-linear (editable).
+	minDistance = clamp(minDistance - Width, 0, Width) / Width;
 
-	Result[id.xy] += Color / Iterations;
+	// TODO: For some reason this doesn't work. Figure this out.
+	
+	Result[id.xy] += Color / Iterations * minDistance;
 }
 
 [numthreads(8,8,1)]

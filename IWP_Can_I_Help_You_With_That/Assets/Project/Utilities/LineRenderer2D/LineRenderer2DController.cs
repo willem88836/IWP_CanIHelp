@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 namespace Framework.UI
 {
+	[System.Obsolete]
 	[RequireComponent(typeof(RawImage))]
 	[RequireComponent(typeof(RectTransform))]
 	public class LineRenderer2DController : MonoBehaviour
@@ -11,6 +12,7 @@ namespace Framework.UI
 		public static LineRenderer2DController Instance;
 
 		public ComputeShader LineRenderShader;
+		public float Width;
 
 		private RenderTexture targetTexture;
 		private List<LineRenderer2D> lineRenderer2Ds = new List<LineRenderer2D>();
@@ -53,14 +55,15 @@ namespace Framework.UI
 			int kernel = LineRenderShader.FindKernel("CSMain");
 			LineRenderShader.SetTexture(kernel, "Result", targetTexture);
 			LineRenderShader.SetInt("Iterations", lineRenderer2Ds.Count);
+			LineRenderShader.SetFloat("Width", Width);
 			foreach (LineRenderer2D renderer in lineRenderer2Ds)
 			{
 				if (renderer.Path == null || renderer.Path.Length == 0)
 					continue;
 
 				// Draws one line onto the texture.
-				LineRenderShader.SetInt("PathCount", renderer.Path.Length);
 				LineRenderShader.SetVectorArray("Path", renderer.Path);
+				LineRenderShader.SetInt("PathCount", renderer.Path.Length);
 				LineRenderShader.SetVector("Color", renderer.Color);
 				LineRenderShader.Dispatch(kernel, threadGroupsX, threadGroupsY, 1);
 			}
