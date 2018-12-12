@@ -8,6 +8,7 @@ using UnityEngine.UI;
 
 namespace IWPCIH.Explorer
 {
+	// TODO: make this not 2D only. Make this abstract and let 3D and 2D variants derive from this. 
 	/// <summary>
 	///		Responsible for updating and controlling
 	///		multiple ExplorerViews.
