@@ -157,7 +157,7 @@ namespace IWPCIH.ExplorerII
 		public void OnSelect(ExplorerObject invoked)
 		{
 			if (Explorer)
-				Explorer.OnObjectSelected(invoked);
+				Explorer.OnObjectSelected(invoked.Path);
 		}
 	}
 }
