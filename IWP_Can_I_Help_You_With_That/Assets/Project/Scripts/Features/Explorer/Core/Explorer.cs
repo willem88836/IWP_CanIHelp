@@ -59,10 +59,8 @@ namespace IWPCIH.ExplorerII
 		/// <summary>
 		///		Is called once a ViewObject is selected.
 		/// </summary>
-		public virtual void OnObjectSelected(ExplorerObject invoked)
+		public virtual void OnObjectSelected(string path)
 		{
-			string path = ExplorerPath.Value = invoked.Path;
-
 			if (File.Exists(path))
 			{
 				path = Path.GetDirectoryName(path);
