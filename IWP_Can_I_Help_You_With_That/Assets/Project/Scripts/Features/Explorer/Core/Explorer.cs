@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-namespace IWPCIH.ExplorerII
+namespace IWPCIH.Explorer
 {
 	/// <summary>
 	///		Contains functionality to control and maintain 
@@ -83,7 +83,7 @@ namespace IWPCIH.ExplorerII
 			// to load a file instead of a directory.
 			if (File.Exists(path))
 			{
-				path = new FileInfo(path).DirectoryName;
+				path = Path.GetDirectoryName(path);
 			}
 
 			foreach (ExplorerView view in Views)

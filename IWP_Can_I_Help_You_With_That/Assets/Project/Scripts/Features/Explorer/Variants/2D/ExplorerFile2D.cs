@@ -1,6 +1,6 @@
 ﻿using UnityEngine.UI;
 
-namespace IWPCIH.ExplorerII
+namespace IWPCIH.Explorer
 {
 	public class ExplorerFile2D : ExplorerObject
 	{

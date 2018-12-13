@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace IWPCIH.ExplorerII
+namespace IWPCIH.Explorer
 {
 	/// <summary>
 	///		Represents the data of one

@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using UnityEngine.UI;
 
-namespace IWPCIH.ExplorerII
+namespace IWPCIH.Explorer
 {
 	public class ExplorerFolder2D : ExplorerObject
 	{

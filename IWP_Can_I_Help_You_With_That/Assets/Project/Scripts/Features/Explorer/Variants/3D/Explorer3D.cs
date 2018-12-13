@@ -1,6 +1,6 @@
 ﻿using UnityEngine.UI;
 
-namespace IWPCIH.ExplorerII
+namespace IWPCIH.Explorer
 {
 	/// <summary>
 	///		A 3D implementation of the Explorer.

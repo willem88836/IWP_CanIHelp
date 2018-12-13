@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 using UnityEngine;
 
-namespace IWPCIH.ExplorerII
+namespace IWPCIH.Explorer
 {
 	/// <summary>
 	///		Controls one view in which the contents of one 
@@ -145,7 +145,10 @@ namespace IWPCIH.ExplorerII
 		/// </summary>
 		private bool HasBlockedExtention(string path)
 		{
-			string extention = System.IO.Path.GetExtension(path);
+			if (Directory.Exists(path))
+				return false;
+
+			string extention = Path.GetExtension(path);
 			return ShownExtentions.Length == 0
 				? false
 				: !ShownExtentions.Contains(extention);
