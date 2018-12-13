@@ -25,6 +25,8 @@ namespace IWPCIH.ExplorerII
 			{
 				OnObjectSelected(PathInputField.text);
 			});
+
+			SetPathVisually(ExplorerPath.Value);
 		}
 
 		/// <summary>
