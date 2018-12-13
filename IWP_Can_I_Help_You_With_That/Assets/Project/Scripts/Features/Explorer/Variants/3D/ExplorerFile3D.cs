@@ -22,7 +22,6 @@ namespace IWPCIH.Explorer
 
 		private string WrapText(string text)
 		{
-			// TODO: Improve this stuff. this cuts words in half.
 			int loops = Mathf.FloorToInt(text.Length / TextWidth);
 			loops = Mathf.Min(loops, MaxRows);
 

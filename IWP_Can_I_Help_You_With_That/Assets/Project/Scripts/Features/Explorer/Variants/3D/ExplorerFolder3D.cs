@@ -20,6 +20,8 @@ namespace IWPCIH.Explorer
 		private string WrapText(string text)
 		{
 			// TODO: Improve this stuff. this cuts words in half.
+			// TODO: Make this accessible for all 3D texts instead of in each ExplorerObject.
+			// This stuff goes for ExplorerFile3D as well.
 			int loops = Mathf.FloorToInt(text.Length / TextWidth);
 			loops = Mathf.Min(loops, MaxRows);
 
