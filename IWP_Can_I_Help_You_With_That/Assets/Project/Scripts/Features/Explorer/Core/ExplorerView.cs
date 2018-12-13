@@ -13,8 +13,8 @@ namespace IWPCIH.ExplorerII
 	/// </summary>
 	public class ExplorerView : MonoBehaviour
 	{
-		public ExplorerFolder FolderObject;
-		public ExplorerFile FileObject;
+		public ExplorerObject FolderObject;
+		public ExplorerObject FileObject;
 		public Transform ContentContainer;
 
 		[Space]

@@ -19,7 +19,7 @@ namespace IWPCIH.ExplorerII
 		public Action<string> OnPathSelected;
 
 
-		public virtual void Start()
+		public virtual void OnEnable()
 		{
 			UpdateAllViews(ExplorerPath.Value);
 		}
@@ -61,7 +61,7 @@ namespace IWPCIH.ExplorerII
 		/// </summary>
 		public virtual void OnObjectSelected(ExplorerObject invoked)
 		{
-			string path = ExplorerPath.Value = invoked.MyPath;
+			string path = ExplorerPath.Value = invoked.Path;
 
 			if (File.Exists(path))
 			{
@@ -81,6 +81,13 @@ namespace IWPCIH.ExplorerII
 		/// </summary>
 		protected virtual void UpdateAllViews(string path)
 		{
+			// Prevents the explorer from attempting 
+			// to load a file instead of a directory.
+			if (File.Exists(path))
+			{
+				path = new FileInfo(path).DirectoryName;
+			}
+
 			foreach (ExplorerView view in Views)
 			{
 				UpdateView(view, path);
