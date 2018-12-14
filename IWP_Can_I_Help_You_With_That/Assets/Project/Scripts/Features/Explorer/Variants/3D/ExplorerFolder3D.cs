@@ -11,7 +11,8 @@ namespace IWPCIH.Explorer
 		public override void Initialize(ExplorerView explorerView, string path)
 		{
 			base.Initialize(explorerView, path);
-			string text = System.IO.Path.GetFileName(path);
+			string[] splittedPath = path.Split('\\', '/');
+			string text = splittedPath[splittedPath.Length - ((path.EndsWith("\\") || path.EndsWith("/")) ? 2 : 1)];
 			text = WrapText(text);
 			Text.text = text;
 		}
