@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Project/Scenes/VideoPlayer.unity
+    path: Assets/Project/Scenes/VR_MainMenu.unity
+    guid: b9ae3bfa7799150439aac8ff2f8fcf9f
+  - enabled: 0
+    path: Assets/Project/Scenes/VR_VideoPlayer.unity
     guid: 5995e57476dfd7f4882d8777e416af7a
   m_configObjects: {}

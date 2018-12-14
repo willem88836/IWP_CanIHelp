@@ -2,7 +2,7 @@
 
 namespace IWPCIH.Explorer
 {
-	public class ExplorerFolder3D : ExplorerObject
+	public class ExplorerFolder3D : ExplorerObject, ISelectable
 	{
 		public TextMesh Text;
 		public int TextWidth = 8;
@@ -16,6 +16,10 @@ namespace IWPCIH.Explorer
 			Text.text = text;
 		}
 
+		public void Select()
+		{
+			OnSelect();
+		}
 
 		private string WrapText(string text)
 		{

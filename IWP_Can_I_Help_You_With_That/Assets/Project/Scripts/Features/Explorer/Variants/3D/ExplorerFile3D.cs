@@ -2,7 +2,7 @@
 
 namespace IWPCIH.Explorer
 {
-	public class ExplorerFile3D : ExplorerObject
+	public class ExplorerFile3D : ExplorerObject, ISelectable
 	{
 		public TextMesh Text;
 		public bool ShowExtention;
@@ -18,6 +18,11 @@ namespace IWPCIH.Explorer
 
 			text = WrapText(text);
 			Text.text = text;
+		}
+
+		public void Select()
+		{
+			OnSelect();
 		}
 
 		private string WrapText(string text)
