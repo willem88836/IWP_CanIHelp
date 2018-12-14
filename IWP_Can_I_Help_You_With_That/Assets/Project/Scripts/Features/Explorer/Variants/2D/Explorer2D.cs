@@ -38,6 +38,12 @@ namespace IWPCIH.Explorer
 			PathInputField.text = path;
 		}
 
+		public override void Back()
+		{
+			base.Back();
+			SetPathVisually(ExplorerPath.Value);
+		}
+
 		/// <inheritdoc />
 		public override void OnObjectSelected(string path)
 		{

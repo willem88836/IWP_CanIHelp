@@ -150,9 +150,9 @@ namespace IWPCIH.Explorer
 			{
 				List<ExplorerObject> objects = new List<ExplorerObject>();
 
-				Utilities.ForeachFolderAt(path, (string p) =>
+				Utilities.ForeachFileAt(path, (FileInfo info) =>
 				{
-					ExplorerObject explorerObject = CreateObject(p, FileObject, ContentContainer, onInitialize);
+					ExplorerObject explorerObject = CreateObject(info.FullName, FileObject, ContentContainer, onInitialize);
 					if (!explorerObject)
 						objects.Add(explorerObject);
 				});

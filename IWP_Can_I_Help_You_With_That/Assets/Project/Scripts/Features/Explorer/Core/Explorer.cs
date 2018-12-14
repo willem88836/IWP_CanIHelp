@@ -40,17 +40,14 @@ namespace IWPCIH.Explorer
 		/// </summary>
 		public virtual void Back()
 		{
+			if (ExplorerPath.Value == null || ExplorerPath.Value == "")
+				return;
+
 			string dirName = "";
 			try
 			{
 				dirName = Path.GetDirectoryName(ExplorerPath.Value);
-			} catch (Exception ex) { };
-
-			if (dirName == null)
-				return;
-
-			if (dirName.EndsWith("\\"))
-				dirName = dirName.TrimEnd('\\');
+			} catch (Exception ex) { Debug.LogError(ex.Message); };
 
 			ExplorerPath.Value = dirName;
 			UpdateAllViews(dirName);
@@ -62,6 +59,8 @@ namespace IWPCIH.Explorer
 		/// </summary>
 		public virtual void OnObjectSelected(string path)
 		{
+			ExplorerPath.Value = path;
+
 			if (File.Exists(path))
 			{
 				path = Path.GetDirectoryName(path);
