@@ -36,8 +36,16 @@ namespace IWPCIH.Explorer
 			Explorer = explorer;
 
 			Clear();
-			CreateFolders(path, ContentContainer);
-			CreateFiles(path, ContentContainer);
+
+			if (Directory.Exists(path))
+			{
+				CreateFolders(path, ContentContainer);
+				CreateFiles(path, ContentContainer);
+			}
+			else
+			{
+				CreateDrives(ContentContainer);
+			}
 		}
 
 
@@ -60,9 +68,10 @@ namespace IWPCIH.Explorer
 			string path,
 			ExplorerObject explorerObject,
 			Transform container,
-			Action<ExplorerObject> onInitialize)
+			Action<ExplorerObject> onInitialize, 
+			bool evaluatePath = true)
 		{
-			if (HasBlockedAttributes(path) || HasBlockedExtention(path))
+			if (evaluatePath && (HasBlockedAttributes(path) || HasBlockedExtention(path)))
 				return null;
 
 			ExplorerObject newObj = Instantiate(explorerObject, container);
@@ -71,6 +80,36 @@ namespace IWPCIH.Explorer
 			onInitialize.SafeInvoke(newObj);
 
 			return newObj;
+		}
+
+		/// <summary>
+		///		Creates all ready drives as folder objects
+		///		if the folder prefab is set.
+		/// </summary>
+		protected virtual List<ExplorerObject> CreateDrives( 
+			Transform container,
+			Action<ExplorerObject> onInitialize = null)
+		{
+			if (FolderObject)
+			{
+				List<ExplorerObject> objects = new List<ExplorerObject>();
+
+				string[] drives = Directory.GetLogicalDrives();
+
+				foreach (string d in drives)
+				{
+					if (!new DriveInfo(d).IsReady)
+						continue;
+
+					ExplorerObject newObject = CreateObject(d, FolderObject, ContentContainer, onInitialize, false);
+					if (newObject != null)
+						objects.Add(newObject);
+				}
+
+				return objects;
+			}
+
+			return null;
 		}
 
 		/// <summary>

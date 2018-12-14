@@ -48,11 +48,8 @@ namespace IWPCIH.Explorer
 			if (dirName.EndsWith("\\"))
 				dirName = dirName.TrimEnd('\\');
 
-			if (Directory.Exists(dirName))
-			{
-				ExplorerPath.Value = dirName;
-				UpdateAllViews(dirName);
-			}
+			ExplorerPath.Value = dirName;
+			UpdateAllViews(dirName);
 		}
 
 
@@ -85,6 +82,9 @@ namespace IWPCIH.Explorer
 			{
 				path = Path.GetDirectoryName(path);
 			}
+
+			if (!Directory.Exists(path))
+				Debug.LogWarning("Updating views with non-existing path!");
 
 			foreach (ExplorerView view in Views)
 			{
