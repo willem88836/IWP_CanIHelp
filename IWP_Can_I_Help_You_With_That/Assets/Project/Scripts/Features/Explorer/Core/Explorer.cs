@@ -40,7 +40,11 @@ namespace IWPCIH.Explorer
 		/// </summary>
 		public virtual void Back()
 		{
-			string dirName = Path.GetDirectoryName(ExplorerPath.Value);
+			string dirName = "";
+			try
+			{
+				dirName = Path.GetDirectoryName(ExplorerPath.Value);
+			} catch (Exception ex) { };
 
 			if (dirName == null)
 				return;
