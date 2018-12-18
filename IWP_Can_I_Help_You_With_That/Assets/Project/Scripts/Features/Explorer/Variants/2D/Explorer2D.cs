@@ -5,7 +5,7 @@ namespace IWPCIH.Explorer
 	/// <summary>
 	///		A 2D implementation of the Explorer.
 	/// </summary>
-	public sealed class Explorer2D : Explorer
+	public class Explorer2D : Explorer
 	{
 		public Text SelectedPath;
 		public Button SelectedPathConfirmationButton;
