@@ -29,8 +29,8 @@ namespace IWPCIH.Explorer
 		}
 
 
-#if UNITY_EDITOR
-		private void Update()
+		#if UNITY_EDITOR
+			private void Update()
 			{
 				if (Input.GetMouseButtonDown(0))
 				{
@@ -41,7 +41,6 @@ namespace IWPCIH.Explorer
 						Debug.DrawLine(ray.origin, info.point, Color.red, 1);
 						if (info.transform == transform)
 						{
-							Debug.Log("Selected object with mouse!");
 							Select();
 						}
 					}

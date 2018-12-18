@@ -15,6 +15,7 @@ namespace IWPCIH.Explorer
 	{
 		public StringReference ExplorerPath;
 		public List<ExplorerView> Views;
+		public bool AutoConfirmFiles = false;
 
 		public Action<string> OnPathSelected;
 
@@ -71,6 +72,10 @@ namespace IWPCIH.Explorer
 			}
 
 			UpdateAllViews(path);
+
+
+			if (AutoConfirmFiles)
+				ConfirmSelectedPath();
 		}
 
 
