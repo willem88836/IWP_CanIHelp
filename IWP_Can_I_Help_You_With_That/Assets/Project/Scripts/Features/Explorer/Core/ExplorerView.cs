@@ -128,9 +128,12 @@ namespace IWPCIH.Explorer
 				Utilities.ForeachFolderAt(path, (string p) =>
 				{
 					ExplorerObject explorerObject = CreateObject(p, FolderObject, ContentContainer, onInitialize);
-					if (!explorerObject)
+					if (explorerObject != null)
+					{
 						objects.Add(explorerObject);
+					}
 				});
+
 				return objects;
 			}
 
@@ -146,7 +149,7 @@ namespace IWPCIH.Explorer
 			Transform container,
 			Action<ExplorerObject> onInitialize = null)
 		{
-			if (FolderObject)
+			if (FileObject)
 			{
 				List<ExplorerObject> objects = new List<ExplorerObject>();
 

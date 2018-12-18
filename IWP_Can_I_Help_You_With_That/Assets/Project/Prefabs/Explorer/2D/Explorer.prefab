@@ -74,6 +74,7 @@ GameObject:
   - component: {fileID: 224606787838603858}
   - component: {fileID: 222249153463432132}
   - component: {fileID: 114015734768147906}
+  - component: {fileID: 114731743283652202}
   m_Layer: 5
   m_Name: Hierarchy
   m_TagString: Untagged
@@ -1865,6 +1866,24 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114731743283652202
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1091582691228430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8afc4a0bf55539f4794e5e68ca561456, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FolderObject: {fileID: 114908075972334984, guid: e3d342eeea888ff4c991d12c8a0e722f,
+    type: 2}
+  FileObject: {fileID: 0}
+  ContentContainer: {fileID: 224755562254707822}
+  BlockedFileAttributes: 0200000004000000
+  ShownExtentions: []
+  IndentWidth: 5
 --- !u!114 &114754831676018756
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1974,6 +1993,7 @@ MonoBehaviour:
   ExplorerPath: {fileID: 11400000, guid: aeaffe648d5c17f40a038f302bf509e9, type: 2}
   Views:
   - {fileID: 114243399056483668}
+  - {fileID: 114731743283652202}
   SelectedPath: {fileID: 114023306687201040}
   SelectedPathConfirmationButton: {fileID: 114190621422172298}
   PathInputField: {fileID: 114613170618150742}
