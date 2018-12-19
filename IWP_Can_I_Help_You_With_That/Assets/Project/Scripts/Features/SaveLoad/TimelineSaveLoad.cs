@@ -107,6 +107,8 @@ namespace IWPCIH.Storage
 		/// </summary>
 		public void HardLoad(ref Timeline timeline, string path)
 		{
+			Debug.LogFormat("Attempting to load file from: ({0})", path);
+
 			if (!Directory.Exists(SoftSavePath))
 				Directory.CreateDirectory(SoftSavePath);
 			else

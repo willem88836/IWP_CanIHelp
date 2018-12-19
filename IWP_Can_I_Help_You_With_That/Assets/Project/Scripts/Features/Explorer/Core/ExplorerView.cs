@@ -1,4 +1,5 @@
 ﻿using Framework.Core;
+using Framework.Android;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -44,7 +45,14 @@ namespace IWPCIH.Explorer
 			}
 			else
 			{
-				CreateDrives(ContentContainer);
+				if (Application.platform == RuntimePlatform.Android)
+				{
+					CreateAndroidDrives(ContentContainer);
+				}
+				else if (Application.platform == RuntimePlatform.WindowsEditor || Application.platform == RuntimePlatform.WindowsPlayer)
+				{
+					CreateDrives(ContentContainer);
+				}
 			}
 		}
 
@@ -82,6 +90,7 @@ namespace IWPCIH.Explorer
 			return newObj;
 		}
 
+
 		/// <summary>
 		///		Creates all ready drives as folder objects
 		///		if the folder prefab is set.
@@ -111,6 +120,38 @@ namespace IWPCIH.Explorer
 
 			return null;
 		}
+
+		protected virtual List<ExplorerObject> CreateAndroidDrives(
+			Transform transform,
+			Action<ExplorerObject> onInitialize = null)
+		{
+			if (FolderObject)
+			{
+				List<ExplorerObject> objects = new List<ExplorerObject>();
+
+				string[] drives = new string[]
+				{
+					//Environment.GetFolderPath(Environment.SpecialFolder.Personal), 
+					AndroidUtilities.GetAndroidExternalStoragePath()
+				};
+
+				Debug.LogFormat("Found Drive count: {0}", drives.Length);
+
+				foreach (string d in drives)
+				{
+					Debug.LogFormat("Processing Drive: {0}", d);
+
+					ExplorerObject newObject = CreateObject(d, FolderObject, ContentContainer, onInitialize, false);
+					if (newObject != null)
+						objects.Add(newObject);
+				}
+
+				return objects;
+			}
+
+			return null;
+		}
+
 
 		/// <summary>
 		///		Creates all folder objects
@@ -164,6 +205,7 @@ namespace IWPCIH.Explorer
 
 			return null;
 		}
+
 
 		/// <summary>
 		///		Returns true if the path has blocked attributes.
