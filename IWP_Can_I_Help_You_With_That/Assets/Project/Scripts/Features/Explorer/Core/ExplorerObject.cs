@@ -17,6 +17,7 @@ namespace IWPCIH.Explorer
 		{
 			ParentView = explorerView;
 			Path = path;
+			Debug.Log(path);
 		}
 
 		protected virtual void OnSelect()

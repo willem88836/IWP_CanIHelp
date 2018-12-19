@@ -9,6 +9,18 @@ namespace IWPCIH.Explorer
 	{
 		public TextMesh PathField;
 
+		public override void OnEnable()
+		{
+			base.OnEnable();
+			SetPathVisually(ExplorerPath.Value);
+		}
+
+		public override void Back()
+		{
+			base.Back();
+			SetPathVisually(ExplorerPath.Value);
+		}
+
 		/// <summary>
 		///		Updates the textfields to match the path.
 		/// </summary>

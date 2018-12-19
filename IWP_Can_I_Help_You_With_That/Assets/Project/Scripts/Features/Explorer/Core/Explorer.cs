@@ -62,6 +62,12 @@ namespace IWPCIH.Explorer
 		{
 			ExplorerPath.Value = path;
 
+			if (AutoConfirmFiles && File.Exists(ExplorerPath.Value))
+			{
+				ConfirmSelectedPath();
+				return;
+			}
+
 			if (File.Exists(path))
 			{
 				path = Path.GetDirectoryName(path);
@@ -72,10 +78,6 @@ namespace IWPCIH.Explorer
 			}
 
 			UpdateAllViews(path);
-
-
-			if (AutoConfirmFiles)
-				ConfirmSelectedPath();
 		}
 
 
