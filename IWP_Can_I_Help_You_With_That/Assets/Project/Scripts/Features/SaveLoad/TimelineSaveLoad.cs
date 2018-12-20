@@ -72,7 +72,8 @@ namespace IWPCIH.Storage
 
 			// The timeline file.
 			string name = Path.ChangeExtension(timeline.Name, TIMELINEEXTENTION);
-			File.Copy(Path.Combine(SoftSavePath, name), Path.Combine(BuildExtractPath, name), true);
+			// HACK: for some reason the first letter of each file is removed. This kinda solves it, but is ugly AF.
+			File.Copy(Path.Combine(SoftSavePath, name), Path.Combine(BuildExtractPath, '_' + name), true);
 
 			// all interface files. 
 			Utilities.ForeachFileAt(SoftSavePath, (FileInfo info) =>
@@ -80,16 +81,19 @@ namespace IWPCIH.Storage
 				if (!chapterNames.Contains(info.Name))
 					return;
 
-				File.Copy(info.FullName, Path.Combine(BuildExtractPath, info.Name), true);
+				// HACK: for some reason the first letter of each file is removed. This kinda solves it, but is ugly AF.
+				string fileName = '_' + info.Name;
+				File.Copy(info.FullName, Path.Combine(BuildExtractPath, fileName), true);
 				chapterNames.Remove(chapterNames.Find((string s) => s == info.Name));
 			});
 
 			// All video files. 
-			timeline.ForEach((TimelineChapter c) => 
+			timeline.ForEach((TimelineChapter c) =>
 			{
 				// HACK: for some reason the first letter of each file is removed. This kinda solves it, but is ugly AF.
 				string videoName = Path.GetFileName(c.VideoName);
-				string target = Path.Combine(BuildExtractPath, videoName[0] + videoName);
+				videoName = '_' + videoName;
+				string target = Path.Combine(BuildExtractPath, videoName);
 				File.Copy(c.VideoName, target);
 			});
 
