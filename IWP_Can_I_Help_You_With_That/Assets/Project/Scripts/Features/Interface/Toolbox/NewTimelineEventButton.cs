@@ -2,10 +2,10 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace IWPCIH.EditorInterface
+namespace IWPCIH.EditorInterfaceObjects.Menu
 {
 	[RequireComponent(typeof(Button))]
-	public class TimelineEventButton : MonoBehaviour
+	public class NewTimelineEventButton : MonoBehaviour
 	{
 		public TimelineEventContainer.EventType Type;
 

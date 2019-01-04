@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace IWPCIH.EditorInterface
+namespace IWPCIH.EditorInterfaceObjects.Menu
 {
 	public class ChapterHierarchyButton : MonoBehaviour
 	{

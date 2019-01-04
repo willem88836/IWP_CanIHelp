@@ -1,5 +1,5 @@
-﻿using IWPCIH.EditorInterface;
-using IWPCIH.EditorInterface.Components;
+﻿using IWPCIH.EditorInterfaceObjects.Components;
+using IWPCIH.EditorInterfaceObjects.Menu;
 using IWPCIH.EventTracking;
 using IWPCIH.TimelineEvents;
 using IWPCIH.Storage;
@@ -9,7 +9,7 @@ namespace IWPCIH
 {
 	public sealed class TimelineEditor : TimelineController
 	{
-		public Interface ComponentInterface;
+		public EditorInterface ComponentInterface;
 		public ChapterHierarchyController ChapterHierarchy;
 
 
@@ -28,7 +28,11 @@ namespace IWPCIH
 		public void AddChapter(string name, string videoName)
 		{
 			int index = CurrentTimeline.ChapterCount;
-			TimelineChapter chapter = new TimelineChapter(index, name, videoName);
+
+			// TODO: HIGH PRIO!!! Calculate actual video length.
+			int videoLength = 0;
+
+			TimelineChapter chapter = new TimelineChapter(index, name, videoName, videoLength);
 			CurrentTimeline.AddChapter(chapter);
 			SwitchChapterTo(index);
 
@@ -62,7 +66,6 @@ namespace IWPCIH
 			ComponentInterface.Spawn(timelineEvent);
 
 			Debug.LogFormat("Added Event (Id: {0}) of type {1}", timelineEvent.Id.ToString(), timelineEvent.Type.ToString());
-
 			return timelineEvent;
 		}
 		public void RemoveEvent(TimelineEventData data)
@@ -73,7 +76,6 @@ namespace IWPCIH
 		public void UpdateEvent(TimelineEventData updatedEvent)
 		{
 			CurrentChapter.UpdateEvent(updatedEvent);
-
 			Debug.LogFormat("Updated Event (Id: {0}) of type {1}", updatedEvent.Id.ToString(), updatedEvent.Type.ToString());
 		}
 
@@ -83,10 +85,7 @@ namespace IWPCIH
 
 		public override void OnSave()
 		{
-			if (CurrentChapter != null)
-			{
-				ComponentInterface.Save(CurrentChapter.Name);
-			}
+			// do stuff here if anything specific needs to be saved. 
 		}
 		public override void OnLoad()
 		{

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Framework.Core;
+using System;
 using UnityEngine;
 using IWPCIH.TimelineEvents;
 
@@ -22,9 +23,12 @@ namespace IWPCIH.EventTracking
 
 			timeline.ForEach((TimelineChapter chapter) =>
 			{
-				data += chapter.Id.ToString() + EVENTSPACER;
-				data += chapter.Name + EVENTSPACER;
-				data += chapter.VideoName + EVENTSPACER;
+				data = Utilities.Combine(
+					EVENTSPACER, 
+					chapter.Id, 
+					chapter.Name, 
+					chapter.VideoName, 
+					chapter.VideoLength);
 
 				chapter.Foreach((TimelineEventData eventData) =>
 				{
@@ -60,10 +64,14 @@ namespace IWPCIH.EventTracking
 					continue;
 
 				// A new chapter is created.
-				TimelineChapter chapter = new TimelineChapter(int.Parse(vars[0]), vars[1], vars[2]);
+				TimelineChapter chapter = new TimelineChapter(
+					int.Parse(vars[0]), 
+					vars[1], 
+					vars[2], 
+					int.Parse(vars[3]));
 
 				// Starts later to skip chapter fields.
-				for (int i = 3; i < vars.Length; i++)
+				for (int i = 4; i < vars.Length; i++)
 				{
 					// converts the var into a TimelineEvent
 					string s_event = vars[i];

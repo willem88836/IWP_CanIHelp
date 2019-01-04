@@ -4,7 +4,7 @@ using System.Reflection;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace IWPCIH.EditorInterface.Components
+namespace IWPCIH.EditorInterfaceObjects.Components
 {
 	[RequireComponent(typeof(ContentSizeFitter))]
 	public abstract class InterfaceDataField : MonoBehaviour
@@ -17,7 +17,7 @@ namespace IWPCIH.EditorInterface.Components
 		protected FieldInfo fieldInfo;
 
 
-		public virtual void Apply(TimelineEventData eventData, FieldInfo fieldInfo)
+		public virtual void Apply(TimelineEventData eventData, FieldInfo fieldInfo, Action<TimelineEventData> onCoreValueChanged)
 		{
 			this.eventData = eventData;
 			this.fieldInfo = fieldInfo;

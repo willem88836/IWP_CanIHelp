@@ -111,7 +111,20 @@ namespace Framework.Core
 		#endregion
 
 
-		#region TransformForeach
+		#region Transform
+
+		/// <summary>
+		///		Returns last child of this object. 
+		///		If none exist, returns transform.
+		/// </summary>
+		public static Transform GetLastChild(this Transform transform)
+		{
+			int i = transform.childCount - 1;
+			if (i < 0)
+				return transform;
+			else
+				return transform.GetChild(i);
+		}
 
 		/// <summary>
 		///		Iterates through all children.
@@ -247,5 +260,20 @@ namespace Framework.Core
 		}
 
 		#endregion
+
+
+		/// <summary>
+		///		Combines the provided objects in to one 
+		///		string separating them by the provided char.
+		/// </summary>
+		public static string Combine(char separator, params object[] elements)
+		{
+			string s = "";
+			foreach (object e in elements)
+			{
+				s += e.ToString() + separator;
+			}
+			return s;
+		}
 	}
 }

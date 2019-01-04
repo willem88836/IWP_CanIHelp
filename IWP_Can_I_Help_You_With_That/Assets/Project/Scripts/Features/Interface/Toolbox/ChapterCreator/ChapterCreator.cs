@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
 
-namespace IWPCIH.EditorInterface
+namespace IWPCIH.EditorInterfaceObjects.Menu
 {
 	/// <summary>
 	///		Class responsible for the creation of new chapters.

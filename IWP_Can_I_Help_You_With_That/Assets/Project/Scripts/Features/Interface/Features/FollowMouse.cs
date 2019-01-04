@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace IWPCIH.EditorInterface.Features
+namespace IWPCIH.EditorInterfaceObjects.Features
 {
 	[RequireComponent(typeof(RectTransform))]
 	public class FollowMouse : MonoBehaviour
