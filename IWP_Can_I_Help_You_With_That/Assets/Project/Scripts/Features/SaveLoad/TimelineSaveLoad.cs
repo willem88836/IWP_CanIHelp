@@ -48,7 +48,6 @@ namespace IWPCIH.Storage
 			string s_timeline = SaveLoad.Load(saveName);
 			Timeline tl = TimelineSerializer.Deserialize(s_timeline);
 			timeline.Chapters = tl.Chapters;
-
 		}
 
 		
@@ -127,10 +126,6 @@ namespace IWPCIH.Storage
 			zipStream.IsStreamOwner = true; // Makes the Close also Close the underlying stream
 			zipStream.Close();
 
-
-
-
-
 			SaveLoad.CleanPath(BuildExtractPath);
 		}
 		
@@ -179,7 +174,6 @@ namespace IWPCIH.Storage
 				CompressFolder(folder, zipStream, folderOffset);
 			}
 		}
-
 
 
 		public void HardLoad(ref Timeline timeline, string path)
@@ -248,7 +242,21 @@ namespace IWPCIH.Storage
 
 			timeline.ForEach((TimelineChapter tlc) =>
 			{
-				tlc.VideoName = Path.Combine(SoftSavePath, Path.GetFileName(tlc.VideoName));
+				if (Application.platform == RuntimePlatform.WindowsPlayer 
+					|| Application.platform == RuntimePlatform.WindowsEditor)
+				{
+					tlc.VideoName = Path.Combine(SoftSavePath, Path.GetFileName(tlc.VideoName));
+				}
+				else if (Application.platform == RuntimePlatform.Android)
+				{
+					// HACK: for some reason 'Path.GetFileName("")' does not work on Android.
+					string[] splittedPath = tlc.VideoName.Split('/', '\\');
+					tlc.VideoName = Path.Combine(SoftSavePath, splittedPath[splittedPath.Length - 1]);
+				}
+				else
+				{
+					throw new System.Exception("Unpacking at unsupported platform");
+				}
 			});
 		}
 	}

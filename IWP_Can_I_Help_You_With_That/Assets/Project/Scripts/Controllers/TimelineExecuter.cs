@@ -45,7 +45,7 @@ namespace IWPCIH
 			if (File.Exists(CurrentChapter.VideoName))
 				VideoPlayer.url = CurrentChapter.VideoName;
 			else
-				throw new FileNotFoundException();
+				throw new FileNotFoundException(string.Format("Unable to find the specified file: {0}", CurrentChapter.VideoName));
 
 			eventData = CurrentChapter.GetChronolocalList();
 

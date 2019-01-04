@@ -1,5 +1,4 @@
 ﻿using Framework.ScriptableObjects.Variables;
-using Framework.Core;
 using IWPCIH.EventTracking;
 using System.IO;
 using UnityEngine;
