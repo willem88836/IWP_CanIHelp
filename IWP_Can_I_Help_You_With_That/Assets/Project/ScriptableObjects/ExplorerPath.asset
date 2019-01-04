@@ -11,4 +11,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd8c64e3d9e5f5544b48cf22816dd663, type: 3}
   m_Name: ExplorerPath
   m_EditorClassIdentifier: 
-  _value: 'D:'
+  _value: 
