@@ -56,7 +56,7 @@ namespace IWPCIH.EditorInterfaceObjects.Components
 			{
 				FieldInfo info = fields[i];
 
-				if (info.CustomAttributes.Equals(typeof(NotEditable)))
+				if (Attribute.IsDefined(info, typeof(NotEditable)))
 					continue;
 
 				if (info.FieldType.IsArray)
