@@ -18,8 +18,7 @@ namespace IWPCIH.EditorInterfaceObjects.Components
 			this.editorInterface = editorInterface;
 			this.TimelineEventData = timelineEventData;
 
-			Vector3 parentPosition = new Vector3(transform.parent.GetComponent<RectTransform>().rect.xMin, transform.parent.position.y, 0);
-			transform.position = parentPosition + Vector3.right * (timelineEventData.InvokeTime / intervalObjectSpawnInterval) * intervalObjectWidth;
+			transform.localPosition = Vector3.right * (timelineEventData.InvokeTime / intervalObjectSpawnInterval) * intervalObjectWidth;
 
 
 			SelectionButton.onClick.RemoveListener(OnSelect);
