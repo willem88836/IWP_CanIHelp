@@ -12,7 +12,7 @@ PlayerSettings:
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
-  companyName: IWPCIHDEV
+  companyName: IntoRealityDev
   productName: IntoReality
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
@@ -153,7 +153,7 @@ PlayerSettings:
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
     '': com.oculus.UnitySample
-    Android: com.IWPCIHDEV.IWPCIH
+    Android: com.IntoRealityDev.IntoReality
     Standalone: com.oculus.UnitySample
   buildNumber: {}
   AndroidBundleVersionCode: 1

@@ -9,6 +9,7 @@ using UnityEngine.Video;
 
 namespace IWPCIH
 {
+	// TODO: rename this to player? I mean, we're not killing anyone ;P
 	/// <summary>
 	///		Executes TimelineEvents in chronological order
 	///		when the video has reached the event's invokation time.
@@ -49,21 +50,34 @@ namespace IWPCIH
 
 			eventData = CurrentChapter.GetChronolocalList();
 
-			VideoPlayer.Play();
-
 			StopCoroutine(WaitForEvent());
 			StartCoroutine(WaitForEvent());
 		}
 
 		private IEnumerator WaitForEvent()
 		{
+			VideoPlayer.Prepare();
+
+			while (!VideoPlayer.isPrepared)
+			{
+				yield return null;
+			}
+
+			Debug.Log("Video player is prepared!");
+
+			VideoPlayer.Play();
+
 			if (!VideoPlayer.isPlaying)
+			{ 
 				Debug.LogWarning("Started waiting for event while videoplayer is not playing");
+			}
 
 			foreach (TimelineEventData data in eventData)
 			{
 				while (VideoPlayer.time < data.InvokeTime)
+				{
 					yield return null;
+				}
 
 				BaseEvent newEvent = BaseEvents.Find((BaseEvent e) => e.EventType == data.GetType());
 				newEvent = Instantiate(newEvent, Container);
