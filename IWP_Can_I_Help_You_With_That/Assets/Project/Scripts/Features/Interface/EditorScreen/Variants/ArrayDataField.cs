@@ -4,7 +4,7 @@ using System.Reflection;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace IWPCIH.EditorInterface.Components
+namespace IWPCIH.EditorInterfaceObjects.Components
 {
 	[RequireComponent(typeof(VerticalLayoutGroup))]
 	public sealed class ArrayDataField : InterfaceDataField
@@ -16,15 +16,15 @@ namespace IWPCIH.EditorInterface.Components
 
 
 		/// <inheritdoc />
-		public override void Apply(TimelineEventData eventData, FieldInfo fieldInfo)
+		public override void Apply(TimelineEventData eventData, FieldInfo fieldInfo, Action<TimelineEventData> onCoreValueChanged)
 		{
-			base.Apply(eventData, fieldInfo);
+			base.Apply(eventData, fieldInfo, onCoreValueChanged);
 
 			content = (object[])fieldInfo.GetValue(eventData);
-			Create();
+			Create(onCoreValueChanged);
 		}
 
-		private void Create()
+		private void Create(Action<TimelineEventData> OnCoreValueChanged)
 		{
 			Clear();
 			Spawn(COUNTNAME, typeof(int), content.Length, (string s) =>
@@ -36,10 +36,10 @@ namespace IWPCIH.EditorInterface.Components
 				{
 					content[i] = copy.Length <= i ? NODATA : copy[i];
 				}
-				Create();
+				Create(OnCoreValueChanged);
 			});
 			UpdateField();
-			SpawnContent();
+			SpawnContent(OnCoreValueChanged);
 			// Is called to make sure the UI is updated.
 			LayoutRebuilder.ForceRebuildLayoutImmediate(transform.parent.GetComponent<RectTransform>());
 		}
@@ -47,7 +47,7 @@ namespace IWPCIH.EditorInterface.Components
 		/// <summary>
 		///		Spawns all individual data fields. 
 		/// </summary>
-		private void SpawnContent()
+		private void SpawnContent(Action<TimelineEventData> onChange)
 		{
 			Type t = content.GetType().GetElementType();
 
@@ -62,6 +62,7 @@ namespace IWPCIH.EditorInterface.Components
 					{
 						content[ix] = Convert.ChangeType(s, t);
 						UpdateField();
+						onChange.Invoke(eventData);
 					});
 			}
 		}

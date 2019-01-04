@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-namespace IWPCIH.EditorInterface
+namespace IWPCIH.EditorInterfaceObjects.Menu
 {
 	public class ChapterHierarchyController : MonoBehaviour
 	{

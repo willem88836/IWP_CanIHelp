@@ -1,17 +1,15 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using IWPCIH.EditorInterface.Features;
+using IWPCIH.EditorInterfaceObjects.Features;
 using IWPCIH.EventTracking;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
 
-namespace IWPCIH.EditorInterface.Components
+namespace IWPCIH.EditorInterfaceObjects.Components
 {
 	[RequireComponent(typeof(RectTransform)), 
-	 RequireComponent(typeof(FollowMouse)),
-	 RequireComponent(typeof(HorizontalOrVerticalLayoutGroup)),
-	 RequireComponent(typeof(Button))]
+	 RequireComponent(typeof(HorizontalOrVerticalLayoutGroup))]
 	public class InterfaceComponent : MonoBehaviour
 	{
 		private const string NAMEFORMAT = "({0}) - {1}";
@@ -21,9 +19,9 @@ namespace IWPCIH.EditorInterface.Components
 		public Text Header;
 
 		public TimelineEventData EventData { get; private set; }
-		private Interface parent;
+		private EditorInterface parent;
 
-		private RectTransform rect;
+		private RectTransform rect; // TODO: Should this be removed? 
 		private FollowMouse followMouse;
 		private List<InterfaceDataField> dataFields = new List<InterfaceDataField>();
 
@@ -31,17 +29,10 @@ namespace IWPCIH.EditorInterface.Components
 		private void Awake()
 		{
 			rect = GetComponent<RectTransform>();
-			followMouse = GetComponent<FollowMouse>();
-
-			GetComponent<Button>().onClick.AddListener(delegate 
-			{
-				followMouse.OffSet = rect.position - Input.mousePosition;
-				followMouse.Following = !followMouse.Following;
-			});
 		}
 
 
-		public void Initialize(Interface parent, TimelineEventData eventData)
+		public void Initialize(EditorInterface parent, TimelineEventData eventData)
 		{
 			this.parent = parent;
 			this.EventData = eventData;
@@ -59,11 +50,12 @@ namespace IWPCIH.EditorInterface.Components
 
 			Type t = typeof(TimelineEventData);
 
+
 			for (int i = 0; i < fields.Length; i++)
 			{
 				FieldInfo info = fields[i];
 
-				if (t.GetField(info.Name) != null)
+				if (info.CustomAttributes.Equals(typeof(NotEditable)))
 					continue;
 
 				if (info.FieldType.IsArray)
@@ -76,7 +68,7 @@ namespace IWPCIH.EditorInterface.Components
 		private InterfaceDataField SpawnField(TimelineEventData data, FieldInfo dataField)
 		{
 			InterfaceDataField field = Instantiate(BaseDataField, transform);
-			field.Apply(data, dataField);
+			field.Apply(data, dataField, OnCoreValueChanged);
 			dataFields.Add(field);
 			return field;
 		}
@@ -84,14 +76,26 @@ namespace IWPCIH.EditorInterface.Components
 		private InterfaceDataField SpawnArrayField(TimelineEventData data, FieldInfo dataField)
 		{
 			InterfaceDataField field = Instantiate(BaseArrayField, transform);
-			field.Apply(data, dataField);
+			field.Apply(data, dataField, OnCoreValueChanged);
 			dataFields.Add(field);
 			return field;
 		}
 
-		public void Destroy()
+
+		public void Clear()
 		{
-			parent.Destroy(this);
+			foreach(InterfaceDataField field in dataFields)
+			{
+				Destroy(field.gameObject);
+			}
+			dataFields.Clear();
+		}
+
+		private void OnCoreValueChanged(TimelineEventData timelineEventData)
+		{
+			// If at some point you add additional core 
+			// variables, you can update them here.
+			parent.OnTimeChanged(timelineEventData);
 		}
 	}
 }

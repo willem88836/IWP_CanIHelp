@@ -3,7 +3,7 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace IWPCIH.EditorInterface.Components
+namespace IWPCIH.EditorInterfaceObjects.Components
 {
 	public class VisualField : MonoBehaviour
 	{

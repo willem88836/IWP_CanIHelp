@@ -6,8 +6,8 @@ namespace IWPCIH.EventTracking
 	[Serializable]
 	public class TimelineEventData
 	{
-		public float InvokeTime;
-		public TimelineEventContainer.EventType Type;
-		public int Id;
+		[CoreData] public float InvokeTime;
+		[CoreData, NotEditable] public TimelineEventContainer.EventType Type;
+		[CoreData, NotEditable] public int Id;
 	}
 }
