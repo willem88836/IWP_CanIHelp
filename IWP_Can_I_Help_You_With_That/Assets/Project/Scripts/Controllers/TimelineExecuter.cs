@@ -9,6 +9,7 @@ using UnityEngine.Video;
 
 namespace IWPCIH
 {
+	// TODO: rename this to player? I mean, we're not killing anyone ;P
 	/// <summary>
 	///		Executes TimelineEvents in chronological order
 	///		when the video has reached the event's invokation time.
@@ -45,11 +46,9 @@ namespace IWPCIH
 			if (File.Exists(CurrentChapter.VideoName))
 				VideoPlayer.url = CurrentChapter.VideoName;
 			else
-				throw new FileNotFoundException();
+				throw new FileNotFoundException(string.Format("Unable to find the specified file: {0}", CurrentChapter.VideoName));
 
 			eventData = CurrentChapter.GetChronolocalList();
-
-			VideoPlayer.Play();
 
 			StopCoroutine(WaitForEvent());
 			StartCoroutine(WaitForEvent());
@@ -57,13 +56,28 @@ namespace IWPCIH
 
 		private IEnumerator WaitForEvent()
 		{
+			VideoPlayer.Prepare();
+
+			while (!VideoPlayer.isPrepared)
+			{
+				yield return null;
+			}
+
+			Debug.Log("Video player is prepared!");
+
+			VideoPlayer.Play();
+
 			if (!VideoPlayer.isPlaying)
+			{ 
 				Debug.LogWarning("Started waiting for event while videoplayer is not playing");
+			}
 
 			foreach (TimelineEventData data in eventData)
 			{
 				while (VideoPlayer.time < data.InvokeTime)
+				{
 					yield return null;
+				}
 
 				BaseEvent newEvent = BaseEvents.Find((BaseEvent e) => e.EventType == data.GetType());
 				newEvent = Instantiate(newEvent, Container);
