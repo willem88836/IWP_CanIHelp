@@ -12,7 +12,7 @@ namespace IWPCIH.EditorInterfaceObjects.Components
 	 RequireComponent(typeof(HorizontalOrVerticalLayoutGroup))]
 	public class InterfaceComponent : MonoBehaviour
 	{
-		private const string NAMEFORMAT = "({0}) - {1}";
+		private const string NAMEFORMAT = "InterfaceComponent: (id: {0}) - (type: {1})";
 
 		public InterfaceDataField BaseDataField;
 		public InterfaceDataField BaseArrayField;
@@ -22,7 +22,6 @@ namespace IWPCIH.EditorInterfaceObjects.Components
 		private EditorInterface parent;
 
 		private RectTransform rect; // TODO: Should this be removed? 
-		private FollowMouse followMouse;
 		private List<InterfaceDataField> dataFields = new List<InterfaceDataField>();
 
 
@@ -34,11 +33,14 @@ namespace IWPCIH.EditorInterfaceObjects.Components
 
 		public void Initialize(EditorInterface parent, TimelineEventData eventData)
 		{
+			Clear();
+
 			this.parent = parent;
 			this.EventData = eventData;
 
 			string name = string.Format(NAMEFORMAT, eventData.Id, eventData.Type.ToString());
-			Header.text = gameObject.name = name;
+			gameObject.name = name;
+			Header.text = eventData.Type.ToString();
 
 			ApplyFields(eventData);
 		}
@@ -84,6 +86,8 @@ namespace IWPCIH.EditorInterfaceObjects.Components
 
 		public void Clear()
 		{
+			Header.text = "";
+
 			foreach(InterfaceDataField field in dataFields)
 			{
 				Destroy(field.gameObject);

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Framework.Core;
+using System;
 using UnityEngine;
 using IWPCIH.TimelineEvents;
 
@@ -22,9 +23,12 @@ namespace IWPCIH.EventTracking
 
 			timeline.ForEach((TimelineChapter chapter) =>
 			{
-				data += chapter.Id.ToString() + EVENTSPACER;
-				data += chapter.Name + EVENTSPACER;
-				data += chapter.VideoName + EVENTSPACER;
+				data = Utilities.Combine(
+					EVENTSPACER, 
+					chapter.Id, 
+					chapter.Name, 
+					chapter.VideoName, 
+					chapter.VideoLength);
 
 				chapter.Foreach((TimelineEventData eventData) =>
 				{

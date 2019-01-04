@@ -54,8 +54,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a847a35be19e0064182cbf09256fbdb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  componentContainer: {fileID: 0}
-  baseComponent: {fileID: 114586093515125902, guid: 5faadce5d0fd1bf4c9e748dd1c768a11,
+  PreviewComponent: {fileID: 0}
+  TimelineIntervalObjectContainer: {fileID: 0}
+  BaseIntervalObject: {fileID: 114849536254168700, guid: 14f139224f0f81242ae0d3a5c7d4e9f8,
+    type: 2}
+  IntervalObjectSpawnInterval: 5
+  TimelineEventButtonContainer: {fileID: 0}
+  baseEventButton: {fileID: 114878362303816148, guid: 0a02d9300cd5970498386093a4e80d59,
     type: 2}
 --- !u!114 &114502942019431892
 MonoBehaviour:

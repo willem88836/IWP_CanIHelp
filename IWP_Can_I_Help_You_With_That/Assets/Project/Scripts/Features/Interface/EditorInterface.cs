@@ -13,6 +13,7 @@ namespace IWPCIH.EditorInterfaceObjects.Components
 		public Transform TimelineIntervalObjectContainer;
 		public TimelineIntervalObject BaseIntervalObject;
 		public int IntervalObjectSpawnInterval;
+		public float IntervalObjectWidth = 100;
 		[Space]
 		public Transform TimelineEventButtonContainer;
 		public TimelineEventButton baseEventButton;
@@ -25,15 +26,16 @@ namespace IWPCIH.EditorInterfaceObjects.Components
 
 			SpawnIntervalObjects(chapter.VideoLength);
 			SpawnEventObjects(chapter);
-
-			PreviewComponent.Clear();
-			eventButtons.Clear();
 		}
 
 		private void Clear()
 		{
-			TimelineIntervalObjectContainer.ReversedForeach((Transform child) => Destroy(child));
-			TimelineEventButtonContainer.ReversedForeach((Transform child) => Destroy(child));
+			PreviewComponent.Clear();
+
+			TimelineIntervalObjectContainer.ReversedForeach((Transform child) => Destroy(child.gameObject));
+			TimelineEventButtonContainer.ReversedForeach((Transform child) => Destroy(child.gameObject));
+
+			eventButtons.Clear();
 		}
 
 
@@ -53,8 +55,7 @@ namespace IWPCIH.EditorInterfaceObjects.Components
 		public void Spawn(TimelineEventData data)
 		{
 			TimelineEventButton newButton = Instantiate(baseEventButton, TimelineEventButtonContainer);
-			float intervalObjectWidth = BaseIntervalObject.GetComponent<Rect>().width;
-			newButton.SetTime(this, data, IntervalObjectSpawnInterval, intervalObjectWidth);
+			newButton.SetTime(this, data, IntervalObjectSpawnInterval, IntervalObjectWidth);
 			eventButtons.Add(newButton);
 		}
 
@@ -69,8 +70,7 @@ namespace IWPCIH.EditorInterfaceObjects.Components
 			TimelineEventButton button = eventButtons.Find((TimelineEventButton b) => b.TimelineEventData == timelineEventData);
 			if (button != null)
 			{
-				float intervalObjectWidth = BaseIntervalObject.GetComponent<Rect>().width;
-				button.SetTime(this, timelineEventData, IntervalObjectSpawnInterval, intervalObjectWidth);
+				button.SetTime(this, timelineEventData, IntervalObjectSpawnInterval, IntervalObjectWidth);
 			}
 		}
 	}

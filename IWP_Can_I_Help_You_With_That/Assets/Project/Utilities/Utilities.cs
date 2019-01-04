@@ -247,5 +247,20 @@ namespace Framework.Core
 		}
 
 		#endregion
+
+
+		/// <summary>
+		///		Combines the provided objects in to one 
+		///		string separating them by the provided char.
+		/// </summary>
+		public static string Combine(char separator, params object[] elements)
+		{
+			string s = "";
+			foreach (object e in elements)
+			{
+				s += e.ToString() + separator;
+			}
+			return s;
+		}
 	}
 }
