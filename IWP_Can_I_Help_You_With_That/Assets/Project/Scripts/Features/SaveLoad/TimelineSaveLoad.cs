@@ -8,6 +8,7 @@ using ICSharpCode.SharpZipLib.Zip;
 
 namespace IWPCIH.Storage
 {
+	// TODO: Clean up this monstrosity of a script ;-;
 	/// <summary>
 	///		Saves and loads a timelineproject.
 	/// </summary>
@@ -17,10 +18,12 @@ namespace IWPCIH.Storage
 		public const string PROJECTEXTENTION = ".tld";
 
 		// DON'T YOU DARE CHANGE THIS PATHS WHEN YOU DON'T KNOW WHAT YOU'RE DOING. IT CAN KILL YOU PC.
+		// TODO: Choose your own cache path? 
 		public static string BuildExtractPath { get { return Path.Combine(Application.temporaryCachePath, "Build/"); } }
 		public static string SoftSavePath { get { return Path.Combine(Application.temporaryCachePath, "TimelineSaveData/"); } }
 		public static string HardSavePath { get; private set; }
 
+		// TODO: custom password protection? 
 		private const string DEFAULTPASSWORD = "*uO5LtEe!n6CwGfuEVa5YukaFRs9OlgRGVByjUCuC@gkZG0MM$cJhk!cPSHR&mdxa";
 
 
