@@ -40,8 +40,9 @@ namespace IWPCIH.EditorInterfaceObjects.Components
 			});
 			UpdateField();
 			SpawnContent(OnCoreValueChanged);
-			// Is called to make sure the UI is updated.
-			LayoutRebuilder.ForceRebuildLayoutImmediate(transform.parent.GetComponent<RectTransform>());
+
+			// HACK: Not the whole canvas should be updated. Merely this element + parents.
+			Canvas.ForceUpdateCanvases();
 		}
 
 		/// <summary>

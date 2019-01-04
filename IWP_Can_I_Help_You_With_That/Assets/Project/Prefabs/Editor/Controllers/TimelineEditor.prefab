@@ -59,6 +59,7 @@ MonoBehaviour:
   BaseIntervalObject: {fileID: 114849536254168700, guid: 14f139224f0f81242ae0d3a5c7d4e9f8,
     type: 2}
   IntervalObjectSpawnInterval: 5
+  IntervalObjectWidth: 100
   TimelineEventButtonContainer: {fileID: 0}
   baseEventButton: {fileID: 114878362303816148, guid: 0a02d9300cd5970498386093a4e80d59,
     type: 2}
