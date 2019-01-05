@@ -5,8 +5,6 @@ using UnityEngine;
 
 namespace IWPCIH.Storage
 {
-	// TODO: Clean up this monstrosity of a script ;-;
-	// TODO: Make loading and saving faster! This is rediculous
 	/// <summary>
 	///		Saves and loads a timelineproject.
 	/// </summary>
