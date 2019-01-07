@@ -13,14 +13,14 @@ namespace Framework.Core
 		/// <summary>
 		///		Returns true if v is more than min and less than max.
 		/// </summary>
-		public static bool LiesBetween(float v, float min, float max)
+		public static bool LiesBetween(this float v, float min, float max)
 		{
 			return min < v && v < max;
 		}
 		/// <summary>
 		///		Returns true if v is more than min and less than max.
 		/// </summary>
-		public static bool LiesBetween(int v, int min, int max)
+		public static bool LiesBetween(this int v, int min, int max)
 		{
 			return min < v && v < max;
 		}
@@ -47,7 +47,7 @@ namespace Framework.Core
 		/// <summary>
 		///		Returns a shuffled version of the provided list.
 		/// </summary>
-		public static List<T> Shuffle<T>(List<T> list)
+		public static List<T> Shuffle<T>(this List<T> list)
 		{
 			List<T> shuffledList = new List<T>();
 			for (int i = list.Count; i > 0; i--)
@@ -61,7 +61,7 @@ namespace Framework.Core
 		/// <summary>
 		///		Returns a shuffled version of the provided range.
 		/// </summary>
-		public static T[] Shuffle<T>(T[] range)
+		public static T[] Shuffle<T>(this T[] range)
 		{
 			// TODO: Make this less tacky.
 			List<T> list = new List<T>(range);
@@ -71,7 +71,7 @@ namespace Framework.Core
 		/// <summary>
 		///		Returns a list containing a shuffled version of the range.
 		/// </summary>
-		public static List<T> ShuffleToList<T>(T[] range)
+		public static List<T> ShuffleToList<T>(this T[] range)
 		{
 			List<T> list = new List<T>();
 			for (int i = 0; i < range.Length; i++)
@@ -85,7 +85,7 @@ namespace Framework.Core
 		/// <summary>
 		///		Returns an array containing a shuffled version of the list.
 		/// </summary>
-		public static T[] ShuffleToArray<T>(List<T> list)
+		public static T[] ShuffleToArray<T>(this List<T> list)
 		{
 			// TODO: Make this less tacky.
 			List<T> shuffledList = Shuffle(list);
