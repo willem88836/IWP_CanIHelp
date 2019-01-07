@@ -78,8 +78,8 @@ namespace IWPCIH.Storage
 				File.Delete(target);
 
 			// zips the file.
-			SimpleZipper zipper = new SimpleZipper(BuildExtractPath, target);
-			zipper.Zip();
+			SimpleZipper zipper = new SimpleZipper();
+			zipper.Zip(BuildExtractPath, target);
 
 			SaveLoad.CleanPath(BuildExtractPath);
 		}
@@ -96,8 +96,8 @@ namespace IWPCIH.Storage
 			else
 				SaveLoad.CleanPath(SoftSavePath);
 
-			SimpleZipper zipper = new SimpleZipper(SoftSavePath, path);
-			zipper.Unzip();
+			SimpleZipper zipper = new SimpleZipper();
+			zipper.Unzip(path, SoftSavePath);
 
 			SoftLoad(ref timeline, Path.GetFileNameWithoutExtension(path));
 

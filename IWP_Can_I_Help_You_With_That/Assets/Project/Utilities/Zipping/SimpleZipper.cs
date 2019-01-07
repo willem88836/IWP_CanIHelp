@@ -5,54 +5,49 @@ using System.Runtime.Serialization.Formatters.Binary;
 namespace Framework.Zipping
 {
 	/// <summary>
-	///		zips and unzips files within one directory together.
-	///		Note: Not nested.
+	///		Zips a set of files or directory into a singular file. 
+	///		Not nested.
 	/// </summary>
 	public class SimpleZipper
 	{
 		private const int LONGLENGTH = 58;
 		private const int SHORTLENGTH = 52;
 
-		private string directory;
-		private string target;
-
-
-		public SimpleZipper(string directory, string target)
-		{
-			this.directory = directory;
-			this.target = target;
-		}
-
 
 		#region Zipping
 
-		public FileInfo Zip()
+		/// <summary>
+		///		Zips all files within the provided 
+		///		directory into the provided extraction path.
+		/// </summary>
+		public FileInfo Zip(string directory, string extractionPath)
 		{
 			string[] files = Directory.GetFiles(directory);
+			return Zip(files, extractionPath);
+		}
 
+		/// <summary>
+		///		Zips all provided files into the provided extraction path.
+		/// </summary>
+		public FileInfo Zip(string[] files, string extractionPath)
+		{
 			long[] fileLengths = new long[files.Length];
 			short[] nameLengths = new short[files.Length];
+			List<byte> nameDataList = new List<byte>();
 
 			long dataLength = 0;
 			for (int i = 0; i < files.Length; i++)
 			{
 				string file = files[i];
-
 				FileInfo info = new FileInfo(file);
-				if (info != null)
-				{
-					long l = info.Length;
-					dataLength += l;
-					fileLengths[i] = l;
-					nameLengths[i] = (short)ObjectToByteArray(Path.GetFileName(file)).Length;
-				}
-			}
 
-			// stores all names. 
-			List<byte> nameDataList = new List<byte>();
-			foreach(string name in files)
-			{
-				nameDataList.AddRange(ObjectToByteArray(Path.GetFileName(name)));
+				long l = info.Length;
+				dataLength += l;
+				fileLengths[i] = l;
+
+				byte[] fileData = ObjectToByteArray(Path.GetFileName(file));
+				nameDataList.AddRange(fileData);
+				nameLengths[i] = (short)fileData.Length;
 			}
 			byte[] nameData = nameDataList.ToArray();
 
@@ -69,22 +64,22 @@ namespace Framework.Zipping
 
 			// stores the format info.
 			int insertIndex = 0;
-			insertIndex = StoreData(ObjectToByteArray(formatLength), 0, ref zipData);
+			InsertData(ObjectToByteArray(formatLength), ref insertIndex, ref zipData);
 
 			// stores all the file lengths.
 			foreach (long l in fileLengths)
 			{
-				insertIndex = StoreData(ObjectToByteArray(l), insertIndex, ref zipData);
+				InsertData(ObjectToByteArray(l), ref insertIndex, ref zipData);
 			}
 
 			// stores all filenamelength data
 			foreach (short l in nameLengths)
 			{
-				insertIndex = StoreData(ObjectToByteArray(l), insertIndex, ref zipData);
+				InsertData(ObjectToByteArray(l), ref insertIndex, ref zipData);
 			}
 
 			// stores all filenames
-			insertIndex = StoreData(nameData, insertIndex, ref zipData);
+			InsertData(nameData, ref insertIndex, ref zipData);
 
 			// stores all files
 			foreach (string file in files)
@@ -97,20 +92,25 @@ namespace Framework.Zipping
 				}
 			}
 
-			File.WriteAllBytes(target, zipData);
-			return new FileInfo(target);
+			File.WriteAllBytes(extractionPath, zipData);
+			return new FileInfo(extractionPath);
 		}
 
-		private int StoreData(byte[] data, int startIndex, ref byte[] receiver)
+		/// <summary>
+		///		Inserts the data array into the provided receiver array. 
+		/// </summary>
+		private void InsertData(byte[] data, ref int startIndex, ref byte[] receiver)
 		{
 			for (int i = 0; i < data.Length; i++)
 			{
 				receiver[i + startIndex] = data[i];
 			}
-			return startIndex + data.Length;
+			startIndex += data.Length;
 		}
 
-		// Convert an object to a byte array
+		/// <summary>
+		///		Convert an object to a byte array.
+		/// </summary>
 		private byte[] ObjectToByteArray(object obj)
 		{
 			if (obj == null)
@@ -126,11 +126,15 @@ namespace Framework.Zipping
 		#endregion
 
 
-		#region Unzip
+		#region Unzipping
 
-		public DirectoryInfo Unzip()
+		/// <summary>
+		///		Unzips all files contained in the 
+		///		zip into the provided extraction directory.
+		/// </summary>
+		public DirectoryInfo Unzip(string zip, string extractionDirectory)
 		{
-			byte[] data = File.ReadAllBytes(target);
+			byte[] data = File.ReadAllBytes(zip);
 
 			// Determines the number of files that is in the zip.
 			long dataIndex = 0;
@@ -162,32 +166,37 @@ namespace Framework.Zipping
 			for (int i = 0; i < fileSizes.Length; i++)
 			{
 				byte[] item = SubData(data, ref dataIndex, fileSizes[i]);
-				string extractPath = Path.Combine(directory, fileNames[i]);
+				string extractPath = Path.Combine(extractionDirectory, fileNames[i]);
 				File.WriteAllBytes(extractPath, item);
 			}
 
-			return new DirectoryInfo(directory);
+			return new DirectoryInfo(extractionDirectory);
 		}
 
-		private byte[] SubData(byte[] allBytes, ref long startIndex, long length)
+		/// <summary>
+		///		Returns a data subset of the complete data set.
+		/// </summary>
+		private byte[] SubData(byte[] data, ref long startIndex, long length)
 		{
 			byte[] subData = new byte[length];
 			for(int i = 0; i < length; i++)
 			{
-				subData[i] = allBytes[i + startIndex];
+				subData[i] = data[i + startIndex];
 			}
 			startIndex += length;
 			return subData;
 		}
 
-		// Convert a byte array to an Object
-		private object ByteArrayToObject(byte[] arrBytes)
+		/// <summary>
+		///		Convert a byte array to an Object.
+		/// </summary>
+		private object ByteArrayToObject(byte[] byteArray)
 		{
 			MemoryStream memStream = new MemoryStream();
 			BinaryFormatter binForm = new BinaryFormatter();
-			memStream.Write(arrBytes, 0, arrBytes.Length);
+			memStream.Write(byteArray, 0, byteArray.Length);
 			memStream.Seek(0, SeekOrigin.Begin);
-			object obj = (object)binForm.Deserialize(memStream);
+			object obj = binForm.Deserialize(memStream);
 			return obj;
 		}
 

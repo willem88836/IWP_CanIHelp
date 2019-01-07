@@ -8,6 +8,39 @@ namespace Framework.Core
 {
 	public static class Utilities
 	{
+		#region Generic
+
+		/// <summary>
+		///		Returns true if v is more than min and less than max.
+		/// </summary>
+		public static bool LiesBetween(float v, float min, float max)
+		{
+			return min < v && v < max;
+		}
+		/// <summary>
+		///		Returns true if v is more than min and less than max.
+		/// </summary>
+		public static bool LiesBetween(int v, int min, int max)
+		{
+			return min < v && v < max;
+		}
+
+		/// <summary>
+		///		Combines the provided objects in to one 
+		///		string separating them by the provided char.
+		/// </summary>
+		public static string Combine(char separator, params object[] elements)
+		{
+			string s = "";
+			foreach (object e in elements)
+			{
+				s += e.ToString() + separator;
+			}
+			return s;
+		}
+
+		#endregion
+
 
 		#region Shuffle
 
@@ -227,7 +260,6 @@ namespace Framework.Core
 			}
 		}
 
-		
 		/// <summary>
 		///		Executes action for every file within the provided path in alphabetical order.
 		/// </summary>
@@ -262,18 +294,42 @@ namespace Framework.Core
 		#endregion
 
 
+		#region Logging
+
 		/// <summary>
-		///		Combines the provided objects in to one 
-		///		string separating them by the provided char.
+		///		Logs a message into the 
+		///		UnityEngine.Debug.Log(),
+		///		System.Diagnostics.Debug.Writeline(), 
+		///		System.Console.Writeline()
 		/// </summary>
-		public static string Combine(char separator, params object[] elements)
+		public static void Log(string message)
 		{
-			string s = "";
-			foreach (object e in elements)
-			{
-				s += e.ToString() + separator;
-			}
-			return s;
+			UnityEngine.Debug.Log(message);
+			System.Diagnostics.Debug.WriteLine(message);
+			System.Console.WriteLine(message);
 		}
+		/// <summary>
+		///		Logs a message into the 
+		///		UnityEngine.Debug.Log(),
+		///		System.Diagnostics.Debug.Writeline(), 
+		///		System.Console.Writeline()
+		/// </summary>
+		public static void Log(object obj)
+		{
+			Log(obj.ToString());
+		}
+		/// <summary>
+		///		Logs a message into the 
+		///		UnityEngine.Debug.Log(),
+		///		System.Diagnostics.Debug.Writeline(), 
+		///		System.Console.Writeline()
+		/// </summary>
+		public static void LogFormat(string message, params object[] obj)
+		{
+			string msg = string.Format(message, obj);
+			Log(msg);
+		}
+
+		#endregion
 	}
 }
