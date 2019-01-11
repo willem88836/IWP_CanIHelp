@@ -49,4 +49,20 @@
     <Key>eventmenu</Key>
     <Value>Evenementen Menu</Value>
   </Keyword>
+  <Keyword>
+    <Key>invoketime</Key>
+    <Value>Aanroep Tijd</Value>
+  </Keyword>
+  <Keyword>
+    <Key>question</Key>
+    <Value>Vraag</Value>
+  </Keyword>
+  <Keyword>
+    <Key>count</Key>
+    <Value>Aantal</Value>
+  </Keyword>
+  <Keyword>
+    <Key>answers</Key>
+    <Value>Antwoord</Value>
+  </Keyword>
 </Keywords>

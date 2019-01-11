@@ -22,7 +22,7 @@
     <Value>Hierarchy</Value>
   </Keyword>
   <Keyword>
-    <Key>startcrop</Key>
+    <Key>cropstart</Key>
     <Value>StartCrop</Value>
   </Keyword>
   <Keyword>
@@ -48,5 +48,21 @@
   <Keyword>
     <Key>eventmenu</Key>
     <Value>Events Menu</Value>
+  </Keyword>
+  <Keyword>
+    <Key>invoketime</Key>
+    <Value>Invokation Time</Value>
+  </Keyword>
+  <Keyword>
+    <Key>question</Key>
+    <Value>Question</Value>
+  </Keyword>
+  <Keyword>
+    <Key>count</Key>
+    <Value>Count</Value>
+  </Keyword>
+  <Keyword>
+    <Key>answers</Key>
+    <Value>Answer</Value>
   </Keyword>
 </Keywords>
