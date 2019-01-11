@@ -65,4 +65,24 @@
     <Key>answers</Key>
     <Value>Answer</Value>
   </Keyword>
+  <Keyword>
+    <Key>chaptercreator</Key>
+    <Value>Create Chapter</Value>
+  </Keyword>
+  <Keyword>
+    <Key>chaptername</Key>
+    <Value>Name</Value>
+  </Keyword>
+  <Keyword>
+    <Key>browseforvideo</Key>
+    <Value>Browse Video</Value>
+  </Keyword>
+  <Keyword>
+    <Key>createchapter</Key>
+    <Value>Create</Value>
+  </Keyword>
+  <Keyword>
+    <Key>fillin</Key>
+    <Value>Fill In...</Value>
+  </Keyword>
 </Keywords>

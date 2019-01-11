@@ -65,4 +65,24 @@
     <Key>answers</Key>
     <Value>Antwoord</Value>
   </Keyword>
+  <Keyword>
+    <Key>chaptercreator</Key>
+    <Value>Hoofdstuk Aanmaken</Value>
+  </Keyword>
+  <Keyword>
+    <Key>chaptername</Key>
+    <Value>Naam</Value>
+  </Keyword>
+  <Keyword>
+    <Key>browseforvideo</Key>
+    <Value>Zoek Video</Value>
+  </Keyword>
+  <Keyword>
+    <Key>createchapter</Key>
+    <Value>Aanmaken</Value>
+  </Keyword>
+  <Keyword>
+    <Key>fillin</Key>
+    <Value>Vul In...</Value>
+  </Keyword>
 </Keywords>
