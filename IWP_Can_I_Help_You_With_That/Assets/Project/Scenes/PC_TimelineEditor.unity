@@ -291,7 +291,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Save
+  m_Text: key_save
 --- !u!222 &78413643
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -510,6 +510,205 @@ Prefab:
         type: 2}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224596174959122438, guid: 8ee97725c0602304bb2faa3c7c1639b5,
+        type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224596174959122438, guid: 8ee97725c0602304bb2faa3c7c1639b5,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000234954888974, guid: 8ee97725c0602304bb2faa3c7c1639b5,
+        type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000234954888974, guid: 8ee97725c0602304bb2faa3c7c1639b5,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224345679515517348, guid: 8ee97725c0602304bb2faa3c7c1639b5,
+        type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224345679515517348, guid: 8ee97725c0602304bb2faa3c7c1639b5,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224133073442273174, guid: 8ee97725c0602304bb2faa3c7c1639b5,
+        type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224133073442273174, guid: 8ee97725c0602304bb2faa3c7c1639b5,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1578278420700720, guid: 8ee97725c0602304bb2faa3c7c1639b5, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224108659175328736, guid: 8ee97725c0602304bb2faa3c7c1639b5,
+        type: 2}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224108659175328736, guid: 8ee97725c0602304bb2faa3c7c1639b5,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224108659175328736, guid: 8ee97725c0602304bb2faa3c7c1639b5,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 224696038091456508, guid: 8ee97725c0602304bb2faa3c7c1639b5,
+        type: 2}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224696038091456508, guid: 8ee97725c0602304bb2faa3c7c1639b5,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224696038091456508, guid: 8ee97725c0602304bb2faa3c7c1639b5,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 410
+      objectReference: {fileID: 0}
+    - target: {fileID: 224100726970958682, guid: 8ee97725c0602304bb2faa3c7c1639b5,
+        type: 2}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224100726970958682, guid: 8ee97725c0602304bb2faa3c7c1639b5,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224100726970958682, guid: 8ee97725c0602304bb2faa3c7c1639b5,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 760
+      objectReference: {fileID: 0}
+    - target: {fileID: 224108659175328736, guid: 8ee97725c0602304bb2faa3c7c1639b5,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -54.69998
+      objectReference: {fileID: 0}
+    - target: {fileID: 224696038091456508, guid: 8ee97725c0602304bb2faa3c7c1639b5,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -54.69998
+      objectReference: {fileID: 0}
+    - target: {fileID: 224100726970958682, guid: 8ee97725c0602304bb2faa3c7c1639b5,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -54.69998
+      objectReference: {fileID: 0}
+    - target: {fileID: 224688138418542962, guid: 8ee97725c0602304bb2faa3c7c1639b5,
+        type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224688138418542962, guid: 8ee97725c0602304bb2faa3c7c1639b5,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224688138418542962, guid: 8ee97725c0602304bb2faa3c7c1639b5,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: -17
+      objectReference: {fileID: 0}
+    - target: {fileID: 224688138418542962, guid: 8ee97725c0602304bb2faa3c7c1639b5,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: -17
+      objectReference: {fileID: 0}
+    - target: {fileID: 224329991185675456, guid: 8ee97725c0602304bb2faa3c7c1639b5,
+        type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224329991185675456, guid: 8ee97725c0602304bb2faa3c7c1639b5,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: -17
+      objectReference: {fileID: 0}
+    - target: {fileID: 224448356993540432, guid: 8ee97725c0602304bb2faa3c7c1639b5,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224448356993540432, guid: 8ee97725c0602304bb2faa3c7c1639b5,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: -17
+      objectReference: {fileID: 0}
+    - target: {fileID: 224540237377451334, guid: 8ee97725c0602304bb2faa3c7c1639b5,
+        type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224540237377451334, guid: 8ee97725c0602304bb2faa3c7c1639b5,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224540237377451334, guid: 8ee97725c0602304bb2faa3c7c1639b5,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: -17
+      objectReference: {fileID: 0}
+    - target: {fileID: 224540237377451334, guid: 8ee97725c0602304bb2faa3c7c1639b5,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: -17
+      objectReference: {fileID: 0}
+    - target: {fileID: 224236674453438458, guid: 8ee97725c0602304bb2faa3c7c1639b5,
+        type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224236674453438458, guid: 8ee97725c0602304bb2faa3c7c1639b5,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: -17
+      objectReference: {fileID: 0}
+    - target: {fileID: 224380784325138226, guid: 8ee97725c0602304bb2faa3c7c1639b5,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224380784325138226, guid: 8ee97725c0602304bb2faa3c7c1639b5,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: -17
+      objectReference: {fileID: 0}
+    - target: {fileID: 114757704524206424, guid: 8ee97725c0602304bb2faa3c7c1639b5,
+        type: 2}
+      propertyPath: m_Text
+      value: key_enterPath
+      objectReference: {fileID: 0}
+    - target: {fileID: 114600102737996102, guid: 8ee97725c0602304bb2faa3c7c1639b5,
+        type: 2}
+      propertyPath: m_Text
+      value: key_select
+      objectReference: {fileID: 0}
+    - target: {fileID: 114615380205104944, guid: 8ee97725c0602304bb2faa3c7c1639b5,
+        type: 2}
+      propertyPath: m_Text
+      value: key_currentlySelected
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ee97725c0602304bb2faa3c7c1639b5, type: 2}
@@ -1622,7 +1821,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Timeline
+  m_Text: key_timeline
 --- !u!222 &618933859
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1697,7 +1896,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: StartCrop
+  m_Text: key_startCrop
 --- !u!222 &653115985
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1938,7 +2137,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Hierarchy
+  m_Text: key_hierarchy
 --- !u!222 &963154962
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2874,7 +3073,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Load
+  m_Text: key_load
 --- !u!222 &1569044724
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3044,7 +3243,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Multiple Choice Menu
+  m_Text: key_multipleChoiceMenu
 --- !u!222 &1577014635
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3174,6 +3373,7 @@ GameObject:
   - component: {fileID: 1641330709}
   - component: {fileID: 1641330714}
   - component: {fileID: 1641330713}
+  - component: {fileID: 1641330715}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -3297,6 +3497,18 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1641330708}
   m_CullTransparentMesh: 0
+--- !u!114 &1641330715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1641330708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57b46c7fb1b86cf4ca4710c97c277e21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SelectedLanguage: NL
 --- !u!1 &1643579672
 GameObject:
   m_ObjectHideFlags: 0
@@ -3969,7 +4181,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Add Chapter
+  m_Text: key_addChapter
 --- !u!222 &1997242317
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4201,7 +4413,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Current Event:'
+  m_Text: key_currentEvent
 --- !u!222 &2087424148
 CanvasRenderer:
   m_ObjectHideFlags: 0

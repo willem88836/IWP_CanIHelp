@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<Keywords>
+  <Keyword>
+    <Key>save</Key>
+    <Value>Opslaan</Value>
+  </Keyword>
+  <Keyword>
+    <Key>load</Key>
+    <Value>Laden</Value>
+  </Keyword>
+  <Keyword>
+    <Key>addChapter</Key>
+    <Value>Toevoegen</Value>
+  </Keyword>
+  <Keyword>
+    <Key>currentEvent</Key>
+    <Value>Huidige Evenement: {0}</Value>
+  </Keyword>
+  <Keyword>
+    <Key>hierarchy</Key>
+    <Value>Hiërarchie</Value>
+  </Keyword>
+  <Keyword>
+    <Key>startCrop</Key>
+    <Value>Begin Snijden</Value>
+  </Keyword>
+  <Keyword>
+    <Key>multipleChoiceMenu</Key>
+    <Value>Multiple Choice Menu</Value>
+  </Keyword>
+  <Keyword>
+    <Key>timeline</Key>
+    <Value>Tijdlijn</Value>
+  </Keyword>
+  <Keyword>
+    <Key>enterPath</Key>
+    <Value>Vul pad in</Value>
+  </Keyword>
+  <Keyword>
+    <Key>select</Key>
+    <Value>Selecteer</Value>
+  </Keyword>
+  <Keyword>
+    <Key>currentlySelected</Key>
+    <Value>Huidige Selectie</Value>
+  </Keyword>
+</Keywords>

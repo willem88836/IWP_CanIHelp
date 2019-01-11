@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<Keywords>
+  <Keyword>
+    <Key>save</Key>
+    <Value>Save</Value>
+  </Keyword>
+  <Keyword>
+    <Key>load</Key>
+    <Value>Load</Value>
+  </Keyword>
+  <Keyword>
+    <Key>addChapter</Key>
+    <Value>Add</Value>
+  </Keyword>
+  <Keyword>
+    <Key>currentEvent</Key>
+    <Value>Current Event: {0}</Value>
+  </Keyword>
+  <Keyword>
+    <Key>hierarchy</Key>
+    <Value>Hierarchy</Value>
+  </Keyword>
+  <Keyword>
+    <Key>startCrop</Key>
+    <Value>StartCrop</Value>
+  </Keyword>
+  <Keyword>
+    <Key>multipleChoiceMenu</Key>
+    <Value>Multiple Choice Menu</Value>
+  </Keyword>
+  <Keyword>
+    <Key>timeline</Key>
+    <Value>Timeline</Value>
+  </Keyword>
+  <Keyword>
+    <Key>enterPath</Key>
+    <Value>Fill in path</Value>
+  </Keyword>
+  <Keyword>
+    <Key>select</Key>
+    <Value>Select</Value>
+  </Keyword>
+  <Keyword>
+    <Key>currentlySelected</Key>
+    <Value>Currently Selected</Value>
+  </Keyword>
+</Keywords>

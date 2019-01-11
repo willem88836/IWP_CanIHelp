@@ -16,8 +16,8 @@ namespace Framework.Language
 		private const string DIRECTORY = "Languages/";
 		private const string KEYPREFIX = "key_";
 
-		private const string KEYWORDS = "KeyWords";
-		private const string KEYWORD = "KeyWord";
+		private const string KEYWORDS = "Keywords";
+		private const string KEYWORD = "Keyword";
 
 
 		public string SelectedLanguage = "ENG";
@@ -28,16 +28,16 @@ namespace Framework.Language
 
 		private void Awake()
 		{
-			UpdateText(SelectedLanguage);
+			UpdateText();
 		}
 
-		private void UpdateText(string language)
+		private void UpdateText()
 		{
 			// XML loading.
-			TextAsset textAsset = Resources.Load<TextAsset>(Path.Combine(DIRECTORY, language));
+			TextAsset textAsset = Resources.Load<TextAsset>(Path.Combine(DIRECTORY, SelectedLanguage));
 			XmlDocument xml = new XmlDocument();
 			xml.LoadXml(textAsset.text);
-
+			
 			// Acquires all keys and values.
 			foreach (XmlElement keywordList in xml.SelectNodes(KEYWORDS))
 			{
@@ -62,7 +62,15 @@ namespace Framework.Language
 
 		public string GetKeyword(string key)
 		{
-			return keywords.ContainsKey(key) ? keywords[key] : key;
+			if (keywords.ContainsKey(key))
+			{
+				return keywords[key];
+			}
+			else
+			{
+				Debug.LogWarningFormat("Missing language Key: (lang: {0}) - (key: {1})", SelectedLanguage, key);
+				return key;
+			}
 		}
 	}
 }
