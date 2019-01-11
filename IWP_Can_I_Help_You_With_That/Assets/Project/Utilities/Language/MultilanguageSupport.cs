@@ -13,6 +13,8 @@ namespace Framework.Language
 	[RequireComponent(typeof(RectTransform))]
 	public class MultilanguageSupport : MonoBehaviour
 	{
+		private static MultilanguageSupport Instance;
+
 		private const string DIRECTORY = "Languages/";
 		private const string KEYPREFIX = "key_";
 
@@ -28,6 +30,13 @@ namespace Framework.Language
 
 		private void Awake()
 		{
+			if (Instance != null)
+			{
+				Debug.LogWarning("Can't have two MultiLanguageSupport instances running at the same time!");
+			}
+
+			Instance = this;
+
 			UpdateText();
 		}
 
@@ -62,6 +71,8 @@ namespace Framework.Language
 
 		public string GetKeyword(string key)
 		{
+			key = key.ToLower();
+
 			if (keywords.ContainsKey(key))
 			{
 				return keywords[key];
@@ -69,6 +80,20 @@ namespace Framework.Language
 			else
 			{
 				Debug.LogWarningFormat("Missing language Key: (lang: {0}) - (key: {1})", SelectedLanguage, key);
+				return key;
+			}
+		}
+
+		
+		public static string GetKeyWord(string key)
+		{
+			if (Instance != null)
+			{
+				return Instance.GetKeyword(key);
+			}
+			else
+			{
+				Debug.LogWarning("No MultiLanguageSupport Instance active!");
 				return key;
 			}
 		}

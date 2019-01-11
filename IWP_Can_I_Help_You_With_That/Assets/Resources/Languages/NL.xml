@@ -10,11 +10,11 @@
     <Value>Laden</Value>
   </Keyword>
   <Keyword>
-    <Key>addChapter</Key>
+    <Key>addchapter</Key>
     <Value>Toevoegen</Value>
   </Keyword>
   <Keyword>
-    <Key>currentEvent</Key>
+    <Key>currentevent</Key>
     <Value>Huidige Evenement: {0}</Value>
   </Keyword>
   <Keyword>
@@ -22,11 +22,11 @@
     <Value>Hiërarchie</Value>
   </Keyword>
   <Keyword>
-    <Key>startCrop</Key>
+    <Key>cropstart</Key>
     <Value>Begin Snijden</Value>
   </Keyword>
   <Keyword>
-    <Key>multipleChoiceMenu</Key>
+    <Key>multiplechoicemenu</Key>
     <Value>Multiple Choice Menu</Value>
   </Keyword>
   <Keyword>
@@ -34,7 +34,7 @@
     <Value>Tijdlijn</Value>
   </Keyword>
   <Keyword>
-    <Key>enterPath</Key>
+    <Key>enterpath</Key>
     <Value>Vul pad in</Value>
   </Keyword>
   <Keyword>
@@ -42,7 +42,11 @@
     <Value>Selecteer</Value>
   </Keyword>
   <Keyword>
-    <Key>currentlySelected</Key>
+    <Key>currentlyselected</Key>
     <Value>Huidige Selectie</Value>
+  </Keyword>
+  <Keyword>
+    <Key>eventmenu</Key>
+    <Value>Evenementen Menu</Value>
   </Keyword>
 </Keywords>

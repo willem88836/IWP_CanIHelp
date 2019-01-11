@@ -10,11 +10,11 @@
     <Value>Load</Value>
   </Keyword>
   <Keyword>
-    <Key>addChapter</Key>
+    <Key>addchapter</Key>
     <Value>Add</Value>
   </Keyword>
   <Keyword>
-    <Key>currentEvent</Key>
+    <Key>currentevent</Key>
     <Value>Current Event: {0}</Value>
   </Keyword>
   <Keyword>
@@ -22,11 +22,11 @@
     <Value>Hierarchy</Value>
   </Keyword>
   <Keyword>
-    <Key>startCrop</Key>
+    <Key>startcrop</Key>
     <Value>StartCrop</Value>
   </Keyword>
   <Keyword>
-    <Key>multipleChoiceMenu</Key>
+    <Key>multiplechoicemenu</Key>
     <Value>Multiple Choice Menu</Value>
   </Keyword>
   <Keyword>
@@ -34,7 +34,7 @@
     <Value>Timeline</Value>
   </Keyword>
   <Keyword>
-    <Key>enterPath</Key>
+    <Key>enterpath</Key>
     <Value>Fill in path</Value>
   </Keyword>
   <Keyword>
@@ -42,7 +42,11 @@
     <Value>Select</Value>
   </Keyword>
   <Keyword>
-    <Key>currentlySelected</Key>
+    <Key>currentlyselected</Key>
     <Value>Currently Selected</Value>
+  </Keyword>
+  <Keyword>
+    <Key>eventmenu</Key>
+    <Value>Events Menu</Value>
   </Keyword>
 </Keywords>
