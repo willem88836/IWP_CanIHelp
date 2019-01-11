@@ -19,7 +19,7 @@
   </Keyword>
   <Keyword>
     <Key>hierarchy</Key>
-    <Value>Hiërarchie</Value>
+    <Value>Volgorde Video's</Value>
   </Keyword>
   <Keyword>
     <Key>cropstart</Key>
@@ -84,5 +84,17 @@
   <Keyword>
     <Key>fillin</Key>
     <Value>Vul In...</Value>
+  </Keyword>
+  <Keyword>
+    <Key>hierarchytooltip</Key>
+    <Value>Selecteer hier de video's</Value>
+  </Keyword>
+  <Keyword>
+    <Key>eventmenutooltip</Key>
+    <Value>Selecteer hier een evenement voor in de video</Value>
+  </Keyword>
+  <Keyword>
+    <Key>videopreview</Key>
+    <Value>Video Voorbeeld</Value>
   </Keyword>
 </Keywords>

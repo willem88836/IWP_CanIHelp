@@ -85,4 +85,16 @@
     <Key>fillin</Key>
     <Value>Fill In...</Value>
   </Keyword>
+  <Keyword>
+    <Key>hierarchytooltip</Key>
+    <Value>Select the video's here</Value>
+  </Keyword>
+  <Keyword>
+    <Key>eventmenutooltip</Key>
+    <Value>Select the events for the video here</Value>
+  </Keyword>
+  <Keyword>
+    <Key>videopreview</Key>
+    <Value>Video Preview</Value>
+  </Keyword>
 </Keywords>

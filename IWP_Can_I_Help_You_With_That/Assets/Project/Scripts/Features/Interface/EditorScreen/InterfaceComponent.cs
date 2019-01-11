@@ -25,7 +25,7 @@ namespace IWPCIH.EditorInterfaceObjects.Components
 		private List<InterfaceDataField> dataFields = new List<InterfaceDataField>();
 		private string baseHeaderText;
 
-		private void Awake()
+		private void Start()
 		{
 			baseHeaderText = Header.text;
 			Header.text = string.Format(baseHeaderText, ' ');
