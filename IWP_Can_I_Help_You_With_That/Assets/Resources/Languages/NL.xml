@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<Keywords>
+  <Keyword>
+    <Key>save</Key>
+    <Value>Opslaan</Value>
+  </Keyword>
+  <Keyword>
+    <Key>load</Key>
+    <Value>Laden</Value>
+  </Keyword>
+  <Keyword>
+    <Key>addchapter</Key>
+    <Value>Toevoegen</Value>
+  </Keyword>
+  <Keyword>
+    <Key>currentevent</Key>
+    <Value>Huidige Evenement: {0}</Value>
+  </Keyword>
+  <Keyword>
+    <Key>hierarchy</Key>
+    <Value>Hiërarchie</Value>
+  </Keyword>
+  <Keyword>
+    <Key>cropstart</Key>
+    <Value>Begin Snijden</Value>
+  </Keyword>
+  <Keyword>
+    <Key>multiplechoicemenu</Key>
+    <Value>Multiple Choice Menu</Value>
+  </Keyword>
+  <Keyword>
+    <Key>timeline</Key>
+    <Value>Tijdlijn</Value>
+  </Keyword>
+  <Keyword>
+    <Key>enterpath</Key>
+    <Value>Vul pad in</Value>
+  </Keyword>
+  <Keyword>
+    <Key>select</Key>
+    <Value>Selecteer</Value>
+  </Keyword>
+  <Keyword>
+    <Key>currentlyselected</Key>
+    <Value>Huidige Selectie</Value>
+  </Keyword>
+  <Keyword>
+    <Key>eventmenu</Key>
+    <Value>Evenementen Menu</Value>
+  </Keyword>
+  <Keyword>
+    <Key>invoketime</Key>
+    <Value>Aanroep Tijd</Value>
+  </Keyword>
+  <Keyword>
+    <Key>question</Key>
+    <Value>Vraag</Value>
+  </Keyword>
+  <Keyword>
+    <Key>count</Key>
+    <Value>Aantal</Value>
+  </Keyword>
+  <Keyword>
+    <Key>answers</Key>
+    <Value>Antwoord</Value>
+  </Keyword>
+  <Keyword>
+    <Key>chaptercreator</Key>
+    <Value>Hoofdstuk Aanmaken</Value>
+  </Keyword>
+  <Keyword>
+    <Key>chaptername</Key>
+    <Value>Naam</Value>
+  </Keyword>
+  <Keyword>
+    <Key>browseforvideo</Key>
+    <Value>Zoek Video</Value>
+  </Keyword>
+  <Keyword>
+    <Key>createchapter</Key>
+    <Value>Aanmaken</Value>
+  </Keyword>
+  <Keyword>
+    <Key>fillin</Key>
+    <Value>Vul In...</Value>
+  </Keyword>
+</Keywords>

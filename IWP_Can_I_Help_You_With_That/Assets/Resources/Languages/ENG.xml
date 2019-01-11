@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<Keywords>
+  <Keyword>
+    <Key>save</Key>
+    <Value>Save</Value>
+  </Keyword>
+  <Keyword>
+    <Key>load</Key>
+    <Value>Load</Value>
+  </Keyword>
+  <Keyword>
+    <Key>addchapter</Key>
+    <Value>Add</Value>
+  </Keyword>
+  <Keyword>
+    <Key>currentevent</Key>
+    <Value>Current Event: {0}</Value>
+  </Keyword>
+  <Keyword>
+    <Key>hierarchy</Key>
+    <Value>Hierarchy</Value>
+  </Keyword>
+  <Keyword>
+    <Key>cropstart</Key>
+    <Value>StartCrop</Value>
+  </Keyword>
+  <Keyword>
+    <Key>multiplechoicemenu</Key>
+    <Value>Multiple Choice Menu</Value>
+  </Keyword>
+  <Keyword>
+    <Key>timeline</Key>
+    <Value>Timeline</Value>
+  </Keyword>
+  <Keyword>
+    <Key>enterpath</Key>
+    <Value>Fill in path</Value>
+  </Keyword>
+  <Keyword>
+    <Key>select</Key>
+    <Value>Select</Value>
+  </Keyword>
+  <Keyword>
+    <Key>currentlyselected</Key>
+    <Value>Currently Selected</Value>
+  </Keyword>
+  <Keyword>
+    <Key>eventmenu</Key>
+    <Value>Events Menu</Value>
+  </Keyword>
+  <Keyword>
+    <Key>invoketime</Key>
+    <Value>Invokation Time</Value>
+  </Keyword>
+  <Keyword>
+    <Key>question</Key>
+    <Value>Question</Value>
+  </Keyword>
+  <Keyword>
+    <Key>count</Key>
+    <Value>Count</Value>
+  </Keyword>
+  <Keyword>
+    <Key>answers</Key>
+    <Value>Answer</Value>
+  </Keyword>
+  <Keyword>
+    <Key>chaptercreator</Key>
+    <Value>Create Chapter</Value>
+  </Keyword>
+  <Keyword>
+    <Key>chaptername</Key>
+    <Value>Name</Value>
+  </Keyword>
+  <Keyword>
+    <Key>browseforvideo</Key>
+    <Value>Browse Video</Value>
+  </Keyword>
+  <Keyword>
+    <Key>createchapter</Key>
+    <Value>Create</Value>
+  </Keyword>
+  <Keyword>
+    <Key>fillin</Key>
+    <Value>Fill In...</Value>
+  </Keyword>
+</Keywords>

@@ -56,7 +56,7 @@ namespace IWPCIH.EditorInterfaceObjects.Components
 			{
 				int ix = i;
 				Spawn(
-					fieldInfo.Name + i,
+					fieldInfo.Name,
 					fieldInfo.FieldType,
 					content[i],
 					(string s) =>

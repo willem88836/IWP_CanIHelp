@@ -4,6 +4,7 @@ using IWPCIH.EventTracking;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using Framework.Language;
 
 namespace IWPCIH.EditorInterfaceObjects.Components
 {
@@ -22,10 +23,12 @@ namespace IWPCIH.EditorInterfaceObjects.Components
 
 		private RectTransform rect; // TODO: Should this be removed? 
 		private List<InterfaceDataField> dataFields = new List<InterfaceDataField>();
-
+		private string baseHeaderText;
 
 		private void Awake()
 		{
+			baseHeaderText = Header.text;
+			Header.text = string.Format(baseHeaderText, ' ');
 			rect = GetComponent<RectTransform>();
 		}
 
@@ -39,7 +42,7 @@ namespace IWPCIH.EditorInterfaceObjects.Components
 
 			string name = string.Format(NAMEFORMAT, eventData.Id, eventData.Type.ToString());
 			gameObject.name = name;
-			Header.text = eventData.Type.ToString();
+			Header.text = string.Format(baseHeaderText, MultilanguageSupport.GetKeyWord(eventData.Type.ToString()));
 
 			ApplyFields(eventData);
 		}
