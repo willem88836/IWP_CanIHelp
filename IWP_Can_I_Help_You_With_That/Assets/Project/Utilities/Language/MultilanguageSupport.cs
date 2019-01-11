@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Framework.Core;
+using System.Collections.Generic;
 using System.IO;
 using System.Xml;
 using UnityEngine;
@@ -59,14 +60,18 @@ namespace Framework.Language
 			}
 
 			// Sets values when referenced to in the Text element.
-			foreach (Text t in transform.GetComponentsInChildren<Text>())
+			transform.Foreach((Transform child) =>
 			{
+				Text t = child.GetComponent<Text>();
+				if (t == null)
+					return;
+
 				if (t.text.StartsWith(KEYPREFIX))
 				{
 					string key = t.text.Substring(KEYPREFIX.Length);
 					t.text = GetKeyword(key);
 				}
-			}
+			});
 		}
 
 		public string GetKeyword(string key)
