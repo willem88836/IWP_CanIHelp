@@ -11,7 +11,7 @@ namespace IWPCIH.EditorInterfaceObjects.Menu
 	{
 		public Button SelectButton;
 		public Text NamePanel;
-		public Image Logo;
+		public RawImage Logo;
 		public Color SelectedColor;
 		public Color UnSelectedColor;
 
@@ -31,7 +31,7 @@ namespace IWPCIH.EditorInterfaceObjects.Menu
 			SelectButton.onClick.AddListener(OnClick);
 
 
-			// TODO: set something like a thumbnail as logo. 
+			IWPCIH.Video.VideoThumbnail.SetThumbnail(fileName, Logo, Video.VideoThumbnail.ResizeMode.Horizontal);
 			Deselect();
 		}
 
