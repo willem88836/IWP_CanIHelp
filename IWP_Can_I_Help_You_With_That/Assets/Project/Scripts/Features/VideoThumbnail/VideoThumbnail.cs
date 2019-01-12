@@ -25,6 +25,9 @@ namespace IWPCIH.Video
 			if (thumbnailVideoPlayer == null)
 				thumbnailVideoPlayer = GetComponent<VideoPlayer>();
 
+			//if (thumbnailVideoPlayer.targetTexture == null)
+			//	thumbnailVideoPlayer.targetTexture = new RenderTexture(1, 1, 0);
+
 			Instance = this;
 		}
 
@@ -36,50 +39,50 @@ namespace IWPCIH.Video
 				return;
 			}
 
-			Instance.StartCoroutine(CreateThumbnail(path, target, mode));
-		}
-
-		private static IEnumerator CreateThumbnail(string path, RawImage target, ResizeMode mode)
-		{
 			VideoPlayer player = Instance.thumbnailVideoPlayer;
 
+			player.targetTexture = new RenderTexture(1, 1, 0);
+
 			player.url = path;
+			player.prepareCompleted += (VideoPlayer vp) => { Instance.StartCoroutine(OnPlayerPrepared(vp, target, mode)); };
 			player.Prepare();
+		}
 
-			// TODO: swap this with the prepComplete in VideoPlayer.
-			while(!player.isPrepared)
-			{
-				yield return new WaitForEndOfFrame();
-			}
-
-			player.targetTexture = new RenderTexture((RenderTexture)player.texture);
-
+		private static IEnumerator OnPlayerPrepared(VideoPlayer player, RawImage target, ResizeMode mode)
+		{
 			player.time = (player.frameCount / player.frameRate) * Instance.ThumbnailFrame;
 
+			player.targetTexture.width = player.texture.width;
+			player.targetTexture.height = player.texture.height;
+
 			player.Play();
-			yield return new WaitForEndOfFrame();
 
-
-			target.texture = player.targetTexture;
-
-			int videoWidth = player.targetTexture.width;
-			int videoHeight = player.targetTexture.height;
-			switch (mode)
-			{
-				case ResizeMode.None:
-					target.rectTransform.sizeDelta = new Vector2(videoWidth, videoHeight);
-					break;
-				case ResizeMode.Horizontal:
-					float deltaX = target.rectTransform.sizeDelta.x;
-					target.rectTransform.sizeDelta = new Vector2(deltaX, videoHeight * (deltaX / videoWidth));
-					break;
-				case ResizeMode.Vertical:
-					float deltaY = target.rectTransform.sizeDelta.y;
-					target.rectTransform.sizeDelta = new Vector2(videoWidth * (deltaY / videoHeight), deltaY);
-					break;
-			}
+			yield return new WaitForSeconds(3);
 
 			player.Pause();
+
+			RenderTexture tn = new RenderTexture(player.targetTexture.width, player.targetTexture.height, player.targetTexture.depth);
+			Graphics.CopyTexture(player.targetTexture, tn);
+			target.texture = tn;
+
+			int videoWidth = target.texture.width;
+			int videoHeight = target.texture.height;
+			if (mode == ResizeMode.Horizontal)
+			{
+				float deltaX = target.rectTransform.sizeDelta.x;
+				target.rectTransform.sizeDelta = new Vector2(deltaX, videoHeight * (deltaX / videoWidth));
+			}
+			else if (mode == ResizeMode.Vertical)
+			{
+				float deltaY = target.rectTransform.sizeDelta.y;
+				target.rectTransform.sizeDelta = new Vector2(videoWidth * (deltaY / videoHeight), deltaY);
+			}
+			else
+			{
+				target.rectTransform.sizeDelta = new Vector2(videoWidth, videoHeight);
+			}
+
+			player.Stop();
 		}
 	}
 }
