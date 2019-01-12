@@ -65,6 +65,12 @@ namespace IWPCIH.EditorInterfaceObjects.Menu
 		/// </summary>
 		private bool IsValid(string name)
 		{
+			if (name.Length <= 0)
+				return false;
+
+			string[] split = name.Split(' ');
+			if (split.Length <= 0 || split[0] == "")
+				return false;
 
 			foreach (char c in name)
 			{
