@@ -65,18 +65,16 @@ namespace IWPCIH
 			CurrentChapter.AddEvent(timelineEvent);
 			ComponentInterface.Spawn(timelineEvent);
 
-			Debug.LogFormat("Added Event (Id: {0}) of type {1}", timelineEvent.Id.ToString(), timelineEvent.Type.ToString());
 			return timelineEvent;
 		}
 		public void RemoveEvent(TimelineEventData data)
 		{
 			CurrentChapter.RemoveEvent(data);
-			Debug.LogFormat("Removed Event (Id: {0}) of type {1}", data.Id.ToString(), data.Type.ToString());
+			ComponentInterface.Despawn(data);
 		}
 		public void UpdateEvent(TimelineEventData updatedEvent)
 		{
 			CurrentChapter.UpdateEvent(updatedEvent);
-			Debug.LogFormat("Updated Event (Id: {0}) of type {1}", updatedEvent.Id.ToString(), updatedEvent.Type.ToString());
 		}
 
 		#endregion

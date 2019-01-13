@@ -57,8 +57,15 @@ namespace IWPCIH.EditorInterfaceObjects.Components
 			TimelineEventButton newButton = Instantiate(baseEventButton, TimelineEventButtonContainer);
 			newButton.SetTime(this, data, IntervalObjectSpawnInterval, IntervalObjectWidth);
 			eventButtons.Add(newButton);
+			OnEventSelected(data);
 		}
 
+		public void Despawn(TimelineEventData data)
+		{
+			TimelineEventButton button = eventButtons.Find((TimelineEventButton b) => b.TimelineEventData == data);
+			eventButtons.Remove(button);
+			Destroy(button.gameObject);
+		}
 
 		public void OnEventSelected(TimelineEventData selected)
 		{

@@ -51,11 +51,13 @@ namespace IWPCIH.EventTracking
 		public void AddEvent(TimelineEventData newData)
 		{
 			events.Add(newData.Id, newData);
+			UnityEngine.Debug.LogFormat("Added Event (Id: {0}) of type {1}", newData.Id.ToString(), newData.Type.ToString());
 		}
 
 		public void UpdateEvent(TimelineEventData updatedData)
 		{
 			events[updatedData.Id] = updatedData;
+			UnityEngine.Debug.LogFormat("Updated Event (Id: {0}) of type {1}", updatedData.Id.ToString(), updatedData.Type.ToString());
 		}
 
 		public void RemoveEvent(TimelineEventData data)
