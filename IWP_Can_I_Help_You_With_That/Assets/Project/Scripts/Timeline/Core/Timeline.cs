@@ -1,5 +1,4 @@
-﻿using IWPCIH.Storage;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace IWPCIH.EventTracking
@@ -18,6 +17,11 @@ namespace IWPCIH.EventTracking
 			Chapters = new List<TimelineChapter>();
 		}
 
+		public void ChangeNameTo(string newName)
+		{
+			Name = newName;
+			UnityEngine.Debug.Log("Changed Timeline Name!");
+		}
 
 		/// <summary>
 		///		Returns chapter at the provided Index.

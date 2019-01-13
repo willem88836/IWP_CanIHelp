@@ -85,10 +85,19 @@ namespace IWPCIH.EditorInterfaceObjects.Components
 			return field;
 		}
 
+		public void Delete()
+		{
+			if (EventData == null)
+				return;
+
+			Clear();
+			(TimelineController.Instance as TimelineEditor).RemoveEvent(EventData);
+			EventData = null;
+		}
 
 		public void Clear()
 		{
-			Header.text = "";
+			Header.text = string.Format(baseHeaderText, "");
 
 			foreach(InterfaceDataField field in dataFields)
 			{

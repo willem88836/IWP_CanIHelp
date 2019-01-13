@@ -97,4 +97,8 @@
     <Key>videopreview</Key>
     <Value>Video Voorbeeld</Value>
   </Keyword>
+  <Keyword>
+    <Key>deleteevent</Key>
+    <Value>Verwijder</Value>
+  </Keyword>
 </Keywords>

@@ -28,6 +28,14 @@ namespace IWPCIH
 			CurrentTimeline = new Timeline(ProjectName.Value);
 		}
 
+
+		public void OnNameUpdated(string newName)
+		{
+			ProjectName.Value = newName;
+			CurrentTimeline.ChangeNameTo(newName);
+		}
+
+
 		public virtual void SwitchChapterTo(int id)
 		{
 			CurrentChapter = CurrentTimeline.GetChapter(id);
