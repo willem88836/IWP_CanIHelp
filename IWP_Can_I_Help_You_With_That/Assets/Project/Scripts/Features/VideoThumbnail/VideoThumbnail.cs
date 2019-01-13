@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Framework.Core;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Video;
@@ -10,79 +11,89 @@ namespace IWPCIH.Video
 	{
 		public enum ResizeMode { Horizontal, Vertical, None }
 
-		private static VideoThumbnail Instance;
-		public VideoPlayer thumbnailVideoPlayer;
+		private const string TEXTURENAME = "thumbnail_target_texture";
+		private const string THUMBNAILNAME = "thumbnail_{0}";
+
+		private static VideoThumbnail instance;
+		private static System.Action onVideoPlayerPrepared = null;
+
+		public VideoPlayer ThumbnailVideoPlayer;
 		[Range(0, 1)] public float ThumbnailFrame;
-		
+
 
 		private void Awake()
 		{
-			if (Instance != null)
+			if (instance != null)
 			{
 				Debug.LogWarning("Can't have two VideoThumbnail instances running at the same time!\nInitial instance is now obsolete.");
 			}
 
-			if (thumbnailVideoPlayer == null)
-				thumbnailVideoPlayer = GetComponent<VideoPlayer>();
+			if (ThumbnailVideoPlayer == null)
+				ThumbnailVideoPlayer = GetComponent<VideoPlayer>();
 
-			//if (thumbnailVideoPlayer.targetTexture == null)
-			//	thumbnailVideoPlayer.targetTexture = new RenderTexture(1, 1, 0);
+			ThumbnailVideoPlayer.prepareCompleted += delegate { onVideoPlayerPrepared.SafeInvoke(); };
 
-			Instance = this;
+			instance = this;
 		}
 
 		public static void SetThumbnail(string path, RawImage target, ResizeMode mode = ResizeMode.None)
 		{
-			if (Instance == null)
+			if (instance == null)
 			{
-				Debug.LogWarning("No VideoThumbnail instance active!");
-				return;
+				throw new MissingReferenceException("No VideoThumbnail instance active!"); 
 			}
 
-			VideoPlayer player = Instance.thumbnailVideoPlayer;
+			VideoPlayer player = instance.ThumbnailVideoPlayer;
 
-			player.targetTexture = new RenderTexture(1, 1, 0);
-
+			player.targetTexture = new RenderTexture(1, 1, 0) { name = TEXTURENAME };
 			player.url = path;
-			player.prepareCompleted += (VideoPlayer vp) => { Instance.StartCoroutine(OnPlayerPrepared(vp, target, mode)); };
+
+			onVideoPlayerPrepared = () => { instance.StartCoroutine(OnPlayerPrepared(player, target, mode)); };
 			player.Prepare();
 		}
 
 		private static IEnumerator OnPlayerPrepared(VideoPlayer player, RawImage target, ResizeMode mode)
 		{
-			player.time = (player.frameCount / player.frameRate) * Instance.ThumbnailFrame;
+			player.time = (player.frameCount / player.frameRate) * instance.ThumbnailFrame;
 
 			player.targetTexture.width = player.texture.width;
 			player.targetTexture.height = player.texture.height;
 
 			player.Play();
+			player.Pause();
 
 			yield return new WaitForSeconds(3);
 
-			player.Pause();
 
-			RenderTexture tn = new RenderTexture(player.targetTexture.width, player.targetTexture.height, player.targetTexture.depth);
-			Graphics.CopyTexture(player.targetTexture, tn);
-			target.texture = tn;
+			target.texture = new RenderTexture(
+				player.targetTexture.width, 
+				player.targetTexture.height, 
+				player.targetTexture.depth)
+			{ name = string.Format(THUMBNAILNAME, Time.time.ToString()) };
 
-			int videoWidth = target.texture.width;
-			int videoHeight = target.texture.height;
+			Graphics.CopyTexture(player.targetTexture, target.texture);
+
+			Resize(target.texture, target.rectTransform, mode);
+		}
+
+		private static void Resize(Texture texture, RectTransform rect, ResizeMode mode)
+		{
+			int videoWidth = texture.width;
+			int videoHeight = texture.height;
 			if (mode == ResizeMode.Horizontal)
 			{
-				float deltaX = target.rectTransform.sizeDelta.x;
-				target.rectTransform.sizeDelta = new Vector2(deltaX, videoHeight * (deltaX / videoWidth));
+				float deltaX = rect.sizeDelta.x;
+				rect.sizeDelta = new Vector2(deltaX, videoHeight * (deltaX / videoWidth));
 			}
 			else if (mode == ResizeMode.Vertical)
 			{
-				float deltaY = target.rectTransform.sizeDelta.y;
-				target.rectTransform.sizeDelta = new Vector2(videoWidth * (deltaY / videoHeight), deltaY);
+				float deltaY = rect.sizeDelta.y;
+				rect.sizeDelta = new Vector2(videoWidth * (deltaY / videoHeight), deltaY);
 			}
 			else
 			{
-				target.rectTransform.sizeDelta = new Vector2(videoWidth, videoHeight);
+				rect.sizeDelta = new Vector2(videoWidth, videoHeight);
 			}
-
-			player.Stop();
 		}
 	}
 }

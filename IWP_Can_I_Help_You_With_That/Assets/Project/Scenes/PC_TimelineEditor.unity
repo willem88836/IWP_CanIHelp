@@ -2243,7 +2243,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4e4403ba0d67ca4cbc0665efe6085f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thumbnailVideoPlayer: {fileID: 614370435}
+  ThumbnailVideoPlayer: {fileID: 0}
   ThumbnailFrame: 0.5
 --- !u!328 &614370435
 VideoPlayer:
