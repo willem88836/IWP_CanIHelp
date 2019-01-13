@@ -1,5 +1,6 @@
 ﻿using Framework.Zipping;
 using IWPCIH.EventTracking;
+using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
@@ -15,7 +16,6 @@ namespace IWPCIH.Storage
 
 		// DON'T YOU DARE CHANGE THIS PATHS WHEN YOU DON'T KNOW WHAT YOU'RE DOING. IT CAN KILL YOU PC.
 		// TODO: Choose your own cache path? 
-		public static string BuildExtractPath { get { return Path.Combine(Application.temporaryCachePath, "Build/"); } }
 		public static string SoftSavePath { get { return Path.Combine(Application.temporaryCachePath, "TimelineSaveData/"); } }
 		public static string HardSavePath { get; private set; }
 
@@ -52,36 +52,33 @@ namespace IWPCIH.Storage
 		{
 			Debug.LogFormat("Attempting to load save file to ({0})", path);
 
-			if (Directory.Exists(BuildExtractPath))
-				SaveLoad.CleanPath(BuildExtractPath);
-			else
-				Directory.CreateDirectory(BuildExtractPath);
-
 			// TODO: Make this aSync
 			HardSavePath = path;
 			SoftSave(timeline);
 
-			// Copies timeline data to buildpath.
-			string timelineFileName = Path.ChangeExtension(timeline.Name, TIMELINEEXTENTION);
-			File.Copy(Path.Combine(SoftSavePath, timelineFileName), Path.Combine(BuildExtractPath, timelineFileName));
+			List<string> filePaths = new List<string>();
 
+			string timelinePath = Path.Combine(SoftSavePath, Path.ChangeExtension(timeline.Name, TIMELINEEXTENTION));
+			filePaths.Add(timelinePath);
+			
 			// Copies all videos to buildpath.
 			timeline.ForEach((TimelineChapter chapter) =>
 			{
-				string videoName = Path.Combine(BuildExtractPath, Path.GetFileName(chapter.VideoName));
-				File.Copy(chapter.VideoName, videoName);
+				string videoName = chapter.VideoName;
+				if (!filePaths.Contains(videoName))
+				{
+					filePaths.Add(videoName);
+				}
 			});
 
-			// creates filepath.
+			// Creates filepath.
 			string target = Path.ChangeExtension((Path.Combine(HardSavePath, timeline.Name)), PROJECTEXTENTION);
 			if (File.Exists(target))
 				File.Delete(target);
 
-			// zips the file.
+			// Zips the file.
 			SimpleZipper zipper = new SimpleZipper();
-			zipper.Zip(BuildExtractPath, target);
-
-			SaveLoad.CleanPath(BuildExtractPath);
+			zipper.Zip(filePaths, target);
 		}
 		
 		/// <summary>

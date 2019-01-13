@@ -97,6 +97,15 @@ namespace Framework.Zipping
 		}
 
 		/// <summary>
+		///		Zips all provided files into the provided extraction path.
+		/// </summary>
+		public FileInfo Zip(List<string> files, string extractionPath)
+		{
+			// TODO: Make this less tacky.
+			return Zip(files.ToArray(), extractionPath);
+		}
+
+		/// <summary>
 		///		Inserts the data array into the provided receiver array. 
 		/// </summary>
 		private void InsertData(byte[] data, ref int startIndex, ref byte[] receiver)
