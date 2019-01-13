@@ -23,7 +23,7 @@ namespace IWPCIH.EventTracking
 
 			timeline.ForEach((TimelineChapter chapter) =>
 			{
-				data = Utilities.Combine(
+				data += Utilities.Combine(
 					EVENTSPACER, 
 					chapter.Id, 
 					chapter.Name, 
