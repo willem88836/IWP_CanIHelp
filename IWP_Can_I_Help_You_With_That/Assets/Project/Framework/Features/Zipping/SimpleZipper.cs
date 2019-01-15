@@ -92,7 +92,7 @@ namespace Framework.Storage
 				}
 			}
 
-			FileEncryption.Encrypt(ref zipData);
+			//FileEncryption.Encrypt(ref zipData);
 			File.WriteAllBytes(extractionPath, zipData);
 			return new FileInfo(extractionPath);
 		}
@@ -131,7 +131,7 @@ namespace Framework.Storage
 		public DirectoryInfo Unzip(string zip, string extractionDirectory)
 		{
 			byte[] data = File.ReadAllBytes(zip);
-			FileEncryption.Decrypt(ref data);
+			//FileEncryption.Decrypt(ref data); 
 
 			// Determines the number of files that is in the zip.
 			long dataIndex = 0;
