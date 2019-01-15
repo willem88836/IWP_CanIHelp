@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
+using Framework.Utils;
 
 namespace Framework.Zipping
 {
@@ -45,7 +45,7 @@ namespace Framework.Zipping
 				dataLength += l;
 				fileLengths[i] = l;
 
-				byte[] fileData = ObjectToByteArray(Path.GetFileName(file));
+				byte[] fileData = ObjectUtilities.ToByteArray(Path.GetFileName(file));
 				nameDataList.AddRange(fileData);
 				nameLengths[i] = (short)fileData.Length;
 			}
@@ -64,18 +64,18 @@ namespace Framework.Zipping
 
 			// stores the format info.
 			int insertIndex = 0;
-			InsertData(ObjectToByteArray(formatLength), ref insertIndex, ref zipData);
+			InsertData(formatLength.ToByteArray(), ref insertIndex, ref zipData);
 
 			// stores all the file lengths.
 			foreach (long l in fileLengths)
 			{
-				InsertData(ObjectToByteArray(l), ref insertIndex, ref zipData);
+				InsertData(l.ToByteArray(), ref insertIndex, ref zipData);
 			}
 
 			// stores all filenamelength data
 			foreach (short l in nameLengths)
 			{
-				InsertData(ObjectToByteArray(l), ref insertIndex, ref zipData);
+				InsertData(l.ToByteArray(), ref insertIndex, ref zipData);
 			}
 
 			// stores all filenames
@@ -117,20 +117,6 @@ namespace Framework.Zipping
 			startIndex += data.Length;
 		}
 
-		/// <summary>
-		///		Convert an object to a byte array.
-		/// </summary>
-		private byte[] ObjectToByteArray(object obj)
-		{
-			if (obj == null)
-				return null;
-
-			BinaryFormatter bf = new BinaryFormatter();
-			MemoryStream ms = new MemoryStream();
-			bf.Serialize(ms, obj);
-
-			return ms.ToArray();
-		}
 
 		#endregion
 
@@ -147,20 +133,20 @@ namespace Framework.Zipping
 
 			// Determines the number of files that is in the zip.
 			long dataIndex = 0;
-			long fileCount = ((long)ByteArrayToObject(SubData(data, ref dataIndex, LONGLENGTH))) / LONGLENGTH - 1;
+			long fileCount = ((long)SubData(data, ref dataIndex, LONGLENGTH).ToObject()) / LONGLENGTH - 1;
 
 			// Collects file sizes.
 			long[] fileSizes = new long[fileCount];
 			for(int i = 0; i < fileCount; i++)
 			{
-				fileSizes[i] = (long)ByteArrayToObject(SubData(data, ref dataIndex, LONGLENGTH));
+				fileSizes[i] = (long)SubData(data, ref dataIndex, LONGLENGTH).ToObject();
 			}
 
 			// Collects name sizes.
 			short[] namelengths = new short[fileCount];
 			for(int i = 0; i < fileCount; i++)
 			{
-				namelengths[i] = (short)ByteArrayToObject(SubData(data, ref dataIndex, SHORTLENGTH));
+				namelengths[i] = (short)SubData(data, ref dataIndex, SHORTLENGTH).ToObject();
 			}
 
 			// Collects names. 
@@ -168,7 +154,7 @@ namespace Framework.Zipping
 			for(int i = 0; i < fileCount; i++)
 			{
 				short length = namelengths[i];
-				fileNames[i] = (string)ByteArrayToObject(SubData(data, ref dataIndex, length));
+				fileNames[i] = (string)SubData(data, ref dataIndex, length).ToObject();
 			}
 
 			// Unzips the individual files.
@@ -196,18 +182,6 @@ namespace Framework.Zipping
 			return subData;
 		}
 
-		/// <summary>
-		///		Convert a byte array to an Object.
-		/// </summary>
-		private object ByteArrayToObject(byte[] byteArray)
-		{
-			MemoryStream memStream = new MemoryStream();
-			BinaryFormatter binForm = new BinaryFormatter();
-			memStream.Write(byteArray, 0, byteArray.Length);
-			memStream.Seek(0, SeekOrigin.Begin);
-			object obj = binForm.Deserialize(memStream);
-			return obj;
-		}
 
 		#endregion	
 	}
