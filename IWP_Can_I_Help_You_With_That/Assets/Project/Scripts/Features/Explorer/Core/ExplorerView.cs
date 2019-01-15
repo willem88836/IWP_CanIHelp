@@ -1,10 +1,10 @@
-﻿using Framework.Core;
-using Framework.Android;
+﻿using Framework.Android;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using UnityEngine;
+using Framework.Utils;
 
 namespace IWPCIH.Explorer
 {
@@ -166,7 +166,7 @@ namespace IWPCIH.Explorer
 			{
 				List<ExplorerObject> objects = new List<ExplorerObject>();
 
-				Utilities.ForeachFolderAt(path, (string p) =>
+				DirectoryUtilities.ForeachFolderAt(path, (string p) =>
 				{
 					ExplorerObject explorerObject = CreateObject(p, FolderObject, ContentContainer, onInitialize);
 					if (explorerObject != null)
@@ -194,7 +194,7 @@ namespace IWPCIH.Explorer
 			{
 				List<ExplorerObject> objects = new List<ExplorerObject>();
 
-				Utilities.ForeachFileAt(path, (FileInfo info) =>
+				DirectoryUtilities.ForeachFileAt(path, (FileInfo info) =>
 				{
 					ExplorerObject explorerObject = CreateObject(info.FullName, FileObject, ContentContainer, onInitialize);
 					if (!explorerObject)

@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 
-namespace Framework.Core
+namespace Framework.Features.DebugTools
 {
+	// ty 8D 
 	public class Cheater : MonoBehaviour
 	{
 		public static Cheater instance;

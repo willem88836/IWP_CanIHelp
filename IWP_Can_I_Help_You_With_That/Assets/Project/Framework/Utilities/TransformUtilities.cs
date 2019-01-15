@@ -1,8 +1,8 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Assets.Project.Utilities.Utilities
-{
+namespace Framework.Utils
+{ 
 	/// <summary>
 	///		Contains utility methods for Transform.
 	/// </summary>

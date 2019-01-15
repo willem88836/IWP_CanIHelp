@@ -7,6 +7,7 @@ namespace IWPCIH.Explorer
 		public TextMesh Text;
 		public bool ShowExtention;
 
+
 		public override void Initialize(ExplorerView explorerView, string path)
 		{
 			base.Initialize(explorerView, path);
@@ -21,6 +22,10 @@ namespace IWPCIH.Explorer
 		public override void Select()
 		{
 			OnSelect();
+		}
+		public override void Deselect()
+		{
+			throw new System.NotImplementedException();
 		}
 	}
 }

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Framework.Interfaces;
+using UnityEngine;
 
 namespace IWPCIH.Explorer
 {
@@ -8,6 +9,7 @@ namespace IWPCIH.Explorer
 		public int MaxRows = 3;
 
 		public abstract void Select();
+		public abstract void Deselect();
 
 		protected string WrapText(string text)
 		{

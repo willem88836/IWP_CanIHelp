@@ -1,5 +1,5 @@
-﻿using Framework.Core;
-using Framework.Language;
+﻿using Framework.Language;
+using Framework.Utils;
 using System;
 using UnityEngine;
 using UnityEngine.UI;

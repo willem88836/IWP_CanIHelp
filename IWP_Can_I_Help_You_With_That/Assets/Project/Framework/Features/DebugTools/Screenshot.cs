@@ -1,9 +1,10 @@
 ﻿#if !DISABLE_SCREENSHOTS
+// ty 8D
 
 using UnityEngine;
 using System.IO;
 
-namespace VIIIDFramework.DebugTools
+namespace Framework.Features.DebugTools
 {
 	[RequireComponent(typeof(Camera))]
 	public class Screenshot : MonoBehaviour
@@ -53,4 +54,5 @@ namespace VIIIDFramework.DebugTools
 		}
 	}
 }
+
 #endif

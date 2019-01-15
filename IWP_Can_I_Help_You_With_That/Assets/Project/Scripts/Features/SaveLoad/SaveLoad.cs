@@ -1,5 +1,5 @@
 ﻿using System.IO;
-using Framework.Core;
+using Framework.Utils;
 
 namespace IWPCIH.Storage
 {
@@ -16,7 +16,7 @@ namespace IWPCIH.Storage
 			if (path == "")
 				path = SavePath;
 
-			Utilities.ForeachFileAt(path, (FileInfo info) =>
+			DirectoryUtilities.ForeachFileAt(path, (FileInfo info) =>
 			{
 				File.Delete(info.FullName);
 			});

@@ -1,7 +1,7 @@
-﻿using Framework.Core;
-using System;
+﻿using System;
 using UnityEngine;
 using IWPCIH.TimelineEvents;
+using Framework.Utils;
 
 namespace IWPCIH.EventTracking
 {
@@ -23,7 +23,7 @@ namespace IWPCIH.EventTracking
 
 			timeline.ForEach((TimelineChapter chapter) =>
 			{
-				data += Utilities.Combine(
+				data += StringUtilities.Combine(
 					EVENTSPACER, 
 					chapter.Id, 
 					chapter.Name, 

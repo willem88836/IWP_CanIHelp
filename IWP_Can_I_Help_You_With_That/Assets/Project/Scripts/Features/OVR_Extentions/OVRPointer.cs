@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using IWPCIH;
-using IWPCIH.VRMenu;
+﻿using UnityEngine;
+using Framework.Interfaces;
 
 namespace IWPCIH.VRMenu
 {
