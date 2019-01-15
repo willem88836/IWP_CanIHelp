@@ -1,4 +1,4 @@
-﻿namespace IWPCIH.Storage
+﻿namespace Framework.Interfaces
 {
 	interface ISavable<T>
 	{

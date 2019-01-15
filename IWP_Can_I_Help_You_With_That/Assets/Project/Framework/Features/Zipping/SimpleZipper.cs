@@ -2,7 +2,7 @@
 using System.IO;
 using Framework.Utils;
 
-namespace Framework.Zipping
+namespace Framework.Storage
 {
 	/// <summary>
 	///		Zips a set of files or directory into a singular file. 
@@ -92,6 +92,7 @@ namespace Framework.Zipping
 				}
 			}
 
+			FileEncryption.Encrypt(ref zipData);
 			File.WriteAllBytes(extractionPath, zipData);
 			return new FileInfo(extractionPath);
 		}
@@ -130,6 +131,7 @@ namespace Framework.Zipping
 		public DirectoryInfo Unzip(string zip, string extractionDirectory)
 		{
 			byte[] data = File.ReadAllBytes(zip);
+			FileEncryption.Decrypt(ref data);
 
 			// Determines the number of files that is in the zip.
 			long dataIndex = 0;

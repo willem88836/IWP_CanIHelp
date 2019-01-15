@@ -1,4 +1,4 @@
-﻿using Framework.Zipping;
+﻿using Framework.Storage;
 using IWPCIH.EventTracking;
 using System.Collections.Generic;
 using System.IO;
@@ -38,7 +38,8 @@ namespace IWPCIH.Storage
 		{
 			SaveLoad.SavePath = SoftSavePath;
 			SaveLoad.Extention = TIMELINEEXTENTION;
-			string s_timeline = SaveLoad.Load(saveName);
+			string s_timeline;
+			SaveLoad.Load(saveName, out s_timeline);
 			Timeline tl = TimelineSerializer.Deserialize(s_timeline);
 			timeline.Chapters = tl.Chapters;
 		}
