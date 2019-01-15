@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using Framework.Core;
+﻿using Framework.Variables;
+using UnityEngine;
 
 namespace IWPCIH.VRMenu
 {
