@@ -71,6 +71,8 @@ MonoBehaviour:
     InvokeTime: 0
     Type: 0
     Id: 0
+  MessageObject: {fileID: 114005790890869380, guid: e4d536add947ba24ea379a91e74f7064,
+    type: 2}
   QuestionPrefab: {fileID: 114819641163377204, guid: e3154ef93a505bd41b601a62450ebaa1,
     type: 2}
   ChoicePrefab: {fileID: 114819641163377204, guid: e3154ef93a505bd41b601a62450ebaa1,

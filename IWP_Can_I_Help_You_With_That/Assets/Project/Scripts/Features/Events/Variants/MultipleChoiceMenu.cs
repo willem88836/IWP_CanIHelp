@@ -1,4 +1,5 @@
-﻿using IWPCIH.EventTracking;
+﻿using Framework.Core;
+using IWPCIH.EventTracking;
 using IWPCIH.VRMenu;
 using System;
 using UnityEngine;
@@ -12,11 +13,11 @@ namespace IWPCIH.TimelineEvents
 		{
 			public string Question = "";
 			public string[] Answers = new string[0];
-			public string[] Chapters = new string[0];
+			public string[] Result = new string[0];
 		}
 		public override Type EventType { get { return typeof(MultipleChoiceData); } }
 
-
+		public MultipleChoiceOption MessageObject;
 		public MultipleChoiceOption QuestionPrefab;
 		public MultipleChoiceOption ChoicePrefab;
 		public float CameraDistance;
@@ -51,14 +52,35 @@ namespace IWPCIH.TimelineEvents
 
 		public void OnClick(int index)
 		{
-			(TimelineController.Instance as TimelineExecuter).TogglePause(false);
-			int chapterId = TimelineController.Instance.CurrentTimeline.GetIdOf(myData.Chapters[index]);
+			string result = myData.Result[index];
 
-			if (chapterId != -1)
+			// HACK: this should not be stored as a string. OR this should not be filled in as a string. Try enum or something.
+			if (result.StartsWith("switchto:"))
 			{
-				TimelineController.Instance.SwitchChapterTo(chapterId);
-			}
+				result = result.Substring(9);
+				int chapterId = TimelineController.Instance.CurrentTimeline.GetIdOf(result);
 
+				if (chapterId != -1)
+				{
+					TimelineController.Instance.SwitchChapterTo(chapterId);
+				}
+
+				StopMultipleChoice();
+			}
+			else if (result.StartsWith("showmessage:"))
+			{
+				transform.ReversedForeach((Transform child) => { Destroy(child.gameObject); });
+
+				result = result.Substring(12);
+				MultipleChoiceOption o = Instantiate(MessageObject, transform);
+				o.SetText(result);
+				o.OnClick += (int id) => { StopMultipleChoice(); };
+			}
+		}
+
+		public void StopMultipleChoice()
+		{
+			(TimelineController.Instance as TimelineExecuter).TogglePause(false);
 			Destroy(gameObject);
 		}
 	}
