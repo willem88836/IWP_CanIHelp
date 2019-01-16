@@ -34,15 +34,15 @@ namespace IWPCIH
 			base.Awake();
 
 			timelineSaveLoad.HardLoad();
-			StartNewChapter(CurrentTimeline.GetFirst());
+			CurrentChapter = CurrentTimeline.GetFirst();
+			StartNewChapter();
 		}
 
 		/// <summary>
 		///		Loads a new chapter and it's events. 
 		/// </summary>
-		public void StartNewChapter(TimelineChapter newChapter)
+		public void StartNewChapter()
 		{
-			CurrentChapter = CurrentTimeline.GetFirst();
 			if (File.Exists(CurrentChapter.VideoName))
 				VideoPlayer.url = CurrentChapter.VideoName;
 			else
@@ -72,6 +72,7 @@ namespace IWPCIH
 				Debug.LogWarning("Started waiting for event while videoplayer is not playing");
 			}
 
+			BaseEvent previousEvent = null;
 			foreach (TimelineEventData data in eventData)
 			{
 				while (VideoPlayer.time < data.InvokeTime)
@@ -79,13 +80,34 @@ namespace IWPCIH
 					yield return null;
 				}
 
+				if (previousEvent != null)
+				{
+					Destroy(previousEvent.gameObject);
+				}
+
 				BaseEvent newEvent = BaseEvents.Find((BaseEvent e) => e.EventType == data.GetType());
-				newEvent = Instantiate(newEvent, Container);
+				previousEvent = newEvent = Instantiate(newEvent, Container);
 				newEvent.Event = data;
 				newEvent.Invoke();
 
 				Debug.LogFormat("Invoke timelineEvent: (id: {0}) of (type: {1}) at (time: {2})", data.Id, data.Type, data.InvokeTime);
 			}
+		}
+
+		public void TogglePause(bool paused)
+		{
+			if (paused)
+				VideoPlayer.Pause();
+			else
+				VideoPlayer.Play();
+		}
+
+		public override void SwitchChapterTo(int id)
+		{
+			VideoPlayer.Stop();
+			StopAllCoroutines();
+			base.SwitchChapterTo(id);
+			StartNewChapter();
 		}
 	}
 }
