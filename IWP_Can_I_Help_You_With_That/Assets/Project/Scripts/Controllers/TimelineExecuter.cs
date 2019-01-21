@@ -63,7 +63,7 @@ namespace IWPCIH
 				yield return null;
 			}
 
-			Debug.Log("Video player is prepared!");
+			Debug.LogFormat("Video player is prepared using chapter: (id: {0}) (name: {1})!", CurrentChapter.Id, CurrentChapter.Name);
 
 			VideoPlayer.Play();
 
