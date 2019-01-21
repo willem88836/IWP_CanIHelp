@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4400219939504906}
   - component: {fileID: 114819641163377204}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Option
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 33616817339820246}
   - component: {fileID: 23018455109530642}
   - component: {fileID: 65922260401168780}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Textfieldbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56,7 +56,7 @@ GameObject:
   - component: {fileID: 33590624813216216}
   - component: {fileID: 23047241984740868}
   - component: {fileID: 65103593934436436}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73,7 +73,7 @@ GameObject:
   - component: {fileID: 4966597274497440}
   - component: {fileID: 23788230770142486}
   - component: {fileID: 102837069166843996}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: New Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
