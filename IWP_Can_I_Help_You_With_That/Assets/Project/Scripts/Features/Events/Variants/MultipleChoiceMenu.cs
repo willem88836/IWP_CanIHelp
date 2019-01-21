@@ -17,6 +17,8 @@ namespace IWPCIH.TimelineEvents
         public MultipleChoiceOption ChoicePrefab;
         public float Spacing;
 
+        float x;
+        float z;
 
         public override void Invoke()
         {
@@ -45,7 +47,13 @@ namespace IWPCIH.TimelineEvents
             Vector3 lookDir = Camera.main.transform.forward; //= camera richting
             Quaternion lookRotation = Camera.main.transform.rotation;
 
-            transform.position = lookDir * 3f;
+            x = transform.eulerAngles.x;
+            z = transform.eulerAngles.z;
+
+
+            lookRotation = Quaternion.Euler(x, 0, z);
+
+            transform.position = lookDir * 10f;
             transform.rotation = lookRotation;
         }
 
@@ -53,18 +61,23 @@ namespace IWPCIH.TimelineEvents
         private void Spawn(int index, string text)
         {
             MultipleChoiceOption option = Instantiate(ChoicePrefab, transform);
-
             option.transform.Translate(Vector3.down * index * Spacing);
 
+            option.Parent = this;
+          
             option.SetText(text);
-
+           
 
             // lower object.
         }
 
+       
 
-
-
+        public void OnOptionSelected(MultipleChoiceOption selected)
+        { 
+            Destroy(ChoicePrefab, 5);
+        }
+        
 
 
 
