@@ -10,7 +10,10 @@ namespace IWPCIH.EditorInterfaceObjects.Components
 
 		public void SetTime(int time)
 		{
-			TimeTextField.text = string.Format(FORMAT, time / 60, time % 60);
+			int min = time / 60;
+			int sec = time % 60;
+			string secStr = sec.ToString().Length == 1 ? "0" + sec : sec.ToString();
+			TimeTextField.text = string.Format(FORMAT, min, secStr);
 		}
 	}
 }
