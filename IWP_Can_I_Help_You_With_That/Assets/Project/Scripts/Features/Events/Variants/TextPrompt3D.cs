@@ -1,12 +1,13 @@
 ﻿using Framework.Core;
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace IWPCIH.TimelineEvents
 {
 	public class TextPrompt3D : MonoBehaviour, ISelectable
 	{
-		public TextMesh TextField;
+		public Text TextField;
 		public Action<TextPrompt3D> OnSelected; 
 
 

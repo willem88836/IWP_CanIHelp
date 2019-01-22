@@ -1,13 +1,14 @@
 ﻿using Framework.Core;
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 //TODO: Derive this from TextPrompt3D
 namespace IWPCIH.TimelineEvents
 {
 	public class MultipleChoiceOption : MonoBehaviour, ISelectable
 	{
-		public TextMesh TextField;
+		public Text TextField;
 		[NonSerialized] public int Index = 0;
 
 		public Action<int> OnClick = null;
