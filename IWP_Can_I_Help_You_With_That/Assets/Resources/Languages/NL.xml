@@ -101,4 +101,16 @@
     <Key>deleteevent</Key>
     <Value>Verwijder</Value>
   </Keyword>
+  <Keyword>
+    <Key>switchscenes</Key>
+    <Value>Wissel Scene</Value>
+  </Keyword>
+  <Keyword>
+    <Key>result</Key>
+    <Value>Resultaat</Value>
+  </Keyword>
+  <Keyword>
+    <Key>videoend</Key>
+    <Value>Einde Video</Value>
+  </Keyword>
 </Keywords>

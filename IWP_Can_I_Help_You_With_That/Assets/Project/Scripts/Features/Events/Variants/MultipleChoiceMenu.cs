@@ -76,6 +76,10 @@ namespace IWPCIH.TimelineEvents
 				o.SetText(result);
 				o.OnClick += (int id) => { StopMultipleChoice(); };
 			}
+			else
+			{
+				StopMultipleChoice();
+			}
 		}
 
 		public void StopMultipleChoice()

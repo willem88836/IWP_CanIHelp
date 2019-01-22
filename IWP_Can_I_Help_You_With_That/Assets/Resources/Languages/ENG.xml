@@ -101,4 +101,16 @@
     <Key>deleteevent</Key>
     <Value>Delete</Value>
   </Keyword>
+  <Keyword>
+    <Key>switchscenes</Key>
+    <Value>Switch Scene</Value>
+  </Keyword>
+  <Keyword>
+    <Key>result</Key>
+    <Value>Result</Value>
+  </Keyword>
+  <Keyword>
+    <Key>videoend</Key>
+    <Value>Video End</Value>
+  </Keyword>
 </Keywords>

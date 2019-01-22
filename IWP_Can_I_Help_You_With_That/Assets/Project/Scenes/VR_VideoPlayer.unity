@@ -1102,6 +1102,7 @@ MonoBehaviour:
   BaseEvents:
   - {fileID: 114171077246112830, guid: 8a882e6feea959f47b4d34d3a2048fce, type: 2}
   - {fileID: 114355962929004426, guid: c1f9d6fc20997864eb7a4c304f11bcf4, type: 2}
+  - {fileID: 114193815791340306, guid: 42eaea4d682819c4d9528477c419096c, type: 2}
 --- !u!114 &1899433774
 MonoBehaviour:
   m_ObjectHideFlags: 0
