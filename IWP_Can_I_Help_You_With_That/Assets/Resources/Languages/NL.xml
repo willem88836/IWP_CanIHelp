@@ -121,4 +121,16 @@
     <Key>message</Key>
     <Value>Bericht</Value>
   </Keyword>
+  <Keyword>
+    <Key>errorheader</Key>
+    <Value>Er is een fout opgetreden</Value>
+  </Keyword>
+  <Keyword>
+    <Key>errorclose</Key>
+    <Value>Sluiten</Value>
+  </Keyword>
+  <Keyword>
+    <Key>invalidnameerror</Key>
+    <Value>De ingevoerde naam bevat niet ondersteunde tekens</Value>
+  </Keyword>
 </Keywords>

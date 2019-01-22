@@ -251,6 +251,10 @@ Prefab:
       propertyPath: m_FontData.m_Alignment
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 1506303226615992, guid: 726c8c413916f30419666e2b790f30d3, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 726c8c413916f30419666e2b790f30d3, type: 2}
   m_IsPrefabAsset: 0
@@ -1104,6 +1108,7 @@ MonoBehaviour:
   - {fileID: 114355962929004426, guid: c1f9d6fc20997864eb7a4c304f11bcf4, type: 2}
   - {fileID: 114193815791340306, guid: 42eaea4d682819c4d9528477c419096c, type: 2}
   - {fileID: 114968609503396956, guid: 42ad2a1d55add46448a508c64240ca76, type: 2}
+  - {fileID: 114205722940138318, guid: f0157b170c890d942b68a2a0e81fded4, type: 2}
 --- !u!114 &1899433774
 MonoBehaviour:
   m_ObjectHideFlags: 0

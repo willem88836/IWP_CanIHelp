@@ -44,7 +44,6 @@ namespace IWPCIH.EditorInterfaceObjects.Components
 			for (int time = 0; time < videoLength; time += IntervalObjectSpawnInterval)
 			{
 				TimelineIntervalObject intervalObject = Instantiate(BaseIntervalObject, TimelineIntervalObjectContainer);
-				//int displayedTime = time +;
 				intervalObject.SetTime(time);
 			}
 		}

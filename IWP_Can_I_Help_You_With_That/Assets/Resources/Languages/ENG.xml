@@ -121,4 +121,16 @@
     <Key>message</Key>
     <Value>Message</Value>
   </Keyword>
+  <Keyword>
+    <Key>errorheader</Key>
+    <Value>An Error Occurred</Value>
+  </Keyword>
+  <Keyword>
+    <Key>errorclose</Key>
+    <Value>Close</Value>
+  </Keyword>
+  <Keyword>
+    <Key>invalidnameerror</Key>
+    <Value>Entered value contains invalid characters</Value>
+  </Keyword>
 </Keywords>
