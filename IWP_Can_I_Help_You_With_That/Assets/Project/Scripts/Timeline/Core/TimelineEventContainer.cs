@@ -6,7 +6,7 @@ namespace IWPCIH.TimelineEvents
 	//TODO: Please remove this script in some way. This is the ugliest thing I've seen in a long time.
 	public static class TimelineEventContainer
 	{
-		public enum EventType { CropStart, MultipleChoiceMenu, SwitchScenes, VideoEnd };
+		public enum EventType { CropStart, MultipleChoiceMenu, SwitchScenes, VideoEnd, TextPrompt };
 
 
 		public static TimelineEventData CreateEventDataOfType(EventType type)
@@ -21,6 +21,8 @@ namespace IWPCIH.TimelineEvents
 					return new SwitchScenes.SwitchScenesData();
 				case EventType.VideoEnd:
 					return new TimelineEventData();
+				case EventType.TextPrompt:
+					return new TextPrompt.TextPromptData();
 				default:
 					return null;
 			}
@@ -38,6 +40,8 @@ namespace IWPCIH.TimelineEvents
 					return typeof(SwitchScenes.SwitchScenesData);
 				case EventType.VideoEnd:
 					return typeof(TimelineEventData);
+				case EventType.TextPrompt:
+					return typeof(TextPrompt.TextPromptData);
 				default:
 					return null;
 			}

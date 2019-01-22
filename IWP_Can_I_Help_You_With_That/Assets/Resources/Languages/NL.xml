@@ -113,4 +113,12 @@
     <Key>videoend</Key>
     <Value>Einde Video</Value>
   </Keyword>
+  <Keyword>
+    <Key>textprompt</Key>
+    <Value>Tekst</Value>
+  </Keyword>
+  <Keyword>
+    <Key>message</Key>
+    <Value>Bericht</Value>
+  </Keyword>
 </Keywords>

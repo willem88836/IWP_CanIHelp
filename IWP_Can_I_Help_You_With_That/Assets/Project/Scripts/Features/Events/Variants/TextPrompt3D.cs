@@ -2,26 +2,23 @@
 using System;
 using UnityEngine;
 
-//TODO: Derive this from TextPrompt3D
 namespace IWPCIH.TimelineEvents
 {
-	public class MultipleChoiceOption : MonoBehaviour, ISelectable
+	public class TextPrompt3D : MonoBehaviour, ISelectable
 	{
 		public TextMesh TextField;
-		[NonSerialized] public int Index = 0;
+		public Action<TextPrompt3D> OnSelected; 
 
-		public Action<int> OnClick = null;
 
-		public void Select()
+		public virtual void Select()
 		{
-			OnClick.SafeInvoke(Index);
+			OnSelected.SafeInvoke(this);
 		}
 
 		public void SetText(string text)
 		{
 			TextField.text = text;
 		}
-
 
 #if UNITY_EDITOR
 		private void Update()
