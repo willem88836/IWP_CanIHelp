@@ -42,6 +42,7 @@ namespace IWPCIH.TimelineEvents
 			}
 
 			GridLayoutGroup3D layoutGroup3D = GetComponent<GridLayoutGroup3D>();
+			layoutGroup3D.ForceUpdate();
 			transform.position = transform.position + (Vector3.up * layoutGroup3D.Spacing.Y * myData.Answers.Length / 2);
 			Camera main = Camera.main;
 			transform.position += main.transform.forward * CameraDistance;
@@ -75,6 +76,10 @@ namespace IWPCIH.TimelineEvents
 				MultipleChoiceOption o = Instantiate(MessageObject, transform);
 				o.SetText(result);
 				o.OnClick += (int id) => { StopMultipleChoice(); };
+			}
+			else
+			{
+				StopMultipleChoice();
 			}
 		}
 

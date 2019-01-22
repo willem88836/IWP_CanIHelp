@@ -30,7 +30,9 @@ namespace IWPCIH
 			int index = CurrentTimeline.ChapterCount;
 
 			// TODO: HIGH PRIO!!! Calculate actual video length.
-			int videoLength = 0;
+			int videoLength = 60;
+
+			
 
 			TimelineChapter chapter = new TimelineChapter(index, name, videoName, videoLength);
 			CurrentTimeline.AddChapter(chapter);

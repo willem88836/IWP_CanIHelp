@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using UnityEngine.Video;
+using UnityEngine.SceneManagement;
 
 namespace IWPCIH
 {
@@ -16,6 +17,8 @@ namespace IWPCIH
 	/// </summary>
 	public sealed class TimelineExecuter : TimelineController
 	{
+		private const string MAINMENU = "VR_MainMenu";
+
 		private string LoadPath { get { return Path.Combine(Application.dataPath, ProjectName.Value); } }
 
 		public TimelineSaveLoadWrapper timelineSaveLoad;
@@ -100,6 +103,12 @@ namespace IWPCIH
 				VideoPlayer.Pause();
 			else
 				VideoPlayer.Play();
+		}
+
+		public void Stop()
+		{
+			StopAllCoroutines();
+			SceneManager.LoadScene(MAINMENU);
 		}
 
 		public override void SwitchChapterTo(int id)
