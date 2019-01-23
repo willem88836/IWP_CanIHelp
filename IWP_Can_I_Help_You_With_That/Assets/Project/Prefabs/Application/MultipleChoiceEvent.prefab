@@ -77,4 +77,4 @@ MonoBehaviour:
     type: 2}
   ChoicePrefab: {fileID: 114819641163377204, guid: e3154ef93a505bd41b601a62450ebaa1,
     type: 2}
-  CameraDistance: 5
+  CameraDistance: 10

@@ -43,10 +43,14 @@ namespace IWPCIH.TimelineEvents
 
 			GridLayoutGroup3D layoutGroup3D = GetComponent<GridLayoutGroup3D>();
 			layoutGroup3D.ForceUpdate();
-			transform.position = transform.position + (Vector3.up * layoutGroup3D.Spacing.Y * myData.Answers.Length / 2);
-			Camera main = Camera.main;
-			transform.position += main.transform.forward * CameraDistance;
-			transform.rotation = main.transform.rotation;
+
+			// TODO: For some reason the object spawns at an offset. Needs fixin!
+			//Debug.Log(TransformSingleton.Instance);
+			Transform orientation = TransformSingleton.Instance ?? Camera.main.transform;
+			transform.rotation = orientation.rotation;
+			transform.position += orientation.forward * CameraDistance + (Vector3.up * layoutGroup3D.Spacing.Y * myData.Answers.Length / 2);
+			//Debug.DrawRay(orientation.position, orientation.forward, Color.red, CameraDistance);
+			//Debug.DrawLine(orientation.position, orientation.forward * CameraDistance + (Vector3.up * layoutGroup3D.Spacing.Y * myData.Answers.Length / 2), Color.red, 10);
 
 			(TimelineController.Instance as TimelineExecuter).TogglePause(true);
 		}
