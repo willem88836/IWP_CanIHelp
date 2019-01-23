@@ -62,6 +62,8 @@ namespace IWPCIH.VRMenu
 
 		protected virtual void Awake()
 		{
+			// TODO: find a proper way to disable the controller that is not being used. disabling a controller doesn't work.
+
 			m_anchorOffsetPosition = transform.localPosition;
 			m_anchorOffsetRotation = transform.localRotation;
 
@@ -98,6 +100,7 @@ namespace IWPCIH.VRMenu
 			{
 				PointerObject.gameObject.SetActive(true);
 				PointerObject.transform.position = hit.point - (transform.forward * 0.01f);
+				PointerObject.transform.rotation = hit.transform.rotation;
 				selectable = hit.transform.GetComponent<ISelectable>();
 				
 				if (selectable != null)

@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 224677823713442112}
   - component: {fileID: 222005392308390906}
   - component: {fileID: 114405789665304940}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55,7 +55,7 @@ GameObject:
   - component: {fileID: 224713259642300640}
   - component: {fileID: 223964107012957824}
   - component: {fileID: 114085713795554570}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,7 +72,7 @@ GameObject:
   - component: {fileID: 4125926633448944}
   - component: {fileID: 33913766198348470}
   - component: {fileID: 23202727355476300}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Textfieldbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 4204930015291226}
   - component: {fileID: 33210491708225406}
   - component: {fileID: 23852780363215842}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}

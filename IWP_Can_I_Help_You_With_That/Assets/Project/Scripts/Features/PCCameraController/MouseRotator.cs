@@ -4,8 +4,8 @@ namespace IWPCIH.CameraRotator
 {
 	public sealed class MouseRotator : Rotator
 	{
+#if UNITY_EDITOR
 		private Vector3 previous;
-
 
 		private void Awake()
 		{
@@ -23,5 +23,6 @@ namespace IWPCIH.CameraRotator
 				previous = current;
 			}
 		}
+#endif
 	}
 }

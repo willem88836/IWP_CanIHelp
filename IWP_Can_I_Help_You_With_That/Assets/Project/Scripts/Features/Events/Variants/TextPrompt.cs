@@ -30,9 +30,9 @@ namespace IWPCIH.TimelineEvents
 			prompt.SetText(myData.Message);
 			prompt.OnSelected += OnPromptClicked;
 
-			Camera main = Camera.main;
-			transform.position = transform.position + main.transform.forward * CameraDistance;
-			transform.rotation = main.transform.rotation;
+			Transform orientation = TransformSingleton.Instance ?? Camera.main.transform;
+			transform.position = transform.position + orientation.forward * CameraDistance;
+			transform.rotation = orientation.rotation;
 		}
 
 		private void OnPromptClicked(TextPrompt3D text)

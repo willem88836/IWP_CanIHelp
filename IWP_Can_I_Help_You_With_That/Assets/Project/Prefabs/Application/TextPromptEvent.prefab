@@ -57,4 +57,4 @@ MonoBehaviour:
     Id: 0
   PromptObject: {fileID: 114844275318439510, guid: f216613bb62713d44ae70c0ce166c3c6,
     type: 2}
-  CameraDistance: 5
+  CameraDistance: 10
