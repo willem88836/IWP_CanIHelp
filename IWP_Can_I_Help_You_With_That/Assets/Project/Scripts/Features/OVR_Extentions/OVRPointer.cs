@@ -62,6 +62,8 @@ namespace IWPCIH.VRMenu
 
 		protected virtual void Awake()
 		{
+			// TODO: find a proper way to disable the controller that is not being used. disabling a controller doesn't work.
+
 			m_anchorOffsetPosition = transform.localPosition;
 			m_anchorOffsetRotation = transform.localRotation;
 
