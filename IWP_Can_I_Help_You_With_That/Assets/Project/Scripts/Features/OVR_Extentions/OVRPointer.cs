@@ -98,6 +98,7 @@ namespace IWPCIH.VRMenu
 			{
 				PointerObject.gameObject.SetActive(true);
 				PointerObject.transform.position = hit.point - (transform.forward * 0.01f);
+				PointerObject.transform.rotation = hit.transform.rotation;
 				selectable = hit.transform.GetComponent<ISelectable>();
 				
 				if (selectable != null)
