@@ -25,7 +25,7 @@ namespace IWPCIH.EditorInterfaceObjects.Components
 			// TODO: filter input type settings (numerical, alphanumerical, etc.) based on type. 
 			name = string.Format(STRINGFORMAT, text);
 			Label.text = MultilanguageSupport.GetKeyWord(text);
-			Input.text = value.ToString();
+			Input.text = value == null ? "" : value.ToString();
 			OnValueChanged = onChange;	
 		}
 	}

@@ -19,6 +19,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4843236471424526}
+  - component: {fileID: 114200437929886146}
   - component: {fileID: 114355962929004426}
   m_Layer: 0
   m_Name: MultipleChoiceEvent
@@ -34,12 +35,27 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1092057180834086}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 3.62}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114200437929886146
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1092057180834086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cefabc4f913b0984eb74bcf3be523005, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ColumnCount: 1
+  Spacing:
+    X: 0
+    Y: 2
 --- !u!114 &114355962929004426
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -55,5 +71,10 @@ MonoBehaviour:
     InvokeTime: 0
     Type: 0
     Id: 0
+  MessageObject: {fileID: 114005790890869380, guid: e4d536add947ba24ea379a91e74f7064,
+    type: 2}
+  QuestionPrefab: {fileID: 114819641163377204, guid: e3154ef93a505bd41b601a62450ebaa1,
+    type: 2}
   ChoicePrefab: {fileID: 114819641163377204, guid: e3154ef93a505bd41b601a62450ebaa1,
     type: 2}
+  CameraDistance: 10

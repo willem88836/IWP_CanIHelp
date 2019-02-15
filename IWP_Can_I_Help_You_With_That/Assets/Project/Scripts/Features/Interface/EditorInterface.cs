@@ -40,9 +40,10 @@ namespace IWPCIH.EditorInterfaceObjects.Components
 
 		private void SpawnIntervalObjects(int videoLength)
 		{
-			for (int time = 0; time < videoLength; time+= IntervalObjectSpawnInterval)
+			for (int time = 0; time < videoLength; time += IntervalObjectSpawnInterval)
 			{
-				Instantiate(BaseIntervalObject, TimelineIntervalObjectContainer).SetTime(time);
+				TimelineIntervalObject intervalObject = Instantiate(BaseIntervalObject, TimelineIntervalObjectContainer);
+				intervalObject.SetTime(time);
 			}
 		}
 

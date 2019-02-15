@@ -33,6 +33,15 @@ namespace IWPCIH.EventTracking
 			return Chapters.Find(c => c.Id == id);
 		}
 
+		/// <summary>
+		///		Returns the Id of the first chapter instance that corresponds with the provided name.
+		/// </summary>
+		public int GetIdOf(string chapterName)
+		{
+			TimelineChapter chapter = Chapters.Find(c => c.Name == chapterName);
+			return chapter != null ? chapter.Id : -1;
+		}
+
 		public TimelineChapter GetFirst()
 		{
 			return Chapters[0];

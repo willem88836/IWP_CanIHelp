@@ -101,4 +101,36 @@
     <Key>deleteevent</Key>
     <Value>Delete</Value>
   </Keyword>
+  <Keyword>
+    <Key>switchscenes</Key>
+    <Value>Switch Scene</Value>
+  </Keyword>
+  <Keyword>
+    <Key>result</Key>
+    <Value>Result</Value>
+  </Keyword>
+  <Keyword>
+    <Key>videoend</Key>
+    <Value>Video End</Value>
+  </Keyword>
+  <Keyword>
+    <Key>textprompt</Key>
+    <Value>Text</Value>
+  </Keyword>
+  <Keyword>
+    <Key>message</Key>
+    <Value>Message</Value>
+  </Keyword>
+  <Keyword>
+    <Key>errorheader</Key>
+    <Value>An Error Occurred</Value>
+  </Keyword>
+  <Keyword>
+    <Key>errorclose</Key>
+    <Value>Close</Value>
+  </Keyword>
+  <Keyword>
+    <Key>invalidnameerror</Key>
+    <Value>Entered value contains invalid characters</Value>
+  </Keyword>
 </Keywords>

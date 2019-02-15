@@ -43,6 +43,12 @@ namespace Framework.Features
 			TextField.text = GetMessage(ex);
 		}
 
+		public void Invoke(string message)
+		{
+			gameObject.SetActive(true);
+			TextField.text = message;
+		}
+
 		public static void SafeInvoke(Exception ex)
 		{
 			Debug.LogError(GetMessage(ex));
@@ -51,7 +57,16 @@ namespace Framework.Features
 				return;
 
 			Instance.Invoke(ex);
+		}
 
+		public static void SafeInvoke(string message)
+		{
+			Debug.LogError(message);
+
+			if (Instance == null || (Application.isEditor && IgnoreInEditor))
+				return;
+
+			Instance.Invoke(message);
 		}
 	}
 }

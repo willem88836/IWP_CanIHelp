@@ -31,6 +31,12 @@ namespace IWPCIH.VRMenu
 			}
 		}
 
+		public void ForceUpdate()
+		{
+			UpdateLayout();
+			childCount = transform.childCount;
+		}
+
 		private void UpdateLayout()
 		{
 			int y = 0;

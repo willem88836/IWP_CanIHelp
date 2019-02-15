@@ -1,8 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
+using Framework.Language;
+using Framework.Features;
 
 namespace IWPCIH.EditorInterfaceObjects.Menu
 {
@@ -53,6 +54,7 @@ namespace IWPCIH.EditorInterfaceObjects.Menu
 				usedVideos[selectedPath].Deselect();
 				NameTextfield.text = "";
 				selectedPath = "";
+				gameObject.SetActive(false);
 			}
 			else
 			{
@@ -92,7 +94,8 @@ namespace IWPCIH.EditorInterfaceObjects.Menu
 		private void OnInvalidName()
 		{
 			// TODO: implement events that happen on an invalid name.
-			throw new NotImplementedException();
+			string message = MultilanguageSupport.GetKeyWord("invalidnameerror");
+			UnityErrorField.SafeInvoke(message);
 		}
 
 		/// <summary>
