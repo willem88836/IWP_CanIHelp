@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Framework.Core
+namespace Framework.Variables
 {
 #if UNITY_EDITOR
 	using UnityEditor;

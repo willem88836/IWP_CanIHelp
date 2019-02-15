@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Framework.Core
+namespace Framework.Variables
 {
 	[Serializable]
 	public struct Int2

@@ -1,4 +1,5 @@
-﻿using Framework.Core;
+﻿using Framework.Interfaces;
+using Framework.Utils;
 using System;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,6 +13,11 @@ namespace IWPCIH.TimelineEvents
 		[NonSerialized] public int Index = 0;
 
 		public Action<int> OnClick = null;
+
+		public void Deselect()
+		{
+			throw new NotImplementedException();
+		}
 
 		public void Select()
 		{

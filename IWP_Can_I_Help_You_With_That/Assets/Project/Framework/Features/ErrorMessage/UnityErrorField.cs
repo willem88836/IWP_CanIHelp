@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Framework.Core
+namespace Framework.Features
 {
 	/// <summary>
 	///		Responsible for visually displaying error messages in build. 

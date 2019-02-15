@@ -21,5 +21,9 @@ namespace IWPCIH.Explorer
 		{
 			OnSelect();
 		}
+		public override void Deselect()
+		{
+			throw new System.NotImplementedException();
+		}
 	}
 }
